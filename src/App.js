@@ -1,11 +1,11 @@
-import SeatDetail from 'containers/client/Home/SeatDetail/SeatDetail'
+import Login from 'containers/client/Home/Login/Login'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
-            <SeatDetail/>
+            <Login/>
         </Switch>
       </Router>
     </div>
