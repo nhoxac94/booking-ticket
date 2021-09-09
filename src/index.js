@@ -6,6 +6,7 @@ import 'jquery/dist/jquery.min.js';
 import 'popper.js/dist/umd/popper.min.js';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'antd/dist/antd.css';
 import { Provider } from 'react-redux';
 import store from './store'
 import reportWebVitals from './reportWebVitals';
