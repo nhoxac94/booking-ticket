@@ -1,14 +1,13 @@
-import CinemaDetail from 'containers/client/CinemaDetail/CinemaDetail';
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
 
+import AddUser from 'containers/admin/Admin/UserManagement/AddUser/AddUser';
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <Switch>
-        </Switch>
-      </Router>
-    </div>
+    <Router>
+      <Switch>
+        <AddUser />
+      </Switch>
+    </Router>
   );
 }
 
