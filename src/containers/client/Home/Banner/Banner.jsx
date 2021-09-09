@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Carousel } from "antd";
-
+import { fetchAllMovieApi } from "apis/movieApi";
 function onChange(a, b, c) {
   console.log(a, b, c);
 }

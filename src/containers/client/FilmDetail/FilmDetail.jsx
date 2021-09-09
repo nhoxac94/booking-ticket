@@ -1,5 +1,5 @@
 import axios from 'axios'
-import Loader from 'containers/Loader/Loader'
+import Loader from 'components/Loader/Loader'
 import moment from 'moment'
 import React, { Component } from 'react'
 import './FilmDetail.scss'

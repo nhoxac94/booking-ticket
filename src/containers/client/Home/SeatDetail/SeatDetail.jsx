@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import './SeatDetail.scss'
-import Loader from 'containers/Loader/Loader'
+import Loader from 'components/Loader/Loader'
 import { UserOutlined } from '@ant-design/icons'
 
 export default class SeatDetail extends Component {
