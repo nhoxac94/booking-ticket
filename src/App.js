@@ -1,11 +1,11 @@
+import AdminLayout from 'layouts/AdminLayout';
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
 
-import Home from 'containers/client/Home/Home';
 function App() {
   return (
     <Router>
       <Switch>
-        <Home/>
+        <AdminLayout />
       </Switch>
     </Router>
   );
