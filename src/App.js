@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
 
-import AddUser from 'containers/admin/Admin/UserManagement/AddUser/AddUser';
+import Home from 'containers/client/Home/Home';
 function App() {
   return (
     <Router>
       <Switch>
-        <AddUser />
+        <Home/>
       </Switch>
     </Router>
   );
