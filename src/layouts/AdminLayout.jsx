@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Layout, Menu, Breadcrumb } from "antd";
 import { UserOutlined, CalendarOutlined } from "@ant-design/icons";
 import "./AdminLayout.scss";
-import MovieManager from "containers/admin/Admin/MovieManager/MovieManager";
+import MovieManager from "containers/admin/Admin/MovieControl/MovieManager/MovieManager";
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 

@@ -6,7 +6,7 @@ import {
 } from "@ant-design/icons";
 import "./MovieManager.scss";
 import Button from "components/Button/Button";
-import AddMovie from "./AddMovie/AddMovie";
+import AddMovie from "../AddMovie/AddMovie";
 export default class MovieManager extends Component {
   render() {
     return (
