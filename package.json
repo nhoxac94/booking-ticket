@@ -11,7 +11,6 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "jquery": "^3.6.0",
-    "node-sass": "^4.14.1",
     "moment": "^2.29.1",
     "popper.js": "^1.16.1",
     "react": "^17.0.2",
@@ -23,6 +22,7 @@
     "redux": "^4.1.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
+    "sass": "^1.39.2",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
@@ -49,7 +49,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "node-sass": "^6.0.1"
-  }
+  "devDependencies": {}
 }

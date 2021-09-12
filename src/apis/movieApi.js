@@ -6,8 +6,8 @@ const movieApi = {
         return callApi(`QuanLyPhim/LayDanhSachPhim?maNhom=${GROUP_ID}`)
     },
 
-    fetchAllMovieDetail(movieId) {
-        return callApi(``)
+    fetchAllCinema() {
+        return callApi(`QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=${GROUP_ID}`);
     }
 }
 
