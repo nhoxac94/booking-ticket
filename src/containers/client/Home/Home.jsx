@@ -15,7 +15,7 @@ export default class Home extends Component {
     movieApi
       .fetchAllMovieApi()
       .then((res) => {
-        console.table(res.data);
+        // console.table(res.data);
       })
       .catch((err) => {
         alert(err);

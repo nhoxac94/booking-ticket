@@ -1,0 +1,8 @@
+export const LOGIN_REQUEST = 'LOGIN_REQUEST';
+export const lOGIN_SUCCESS = 'lOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const USER_BOOKING_TICKET_LOGIN = 'USER_BOOKING_TICKET_LOGIN';
+export const LOG_OUT = 'LOG_OUT';
+export const SIGNUP_REQUEST = 'SIGNUP_REQUEST'
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS'
+export const SIGNUP_FAIL = 'SIGNUP_FAIL'

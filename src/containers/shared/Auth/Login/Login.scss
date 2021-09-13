@@ -9,8 +9,8 @@ body{
 .clearfix:after{clear:both;display:block}
 a{color:inherit;text-decoration:none}
 
-.container-fluid {
-    background-image: url('../../../../assets/img/bgLogin.jpg');
+.login-movie {
+    background-image: url('/assets/img/bgLogin.jpg');
     min-height:100vh;
     padding-top: 5%;
 }
@@ -28,7 +28,7 @@ a{color:inherit;text-decoration:none}
 	width:100%;
 	height:100%;
 	position:absolute;
-	padding:90px 70px 50px 70px;
+	padding:50px 70px 50px 70px;
 	background:rgba(40,57,101,.9);
 }
 .login-html .sign-in-htm,
@@ -148,9 +148,17 @@ a{color:inherit;text-decoration:none}
 
 .hr{
 	height:2px;
-	margin:60px 0 50px 0;
+	margin:00px 0 50px 0;
 	background:rgba(255,255,255,.2);
 }
 .foot-lnk{
 	text-align:center;
+}
+
+.loginError {
+	text-align: center;
+	background-color: white;
+	padding: 10px;
+	font-size: 1.2em;
+	font-weight: 600;
 }

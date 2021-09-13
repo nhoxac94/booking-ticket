@@ -6,8 +6,8 @@ const callApi = (endpoint, method = 'GET', data = null, token = null) => {
         url: `${BASE_URL}/${endpoint}`,
         method,
         data,
-        header: token ? {
-            Authorization: `Bearer ${token}`
+        headers: token ? {
+            Authorization:'Bearer ' + token
         } : null,
     })
 }

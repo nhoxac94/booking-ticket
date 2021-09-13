@@ -1,17 +1,17 @@
-import axios from 'axios'
 import Loader from 'components/Loader/Loader'
 import moment from 'moment'
 import React, { Component } from 'react'
-import './FilmDetail.scss'
+import './MovieDetail.scss'
 import 'antd/dist/antd.css';
 import { Rate } from 'antd';
+import { actMovieDetail } from './module/actions'
+import { connect } from 'react-redux'
 
-export default class FilmDetail extends Component {
+class MovieDetail extends Component {
     state = {
         movie: [],
         loading: true,
     }
-
 
     render() {
         const { movie, loading } = this.state
@@ -105,19 +105,8 @@ export default class FilmDetail extends Component {
     }
 
     componentDidMount = () => {
-        return axios({
-            url: 'https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=1324',
-            method: 'GET',
-        })
-            .then(res => {
-                this.setState({
-                    movie: res.data,
-                    loading: false,
-                })
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        actMovieDetail()
     }
 }
 
+export default connect ()(MovieDetail)

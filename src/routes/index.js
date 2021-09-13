@@ -1,5 +1,5 @@
 import CinemaDetail from "containers/client/CinemaDetail/CinemaDetail";
-import FilmDetail from "containers/client/FilmDetail/FilmDetail";
+import MovieDetail from "containers/client/FilmDetail/MovieDetail";
 import Home from "containers/client/Home/Home";
 import SeatDetail from "containers/client/Home/SeatDetail/SeatDetail";
 
@@ -18,7 +18,7 @@ export const clientRoutes = [
     },
     {
         path: '/chitietphim/:maPhim',
-        component: FilmDetail,
+        component: MovieDetail,
         exact: true,
         isPrivate: false,
     },

@@ -8,7 +8,12 @@ const movieApi = {
 
     fetchAllMovieDetail(movieId) {
         return callApi(``)
+    },
+
+    fetchMovieDetail(movieId) {
+        return callApi(`QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${movieId}`)
     }
+
 }
 
 export default movieApi;
