@@ -1,7 +1,36 @@
 import React, { Component } from "react";
 
 export default class CinemaList extends Component {
+  renderCinema() {
+    const { cinemaList } = this.props;
+    return (
+      <a
+        className="nav-link active"
+        id="v-pills-home-tab"
+        data-toggle="pill"
+        href="#v-pills-home"
+        role="tab"
+        aria-controls="v-pills-home"
+        aria-selected="true"
+      >
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-2 mx-0 px-0">
+              <img
+                src="https://picsum.photos/id/1/50/50"
+                className="rounded-circle"
+                alt=""
+              />
+            </div>
+            <div className="col-10 mx-0 px-0 pl-5">API Các Cụm Rạp</div>
+          </div>
+        </div>
+      </a>
+    );
+  }
   render() {
+    const { cinemaList } = this.props;
+    console.log(cinemaList);
     return (
       <div className="container-fluid">
         <div className="row my-5">
@@ -12,94 +41,34 @@ export default class CinemaList extends Component {
               role="tablist"
               aria-orientation="vertical"
             >
-              <a
-                className="nav-link active"
-                id="v-pills-home-tab"
-                data-toggle="pill"
-                href="#v-pills-home"
-                role="tab"
-                aria-controls="v-pills-home"
-                aria-selected="true"
-              >
-                <div className="container">
-                  <div className="row">
-                    <div className="col-2">
-                      <img
-                        src="https://picsum.photos/id/1/50/50"
-                        className="rounded-circle"
-                        alt=""
-                      />
+              {cinemaList.map((cinema, idx) => {
+                const { lstCumRap, maHeThongRap, tenHeThongRap, logo } = cinema;
+                return (
+                  <a
+                    className="nav-link pb-4"
+                    id="v-pills-home-tab"
+                    data-toggle="pill"
+                    href="#v-pills-home"
+                    role="tab"
+                    aria-controls="v-pills-home"
+                    aria-selected="true"
+                    key={maHeThongRap}
+                  >
+                    <div className="container-fluid">
+                      <div className="row">
+                        <div className="col-2 my-auto">
+                          <img
+                            src={logo}
+                            className="rounded-circle img-fluid"
+                            alt=""
+                          />
+                        </div>
+                        <div className="col-10 mx-0 pl-5">{tenHeThongRap}</div>
+                      </div>
                     </div>
-                    <div className="col-10">API Các Cụm Rạp</div>
-                  </div>
-                </div>
-              </a>
-              <a
-                className="nav-link"
-                id="v-pills-profile-tab"
-                data-toggle="pill"
-                href="#v-pills-profile"
-                role="tab"
-                aria-controls="v-pills-profile"
-                aria-selected="false"
-              >
-                <div className="container">
-                  <div className="row">
-                    <div className="col-2">
-                      <img
-                        src="https://picsum.photos/id/1/50/50"
-                        className="rounded-circle"
-                        alt=""
-                      />
-                    </div>
-                    <div className="col-10">API Các Cụm Rạp</div>
-                  </div>
-                </div>
-              </a>
-              <a
-                className="nav-link"
-                id="v-pills-messages-tab"
-                data-toggle="pill"
-                href="#v-pills-messages"
-                role="tab"
-                aria-controls="v-pills-messages"
-                aria-selected="false"
-              >
-                <div className="container">
-                  <div className="row">
-                    <div className="col-2">
-                      <img
-                        src="https://picsum.photos/id/1/50/50"
-                        className="rounded-circle"
-                        alt=""
-                      />
-                    </div>
-                    <div className="col-10">API Các Cụm Rạp</div>
-                  </div>
-                </div>
-              </a>
-              <a
-                className="nav-link"
-                id="v-pills-settings-tab"
-                data-toggle="pill"
-                href="#v-pills-settings"
-                role="tab"
-                aria-controls="v-pills-settings"
-                aria-selected="false"
-              >
-                <div className="container">
-                  <div className="row">
-                    <div className="col-2">
-                      <img
-                        src="https://picsum.photos/id/1/50/50"
-                        className="rounded-circle"
-                        alt=""
-                      />
-                    </div>
-                    <div className="col-10">API Các Cụm Rạp</div>
-                  </div>
-                </div>
-              </a>
+                  </a>
+                );
+              })}
             </div>
           </div>
           <div className="col-9">
@@ -109,30 +78,6 @@ export default class CinemaList extends Component {
                 id="v-pills-home"
                 role="tabpanel"
                 aria-labelledby="v-pills-home-tab"
-              >
-                API Các Suất Chiếu
-              </div>
-              <div
-                className="tab-pane fade"
-                id="v-pills-profile"
-                role="tabpanel"
-                aria-labelledby="v-pills-profile-tab"
-              >
-                API Các Suất Chiếu
-              </div>
-              <div
-                className="tab-pane fade"
-                id="v-pills-messages"
-                role="tabpanel"
-                aria-labelledby="v-pills-messages-tab"
-              >
-                API Các Suất Chiếu
-              </div>
-              <div
-                className="tab-pane fade"
-                id="v-pills-settings"
-                role="tabpanel"
-                aria-labelledby="v-pills-settings-tab"
               >
                 API Các Suất Chiếu
               </div>

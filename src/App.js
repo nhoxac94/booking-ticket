@@ -4,8 +4,9 @@ import PageNotFound from "containers/shared/Auth/PageNotFound/PageNotFound";
 import { clientRoutes } from "routes";
 import Login from "containers/shared/Auth/Login/Login";
 import SeatDetail from "containers/client/Home/SeatDetail/SeatDetail";
-import MovieDetail from "containers/client/FilmDetail/MovieDetail";
+import MovieDetail from "containers/client/MovieDetail/MovieDetail";
 import UserInformation from "containers/client/UserInformation/UserInformation";
+
 
 function App() {
   const renderLayout = (routes, Layout) => {
@@ -30,7 +31,6 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/movie-detail/:movieId" component={MovieDetail} />
           <Route path="/user-information" component={UserInformation} />
-
           <Route path="/seat-detail/:movieId" component={SeatDetail} />
 
           <Route path="*" component={PageNotFound} />
@@ -38,7 +38,8 @@ function App() {
         </Switch>
       </Router>
     </div>
-  );
+
+  )     
 }
 
 export default App;

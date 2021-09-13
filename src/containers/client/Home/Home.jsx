@@ -5,9 +5,11 @@ import Banner from "./Banner/Banner";
 import CinemaList from "./CinemaList/CinemaList";
 import MovieList from "./MovieList/MovieList";
 import movieApi from "apis/movieApi";
+import Loader from "components/Loader/Loader";
 export default class Home extends Component {
   state = {
-    movieDetail: [],
+    movieList: [],
+    cinemaList: [],
     loading: true,
   };
 
@@ -15,19 +17,35 @@ export default class Home extends Component {
     movieApi
       .fetchAllMovieApi()
       .then((res) => {
-        // console.table(res.data);
+        this.setState({
+          movieList: res.data,
+          loading: false,
+        });
+      })
+      .catch((err) => {
+        alert(err);
+      });
+    movieApi
+      .fetchAllCinema()
+      .then((res) => {
+        this.setState({
+          cinemaList: res.data,
+          loading: false,
+        });
       })
       .catch((err) => {
         alert(err);
       });
   }
   render() {
+    const { movieList, cinemaList, loading } = this.state;
+    if (loading) return <Loader />;
     return (
       <div>
         <Header />
         <Banner />
-        <MovieList />
-        <CinemaList />
+        <MovieList movieList={movieList} />
+        <CinemaList cinemaList={cinemaList} />
         <Footer />
       </div>
     );

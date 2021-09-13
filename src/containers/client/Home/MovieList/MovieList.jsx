@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import ShowingMovie from "./ShowingMovie/ShowingMovie";
 
 export default class MovieList extends Component {
   render() {
+    const { movieList } = this.props;
     return (
       <div className="container-fluid">
         <div className="my-5">
@@ -61,7 +63,7 @@ export default class MovieList extends Component {
               role="tabpanel"
               aria-labelledby="pills-profile-tab"
             >
-              API Phim Đang Chiếu
+              <ShowingMovie movieList={movieList} />
             </div>
             <div
               className="tab-pane fade"

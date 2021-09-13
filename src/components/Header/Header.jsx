@@ -1,7 +1,6 @@
-import Button from "components/Button/Button";
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./Header.scss";
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { actLogout } from "containers/shared/Auth/module/action";
 
@@ -31,9 +30,9 @@ class Header extends Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mx-auto">
               <li className="nav-item active">
-                <a className="nav-link" href="#">
+                <Link to="/">
                   Trang Chủ <span className="sr-only">(current)</span>
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">
@@ -57,6 +56,7 @@ class Header extends Component {
                 : <Link to="/login" className="btn btn-primary">Đăng nhập</Link>
               }
             </div>
+            
           </div>
         </nav>
       </header>

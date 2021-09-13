@@ -1,5 +1,5 @@
 import CinemaDetail from "containers/client/CinemaDetail/CinemaDetail";
-import MovieDetail from "containers/client/FilmDetail/MovieDetail";
+import MovieDetail from "containers/client/MovieDetail/MovieDetail";
 import Home from "containers/client/Home/Home";
 import SeatDetail from "containers/client/Home/SeatDetail/SeatDetail";
 

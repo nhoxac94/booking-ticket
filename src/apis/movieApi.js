@@ -12,6 +12,9 @@ const movieApi = {
 
     fetchMovieDetail(movieId) {
         return callApi(`QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${movieId}`)
+    },
+    fetchAllCinema() {
+        return callApi(`QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=${GROUP_ID}`);
     }
 
 }
