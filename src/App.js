@@ -6,6 +6,7 @@ import Login from "containers/shared/Auth/Login/Login";
 import SeatDetail from "containers/client/Home/SeatDetail/SeatDetail";
 import MovieDetail from "containers/client/MovieDetail/MovieDetail";
 import UserInformation from "containers/client/UserInformation/UserInformation";
+import CinemaDetail from "containers/client/CinemaDetail/CinemaDetail";
 
 
 function App() {
@@ -27,19 +28,20 @@ function App() {
       <Router>
         <Switch>
           {/* {renderLayout(clientRoutes, ClientLayout)} */}
-          <Route path="/" exact component={Home} />
+          <Route path="/chitietphongve/:maLichChieu" exact component={SeatDetail} />
+          <Route path="/chitietphim/:maPhim" component={MovieDetail} />
+          <Route path="/chitietcumrap/:maCumRap" exact component={CinemaDetail} />
+          <Route path="/:maCumRap" component={CinemaDetail} />
           <Route path="/login" component={Login} />
-          <Route path="/movie-detail/:movieId" component={MovieDetail} />
           <Route path="/user-information" component={UserInformation} />
-          <Route path="/seat-detail/:movieId" component={SeatDetail} />
-
+          <Route path="/" exact component={Home} />
           <Route path="*" component={PageNotFound} />
 
         </Switch>
       </Router>
     </div>
 
-  )     
+  )
 }
 
 export default App;
