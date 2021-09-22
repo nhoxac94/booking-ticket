@@ -139,7 +139,6 @@ export default class MovieDetail extends Component {
                                     .splice(0, 12)
                                     .map((lichChieu) => {
                                       const { maLichChieu } = lichChieu;
-                                      console.log(maLichChieu);
                                       return (
                                         <Link
                                           to={`/chitietphongve/${maLichChieu}`}

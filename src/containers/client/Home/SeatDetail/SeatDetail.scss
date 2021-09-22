@@ -1,42 +1,38 @@
 #trapezoid {
-    border-bottom: 40px solid rgba(128, 128, 128, 0.5);
-    border-left: 25px solid transparent;
-    border-right: 25px solid transparent;
-    height: 0;
-    width: 100%;
-    line-height: 40px;
-    color: rgba(128, 128, 128, 0.7);
-    padding-top: 1px;
-  }
+  border-bottom: 40px solid rgba(128, 128, 128, 0.5);
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  height: 0;
+  width: 100%;
+  line-height: 40px;
+  color: rgba(128, 128, 128, 0.7);
+  padding-top: 1px;
+}
 
 .ghe {
-    width: 35px;
-    height: 35px;
-    border-radius: 5px;
-    border : none;
-    cursor: pointer;
-    margin : 15px;
-    background-color: rgb(126, 116, 116);
-    color : #fff
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin: 15px;
+  background-color: rgb(126, 116, 116);
+  color: #fff;
 }
 
 .gheVip {
-    background-color: rgb(163, 78, 56);
+  background-color: rgb(163, 78, 56);
 }
 
 .gheDangDat {
-    background-color: rgb(112, 230, 127);
-    
-
+  background-color: rgb(112, 230, 127);
 }
 
 .gheDaDat {
-    background-color: rgb(223, 35, 35);
-
+  background-color: rgb(223, 35, 35);
 }
 
 .gheCuaBan {
-    background-color: rgb(135, 185, 231);
-    border : solid 1px rgb(236, 215, 215)
-
+  background-color: rgb(135, 185, 231);
+  border: solid 1px rgb(236, 215, 215);
 }

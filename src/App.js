@@ -28,11 +28,11 @@ function App() {
       <Router>
         <Switch>
           {/* {renderLayout(clientRoutes, ClientLayout)} */}
+          <Route path="/login" component={Login} />
           <Route path="/chitietphongve/:maLichChieu" exact component={SeatDetail} />
           <Route path="/chitietphim/:maPhim" component={MovieDetail} />
           <Route path="/chitietcumrap/:maCumRap" exact component={CinemaDetail} />
           <Route path="/:maCumRap" component={CinemaDetail} />
-          <Route path="/login" component={Login} />
           <Route path="/user-information" component={UserInformation} />
           <Route path="/" exact component={Home} />
           <Route path="*" component={PageNotFound} />
