@@ -3,11 +3,14 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from 'redux-thunk'
 import authReducer from "containers/shared/Auth/module/reducer";
 import updateInformationReducer from "containers/client/UserInformation/module/reducer";
-
+import adminMovieReducer from "containers/admin/Admin/MovieControl/module/reducer";
+import adminUserReducer from "containers/admin/Admin/UserManagement/module/reducer";
 
 const rootReducer = combineReducers({
     authReducer,
     updateInformationReducer,
+    adminMovieReducer,
+    adminUserReducer,
 });
 
 const store = createStore(

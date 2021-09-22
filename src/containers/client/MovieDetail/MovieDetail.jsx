@@ -86,7 +86,7 @@ export default class MovieDetail extends Component {
                           key={heThongRap.maHeThongRap}
                           data-toggle="pill"
                           href={`#${heThongRap.maHeThongRap}`}
-                          key={movie.maPhim}
+                         
                         >
                           <img
                             src={heThongRap.logo}

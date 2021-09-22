@@ -48,7 +48,7 @@ class ShowUserInfor extends Component {
         )
     }
 
-    componentDidMount = () => {
+    componentDidMount() {
         const userName = { taiKhoan: JSON.parse(localStorage.getItem(USER_BOOKING_TICKET_LOGIN)).taiKhoan };
         this.props.dispatch(actGetUserInformation(userName))
     }
