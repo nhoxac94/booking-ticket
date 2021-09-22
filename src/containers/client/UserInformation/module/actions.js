@@ -26,8 +26,8 @@ export const actUpdateInformation = (user, accessToken) => {
     dispatch(actUpdateUserInformationRequest());
     userApi
       .fetchUpdateUserInformation(user, accessToken)
-      .then(res => console.log(res))
-      .catch(error => console.log(error));
+      .then(res => actUpdateUserInformationSuccess(res))
+      .catch(error => actUpdateUserInformationFail(error));
   };
 };
 

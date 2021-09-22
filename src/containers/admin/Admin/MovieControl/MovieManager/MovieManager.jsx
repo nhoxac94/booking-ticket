@@ -1,264 +1,220 @@
 import React, { Component } from "react";
 import {
-  SearchOutlined,
-  DeleteOutlined,
-  EditOutlined,
+  SearchOutlined, CloseOutlined, CalendarOutlined, EditOutlined
 } from "@ant-design/icons";
 import "./MovieManager.scss";
-import Button from "components/Button/Button";
-import AddMovie from "../AddMovie/AddMovie";
+import movieApi from "apis/movieApi";
+import Loader from "components/Loader/Loader";
+import moment from "moment";
+import { USER_BOOKING_TICKET_LOGIN } from "containers/shared/Auth/module/type";
+import { Link } from "react-router-dom";
+
 export default class MovieManager extends Component {
+  state = {
+    listMovieInPage: null,
+    listMovieSearchInPage: null,
+    keySearch: null,
+    loading: true,
+  }
+
+  handleGetListSearchMovie(page) {
+    movieApi.fetchSearchMovieInPageApi(this.state.keySearch, page)
+      .then(res =>
+        this.setState({ listMovieSearchInPage: res.data, loading: false, }))
+      .catch(err => console.log(err))
+  }
+
+  handleGetListMovie(page) {
+    movieApi.fetchMovieAdminPageApi(page)
+      .then(res =>
+        this.setState({
+          listMovieInPage: res.data, loading: false, listMovieSearchInPage: null, keySearch: null
+        }))
+      .catch(err => console.log(err))
+  }
+
+  // Tạo mảng pagiantion
+  handlePagination(totalPages) {
+    let renderPagination = [];
+    for (let i = 0; i < totalPages; i++) {
+      renderPagination.push(i + 1)
+    }
+    return renderPagination;
+  }
+
+  handleDeleteMovie(movieID) {
+    const accessToken = JSON.parse(localStorage.getItem(USER_BOOKING_TICKET_LOGIN)).accessToken;
+    movieApi.fetchDeleteMovieApi(movieID, accessToken)
+      .then(res => {
+        console.log(res);
+        if (this.state.listMovieSearchInPage) {
+          this.handleGetListSearchMovie(this.state.listMovieSearchInPage.currentPage)
+        } else {
+          this.handleGetListMovie(this.state.listMovieInPage.currentPage)
+        }
+      })
+      .catch(res => alert('Cant not delete Movie have showTime'))
+  }
+
+  handleMovieRender() {
+    let listMovieRender = null;
+    if (this.state.listMovieSearchInPage) {
+      listMovieRender = { ...this.state.listMovieSearchInPage }
+    } else {
+      listMovieRender = { ...this.state.listMovieInPage }
+    }
+    return listMovieRender;
+  }
+
+  handleSearchMovieInPage(e) {
+    e.preventDefault()
+    const startPage = 1;
+    if (!e.target[0].value) {
+      this.handleGetListMovie(startPage)
+    } else {
+      movieApi.fetchSearchMovieInPageApi(e.target[0].value, startPage)
+        .then(res =>
+          this.setState({
+            listMovieSearchInPage: res.data,
+            keySearch: e.target[0].value
+          })
+        )
+        .catch(err => console.log(err))
+    }
+
+  }
+
+  handleChangePagination(page) {
+    if (this.state.listMovieSearchInPage) {
+      movieApi.fetchSearchMovieInPageApi(this.state.keySearch, page)
+        .then(res => {
+          this.setState({ listMovieSearchInPage: res.data })
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    } else {
+      movieApi.fetchMovieAdminPageApi(page)
+        .then(res => {
+          this.setState({
+            listMovieInPage: res.data,
+          })
+        })
+        .catch(err => console.log(err))
+    }
+
+  }
+
+  handleNextPagination(currentPage) {
+    let nextPage = currentPage + 1;
+    if (this.state.listMovieSearchInPage) {
+      this.handleGetListSearchMovie(nextPage)
+    } else {
+      this.handleGetListMovie(nextPage)
+    }
+  }
+
+  handlePrevPagination(currentPage) {
+    let prevPage = currentPage - 1;
+    if (this.state.listMovieSearchInPage) {
+      this.handleGetListSearchMovie(prevPage)
+    } else {
+      this.handleGetListMovie(prevPage)
+    }
+  }
+
   render() {
+    const listMovieRender = this.handleMovieRender();
+    if (this.state.loading) return <Loader />
     return (
-      <div className="container-fluid">
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-          <li class="nav-item" role="presentation">
-            <a
-              class="nav-link active btn btn-light"
-              id="pills-moviemanager-tab"
-              data-toggle="pill"
-              href="#pills-moviemanager"
-              role="tab"
-              aria-controls="pills-moviemanager"
-              aria-selected="true"
-            >
-              Quản lý phim
-            </a>
-          </li>
-          <li class="nav-item" role="presentation">
-            <a
-              class="nav-link btn btn btn-light ml-2"
-              id="pills-addmovie-tab"
-              data-toggle="pill"
-              href="#pills-addmovie"
-              role="tab"
-              aria-controls="pills-addmovie"
-              aria-selected="false"
-            >
-              Thêm phim
-            </a>
-          </li>
-        </ul>
-        <div class="tab-content" id="pills-tabContent">
-          <div
-            class="tab-pane fade show active"
-            id="pills-moviemanager"
-            role="tabpanel"
-            aria-labelledby="pills-moviemanager-tab"
-          >
-            <div className="py-3">
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Nhập vào tên phim hoặc mã số phim"
-                  aria-label="Nhập vào tên phim hoặc mã số phim"
-                  aria-describedby="button-addon2"
-                />
-                <div className="input-group-append">
-                  <button
-                    className="btn btn-outline-secondary"
-                    type="button"
-                    id="button-addon2"
-                  >
-                    <SearchOutlined className="moviemanager__icon" />
-                  </button>
-                </div>
+      <div className="container-fluid ">
+        <h3 >Quản lí Phim</h3>
+        <div className="mr-4 mb-0" >
+          <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li className="nav-item" role="presentation">
+              <Link to="/admin/movies" className="nav-link active btn btn-light" role="tab" >
+                Quản lý phim
+              </Link>
+            </li>
+            <li className="nav-item" role="presentation">
+              <Link to="/admin/movies/add-movie" className="nav-link btn btn btn-light ml-2" role="tab" >
+                Thêm phim
+              </Link>
+            </li>
+          </ul>
+          <div>
+            <form className="input-group mb-2" onSubmit={(e) => this.handleSearchMovieInPage(e)}>
+              <input type="text" className="form-control" placeholder="Nhập vào tên phim hoặc mã số phim" />
+              <div className="input-group-append">
+                <button
+                  className="btn btn-outline-secondary"
+                  type="submit"
+                  id="button-addon2"
+                >
+                  <SearchOutlined type />
+                </button>
               </div>
-              <table className="table">
-                <thead className="thead-dark">
-                  <tr>
-                    <th scope="col">Mã Phim</th>
-                    <th scope="col">Hình Ảnh</th>
-                    <th scope="col">Tên phim</th>
-                    <th scope="col">Mô tả</th>
-                    <th scope="col">Hành Động</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>
-                      <img
-                        src="https://picsum.photos/id/237/150/150"
-                        alt="pic"
-                      />
-                    </td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>
-                      <div style={{ display: "inline" }} className="mr-2">
-                        <button
-                          type="button"
-                          className="btn btn-primary"
-                          data-toggle="modal"
-                          data-target="#exampleModal"
-                        >
-                          <EditOutlined />
-                        </button>
-                        <div
-                          className="modal fade"
-                          id="exampleModal"
-                          tabIndex={-1}
-                          aria-labelledby="modalDetailMovie"
-                          aria-hidden="true"
-                        >
-                          <div className="modal-dialog modal-xl modal-dialog-centered">
-                            <div className="modal-content">
-                              <div className="modal-header">
-                                <h5
-                                  className="modal-title"
-                                  id="modalDetailMovie"
-                                >
-                                  Thông tin lịch chiếu phim (Tên Phim)
-                                </h5>
-                                <button
-                                  type="button"
-                                  className="close"
-                                  data-dismiss="modal"
-                                  aria-label="Close"
-                                >
-                                  <span aria-hidden="true">×</span>
-                                </button>
-                              </div>
-                              <div className="modal-body py-5">
-                                <div className="container">
-                                  <div className="row">
-                                    <div className="col-6">
-                                      <div className="dropdown">
-                                        <button
-                                          className="btn btn-white dropdown-toggle"
-                                          type="button"
-                                          id="dropdownMenuButton"
-                                          data-toggle="dropdown"
-                                          aria-haspopup="true"
-                                          aria-expanded="false"
-                                        >
-                                          Chọn hệ thống rạp
-                                        </button>
-                                        <div
-                                          className="dropdown-menu"
-                                          aria-labelledby="dropdownMenuButton"
-                                        >
-                                          <a className="dropdown-item" href="#">
-                                            Action
-                                          </a>
-                                          <a className="dropdown-item" href="#">
-                                            Another action
-                                          </a>
-                                          <a className="dropdown-item" href="#">
-                                            Something else here
-                                          </a>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div className="col-6">
-                                      Chọn ngày/giờ/năm chiếu:
-                                    </div>
-                                    <div className="col-6">
-                                      <div className="dropdown">
-                                        <button
-                                          className="btn btn-white dropdown-toggle"
-                                          type="button"
-                                          id="dropdownMenuButton"
-                                          data-toggle="dropdown"
-                                          aria-haspopup="true"
-                                          aria-expanded="false"
-                                        >
-                                          Chọn cụm rạp
-                                        </button>
-                                        <div
-                                          className="dropdown-menu"
-                                          aria-labelledby="dropdownMenuButton"
-                                        >
-                                          <a className="dropdown-item" href="#">
-                                            Action
-                                          </a>
-                                          <a className="dropdown-item" href="#">
-                                            Another action
-                                          </a>
-                                          <a className="dropdown-item" href="#">
-                                            Something else here
-                                          </a>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div className="col-6">
-                                      Chọn thời lượng phim
-                                    </div>
-                                    <div className="col-6">
-                                      <div className="dropdown">
-                                        <button
-                                          className="btn btn-white dropdown-toggle"
-                                          type="button"
-                                          id="dropdownMenuButton"
-                                          data-toggle="dropdown"
-                                          aria-haspopup="true"
-                                          aria-expanded="false"
-                                        >
-                                          Chọn rạp
-                                        </button>
-                                        <div
-                                          className="dropdown-menu"
-                                          aria-labelledby="dropdownMenuButton"
-                                        >
-                                          <a className="dropdown-item" href="#">
-                                            Action
-                                          </a>
-                                          <a className="dropdown-item" href="#">
-                                            Another action
-                                          </a>
-                                          <a className="dropdown-item" href="#">
-                                            Something else here
-                                          </a>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div className="col-6">
-                                      Mã nhóm mặc định
-                                    </div>
-                                    <div className="col-12">Giá vé:</div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="modal-footer">
-                                <button
-                                  type="button"
-                                  className="btn btn-primary"
-                                >
-                                  Lưu thay đổi
-                                </button>
-                                <button
-                                  type="button"
-                                  className="btn btn-secondary"
-                                  data-dismiss="modal"
-                                >
-                                  Đóng
-                                </button>
-                              </div>
-                            </div>
-                          </div>
+            </form>
+            <table className="table">
+              <thead className="thead-dark">
+                <tr>
+                  <th>Mã Phim</th>
+                  <th>Tên phim</th>
+                  <th>Hình Ảnh</th>
+                  <th>Mô tả</th>
+                  <th>Mã nhóm</th>
+                  <th>Ngày khởi chiếu</th>
+                  <th>Hành Động</th>
+                </tr>
+              </thead>
+              <tbody>
+                {listMovieRender.items.map(movie => {
+                  return (
+                    <tr key={movie.maPhim}>
+                      <td>{movie.maPhim}</td>
+                      <td>{movie.tenPhim}</td>
+                      <td>
+                        <img src={movie.hinhAnh} alt="" style={{ width: 80, height: 80 }} />
+                      </td>
+                      <td style={{ width: "35%" }}>{movie.moTa.length < 200 ? movie.moTa : movie.moTa.slice(0, 200) + "..."}</td>
+                      <td>{movie.maNhom}</td>
+                      <td>{moment(movie.ngayKhoiChieu).format('DD-MM-YYYY')}</td>
+                      <td>
+                        <div style={{ display: "inline" }} className="mr-2">
+                          <Link to={{pathname :`/admin/movies/movie-showtime/${movie.maPhim}`, movieInformation : movie}} className="btn btn-primary"><CalendarOutlined /> </Link>
+                          &thinsp;
+                          <Link to={`/admin/movies/edit-movie/${movie.maPhim}`} className="btn btn-success" ><EditOutlined /> </Link>
+                          &thinsp;
+                          <div className="btn btn-danger" onClick={() => this.handleDeleteMovie(movie.maPhim)}><CloseOutlined /></div>
                         </div>
-                      </div>
-                      <Button styling={"btn-danger"}>
-                        <DeleteOutlined />
-                      </Button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+            <div className="text-right">
+              <ul className="d-block">
+                <button className="btn btn-outline-primary mr-1" disabled={listMovieRender.currentPage === "1" && true} onClick={() => this.handlePrevPagination(listMovieRender.currentPage)} >Previous</button>
+                {this.handlePagination(listMovieRender.totalPages).map((page => {
+                  return (<li className={`btn btn-outline-dark mr-1 ${listMovieRender.currentPage === page && "active"}`} key={page} onClick={() => { this.handleChangePagination(page) }} >{page}</li>)
+                }))}
+                <button className="btn btn-outline-primary" disabled={listMovieRender.currentPage === listMovieRender.totalPages && true} onClick={() => this.handleNextPagination(listMovieRender.currentPage)}>Next</button>
+              </ul>
             </div>
-          </div>
-          <div
-            class="tab-pane fade"
-            id="pills-addmovie"
-            role="tabpanel"
-            aria-labelledby="pills-addmovie-tab"
-          >
-            <AddMovie />
-          </div>
-        </div>
-      </div>
+          </div >
+        </div >
+      </div >
+
     );
   }
+
+  componentDidMount = () => {
+    const startMoviePage = 1;
+    this.handleGetListMovie(startMoviePage)
+  }
 }
+
+
+
+
