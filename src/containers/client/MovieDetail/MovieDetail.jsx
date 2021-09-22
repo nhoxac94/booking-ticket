@@ -1,20 +1,34 @@
-
 import Loader from "components/Loader/Loader";
 import moment from "moment";
 import React, { Component } from "react";
 import "./MovieDetail.scss";
 import "antd/dist/antd.css";
 import { Rate } from "antd";
-import {connect} from 'react-redux'
+import movieApi from "apis/movieApi";
+import { Link } from "react-router-dom";
 
-class MovieDetail extends Component {
+export default class MovieDetail extends Component {
   state = {
     movie: [],
     loading: true,
   };
 
+  componentDidMount() {
+    const { maPhim } = this.props.match.params;
+    movieApi
+      .fetchMovieDetail(maPhim)
+      .then((res) => {
+        this.setState({
+          movie: res.data,
+          loading: false,
+        });
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
+
   render() {
-    console.log(this.props.match.params);
     const { movie, loading } = this.state;
     if (loading) return <Loader />;
     return (
@@ -42,12 +56,14 @@ class MovieDetail extends Component {
                 </div>
                 <div className="col-5">
                   <div
-                    class={`c100  big green ml-4 mt-4 p${movie.danhGia * 10}`}
+                    className={`c100  big green ml-4 mt-4 p${
+                      movie.danhGia * 10
+                    }`}
                   >
                     <span>{movie.danhGia}/10</span>
-                    <div class="slice">
-                      <div class="bar"></div>
-                      <div class="fill"></div>
+                    <div className="slice">
+                      <div className="bar"></div>
+                      <div className="fill"></div>
                     </div>
                   </div>
                   <div
@@ -70,6 +86,7 @@ class MovieDetail extends Component {
                           key={heThongRap.maHeThongRap}
                           data-toggle="pill"
                           href={`#${heThongRap.maHeThongRap}`}
+                          key={movie.maPhim}
                         >
                           <img
                             src={heThongRap.logo}
@@ -88,7 +105,7 @@ class MovieDetail extends Component {
                     {movie.heThongRapChieu.map((heThongRap, index) => {
                       return (
                         <div
-                          class={`tab-pane fade show ${
+                          className={`tab-pane fade show ${
                             index === 0 && "active"
                           }`}
                           id={heThongRap.maHeThongRap}
@@ -121,12 +138,17 @@ class MovieDetail extends Component {
                                   {cumRap.lichChieuPhim
                                     .splice(0, 12)
                                     .map((lichChieu) => {
+                                      const { maLichChieu } = lichChieu;
+                                      console.log(maLichChieu);
                                       return (
-                                        <div className="col-3 text-primary">
+                                        <Link
+                                          to={`/chitietphongve/${maLichChieu}`}
+                                          className="btn btn-dark mx-1 my-1"
+                                        >
                                           {moment(
                                             lichChieu.ngayChieuGioChieu
                                           ).format("HH:mm A")}
-                                        </div>
+                                        </Link>
                                       );
                                     })}
                                 </div>
@@ -145,11 +167,4 @@ class MovieDetail extends Component {
       </div>
     );
   }
-
-  
 }
-
-export default connect()(MovieDetail)
-  
-  
-

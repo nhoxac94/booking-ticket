@@ -12,8 +12,13 @@ export default class ShowingMovie extends Component {
           const rateValue = Math.round(parseInt(danhGia) / 2);
           if (danhGia < 10)
             return (
+<<<<<<< HEAD
               <Link to={`/chitietphim/${maPhim}`} props={maPhim} key={maPhim}>
                 <div className="col mb-4" >
+=======
+              <Link to={`/chitietphim/${maPhim}`} key={maPhim}>
+                <div className="col mb-4">
+>>>>>>> d376e504f1747e893192699b0fbbdd5ff90a1cae
                   <div className="card h-100">
                     <img
                       src={hinhAnh}
