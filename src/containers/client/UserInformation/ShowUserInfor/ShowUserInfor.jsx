@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { USER_BOOKING_TICKET_LOGIN } from 'containers/shared/Auth/module/type';
 import Loader from 'components/Loader/Loader';
-import { actGetUserInformation, actUpdateInformation } from '../module/actions';
+import { actGetUserInformation } from '../module/actions';
 import { connect } from 'react-redux'
 import { GROUP_ID } from 'settings/apiConfig';
 import userApi from 'apis/userApi';
@@ -52,7 +52,7 @@ class ShowUserInfor extends Component {
     }
 
     handleChange(e) {
-        let { name, value, type } = e.target;
+        let { name, value } = e.target;
 
 
         let errorMessage = ""

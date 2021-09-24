@@ -2,7 +2,7 @@ import Loader from 'components/Loader/Loader';
 import moment from 'moment';
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Table, Tag, Space } from 'antd';
+import { Table, Tag} from 'antd';
 const { Column } = Table;
 
 

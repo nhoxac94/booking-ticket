@@ -31,20 +31,27 @@ function App() {
       <Router>
         <Switch>
           <Route path="/user-information" exact component={UserInformation} />
+
+          <Route
+            path="/chitietcumrap/:maCumRap"
+            exact
+            component={CinemaDetail}
+          />
+          {renderLayout(loginRoutes, LoginLayout)}
+
+          <Route path="/:maCumRap" exact component={CinemaDetail} />
+          {/* {renderLayout(clientRoutes, ClientLayout)} */}
           <Route
             path="/chitietphongve/:maLichChieu"
             exact
             component={SeatDetail}
-            />
+          />
           <Route path="/chitietphim/:maPhim" component={MovieDetail} />
           <Route
             path="/chitietcumrap/:maCumRap"
             exact
             component={CinemaDetail}
-            />
-            {renderLayout(loginRoutes, LoginLayout)}
-
-          <Route path="/:maCumRap" exact component={CinemaDetail} />
+          />
           <Route path="/seat-detail/:movieId" component={SeatDetail} />
 
           <Route

@@ -7,13 +7,16 @@ import movieApi from "apis/movieApi";
 
 export default class SeatDetail extends Component {
   state = {
+    bookingSeat: [],
     seatPlan: [],
+    tongTienVe: 0,
+    gheVip: 0,
+    gheThuong: 0,
     loading: true,
   };
 
   componentDidMount() {
     const { maLichChieu } = this.props.match.params;
-    console.log(maLichChieu);
     movieApi
       .fetchDetailSeat(maLichChieu)
       .then((res) => {
@@ -27,8 +30,101 @@ export default class SeatDetail extends Component {
       });
   }
 
+  /**
+   * Hàm chọn ghế
+   */
+  chooseSeat(e, maGhe, giaVe, loaiGhe, daDat) {
+    e.preventDefault();
+    const ghe = "ghe";
+    const gheVip = "gheVip";
+    const gheCuaBan = "gheCuaBan";
+    let isBooking = false;
+    if (this.state.bookingSeat.length > 0) {
+      isBooking = this.checkSeat(maGhe, this.state.bookingSeat);
+    }
+    if (!isBooking) {
+      e.target.className = ghe + " " + gheCuaBan;
+      this.setState(
+        {
+          // sử dụng concat để ghép từng obj vào mảng bookingSeat
+          bookingSeat: this.state.bookingSeat.concat({
+            maGhe,
+            giaVe,
+            loaiGhe,
+            daDat: true,
+          }),
+        },
+        () => {
+          this.calcMoney(this.state.bookingSeat);
+        }
+      );
+    } else {
+      this.removeArr(maGhe, this.state.bookingSeat);
+      if (loaiGhe === "Thuong") {
+        e.target.className = ghe;
+      } else if (loaiGhe === "Vip") {
+        e.target.className = ghe + " " + gheVip;
+      }
+    }
+  }
+
+  /**
+   * Hàm kiểm tra ghế xem có đặt hay chưa?
+   * Nếu rồi thì return true để validation bên trên
+   * Nếu chưa thì sẽ return false để chạy xuống hàm setState
+   */
+  checkSeat(_maGhe, bookingSeat) {
+    return Boolean(
+      bookingSeat.find((seats) => {
+        if (seats.maGhe === _maGhe && seats.daDat) return true;
+      })
+    );
+  }
+
+  /**
+   * Hàm xoá chỗ ngồi ra khỏi object array
+   */
+  removeArr(maGhe, bookingSeat) {
+    let idxSeat = bookingSeat.findIndex((seats) => {
+      return seats.maGhe === maGhe && seats.daDat;
+    });
+    const newBookingSeat = bookingSeat.splice(0, idxSeat);
+    this.setState(
+      {
+        bookingSeat: newBookingSeat,
+      },
+      () => {
+        this.calcMoney(newBookingSeat);
+      }
+    );
+  }
+
+  /**
+   * Hàm tính tiền và tính tổng số ghế
+   */
+  calcMoney(bookingSeat) {
+    let gheThuong = 0;
+    let gheVip = 0;
+    bookingSeat.map((seats) => {
+      if (seats.loaiGhe === "Thuong") {
+        gheThuong++;
+      }
+      if (seats.loaiGhe === "Vip") {
+        gheVip++;
+      }
+    });
+    let totalMoney = bookingSeat.reduce((total, curr) => {
+      return total + curr.giaVe;
+    }, 0);
+    this.setState({
+      gheThuong: gheThuong,
+      gheVip: gheVip,
+      tongTienVe: totalMoney,
+    });
+  }
+
   render() {
-    const { loading, seatPlan } = this.state;
+    const { loading, seatPlan, bookingSeat, tongTienVe } = this.state;
     const { thongTinPhim } = seatPlan;
     if (loading === true) return <Loader />;
     const { diaChi, gioChieu, hinhAnh, ngayChieu, tenCumRap, tenPhim, tenRap } =
@@ -36,7 +132,7 @@ export default class SeatDetail extends Component {
     return (
       <div>
         <div className="container-fluid">
-          <div className="row ">
+          <div className="row">
             <div className="col-9 mt-4">
               <div
                 className="shapeTheater"
@@ -53,17 +149,22 @@ export default class SeatDetail extends Component {
                 style={{ width: "80%", margin: "auto" }}
               >
                 {this.state.seatPlan.danhSachGhe.map((ghe, index) => {
-                  console.log(ghe);
+                  const { maGhe, giaVe, loaiGhe, daDat } = ghe;
                   let gheVip = "";
                   let gheDangDat = "";
                   let gheDaDat = "";
-
                   if (ghe.loaiGhe === "Vip") gheVip = "gheVip";
                   if (ghe.daDat) gheDaDat = "gheDaDat";
 
                   return (
                     <>
-                      <button className={`ghe ${gheVip} ${gheDaDat}`}>
+                      <button
+                        key={maGhe}
+                        className={`ghe ${gheVip} ${gheDaDat} `}
+                        onClick={(e) =>
+                          this.chooseSeat(e, maGhe, giaVe, loaiGhe, daDat)
+                        }
+                      >
                         {ghe.daDat ? "x" : ghe.tenGhe}
                       </button>
                       {(index + 1) % 16 === 0 ? <br /> : ""}
@@ -89,7 +190,7 @@ export default class SeatDetail extends Component {
                   <tbody>
                     <tr>
                       <td>
-                        <button className="ghe "></button>
+                        <button className="ghe"></button>
                       </td>
                       <td>
                         <button className="ghe gheDangDat"></button>
@@ -131,7 +232,17 @@ export default class SeatDetail extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr></tr>
+                    {bookingSeat.length > 0 ? (
+                      <tr>
+                        <td>
+                          {this.state.gheThuong} - Ghế thường,{" "}
+                          {this.state.gheVip} - Ghế Vip
+                        </td>
+                        <td>{tongTienVe.toLocaleString() + " VNĐ"}</td>
+                      </tr>
+                    ) : (
+                      <p className="text-center">Bạn chưa chọn chỗ ngồi</p>
+                    )}
                   </tbody>
                 </table>
                 <hr />

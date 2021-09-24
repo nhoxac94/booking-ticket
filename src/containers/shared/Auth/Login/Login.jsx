@@ -21,7 +21,6 @@ class Login extends Component {
             touched,
             handleBlur
         } = this.props;
-        // if (stateLogin.loading) return <Loader />
         if (loading) return <Loader/>
         return (
             <>
@@ -58,7 +57,7 @@ class Login extends Component {
 }
 
 const LoginMovieWithFormik = withFormik({
-    mapPropsToValues: () => ({ taiKhoan: "", matKhau: "" }),
+  mapPropsToValues: () => ({ taiKhoan: "", matKhau: "" }),
 
     validationSchema : Yup.object().shape({
         taiKhoan : Yup.string().required('Please input your userName'),
