@@ -9,7 +9,7 @@ import {
   SIGNUP_FAIL,
 } from "./type";
 
-const actLoginRequest = () => ({
+export const actLoginRequest = () => ({
   type: LOGIN_REQUEST,
   payload: null,
 });
@@ -45,7 +45,7 @@ export const actLogout = () => ({
   payload: null,
 });
 
-const actSignupRequest = () => ({
+export const actSignupRequest = () => ({
   type: SIGNUP_REQUEST,
 });
 
@@ -72,7 +72,7 @@ export const actSignup = (user, history) => {
         userApi
           .fetchLoginApi(user)
           .then((res) => {
-            dispatch(actLoginSuccess(res.data));
+            dispatch(actSignupSuccess(res.data));
           })
           .catch((error) => {
             dispatch(actLoginFail(error));

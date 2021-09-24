@@ -1,55 +1,71 @@
 import React, { Component } from 'react'
 import { withFormik } from 'formik'
 import { connect } from 'react-redux'
-import { actSignup } from '../module/action';
+import { actSignup, actSignupRequest } from '../module/action';
+import * as Yup from 'yup'
+import { USER_BOOKING_TICKET_LOGIN } from '../module/type';
 
+class SignUp extends Component {
 
-class SignUp extends Component {       
     render() {
-        const {           
+        if (JSON.parse(localStorage.getItem(USER_BOOKING_TICKET_LOGIN))?.accessToken) {
+            this.props.history.push("/")
+        }
+        const {
             handleChange,
-            handleSubmit,          
-        } = this.props;       
-        const {error} = this.props.signupState;
-        return (            
+            handleSubmit,
+            errorSignUp,
+            errors,
+            handleBlur,
+            touched,
+        } = this.props;
+        return (
             <>
-                <form onSubmit = {handleSubmit}>
+                {errorSignUp && <div className="text-danger text-center">{errorSignUp}</div>}
+                <form onSubmit={handleSubmit}>
                     <div className="sign-up-htm">
                         <div className="group">
-                            <label htmlFor="pass" className="label">Họ Tên</label>
-                            <input id="pass" name="hoTen" type="text" className="input" onChange = {handleChange}/>
+                            <label className="label">Họ Tên</label>
+                            <input name="hoTen" type="text" className="input" onChange={handleChange} onBlur={handleBlur} />
+                            {errors.hoTen && touched.hoTen && (<small className="text-danger">{errors.hoTen}</small>)}
                         </div>
                         <div className="group">
-                            <label htmlFor="user" className="label">Tài khoản</label>
-                            <input id="user" name="taiKhoan" type="text" className="input" onChange = {handleChange}/>
+                            <label className="label">Tài khoản</label>
+                            <input name="taiKhoan" type="text" className="input" onChange={handleChange} onBlur={handleBlur} />
+                            {errors.taiKhoan && touched.taiKhoan && (<small className="text-danger">{errors.taiKhoan}</small>)}
                         </div>
                         <div className="group">
-                            <label htmlFor="pass" className="label">Mật khẩu</label>
-                            <input id="pass" name="matKhau" type="password" className="input" data-type="password" onChange = {handleChange}/>
+                            <label className="label">Mật khẩu</label>
+                            <input name="matKhau" type="password" className="input" data-type="password" onChange={handleChange} onBlur={handleBlur} />
+                            {errors.matKhau && touched.matKhau && (<small className="text-danger">{errors.matKhau}</small>)}
                         </div>
                         <div className="group">
-                            <label htmlFor="email" className="label">Email</label>
-                            <input id="email" name="email" type="email" className="input"  onChange = {handleChange}/>
+                            <label className="label">Email</label>
+                            <input name="email" type="email" className="input" onChange={handleChange} onBlur={handleBlur} />
+                            {errors.email && touched.email && (<small className="text-danger">{errors.email}</small>)}
                         </div>
                         <div className="group">
-                            <label htmlFor="soDt" className="label">Số điện thoại</label>
-                            <input id="soDt" name="soDt" type="text" className="input" onChange = {handleChange}/>
+                            <label className="label">Số điện thoại</label>
+                            <input name="soDt" type="text" className="input" onChange={handleChange} onBlur={handleBlur} />
+                            {errors.soDt && touched.soDt && (<small className="text-danger">{errors.soDt}</small>)}
                         </div>
                         <div className="group">
                             <input type="submit" className="button" defaultValue="Sign Up" />
                         </div>
                         <div className="hr" />
-                        {/* <div className="foot-lnk">
-                            <label htmlFor="tab-1">Already Member?
-                            </label></div> */}
+
                     </div>
                 </form>
             </>
         )
     }
+    // refresh error when user change tab
+    componentDidMount() {
+        this.props.dispatch(actSignupRequest())
+    }
 }
 
-const SignupWithFormik = withFormik({
+const SignUpWithFormik = withFormik({
     mapPropsToValues: () =>
     ({
         hoTen: "",
@@ -58,27 +74,26 @@ const SignupWithFormik = withFormik({
         email: "",
         soDt: "",
         maNhom: "GP10",
-        maLoaiNguoiDung : "khachHang",
+        maLoaiNguoiDung: "khachHang",
     }),
 
-    // Custom sync validation
-    // validate: values => {
-    //     const errors = {};
-
-    //     if (!values.userName) {
-    //         errors.name = "Required";
-    //     }
-    //     console.log(errors);
-    //     return errors;
-    // },
+    validationSchema: Yup.object().shape({
+        hoTen: Yup.string().required('Please input your name!!!').matches("^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
+            "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
+            "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$", " Your name must contain only letters!!!!"),
+        taiKhoan: Yup.string().required('Please input Username!!!'),
+        matKhau: Yup.string().required('Please input password!!!'),
+        email: Yup.string().required('Please input email!!!').email('Email is valid!!!'),
+        soDt: Yup.number("Your Numver must contain only number!!!").required('Please input phone number!!!'),
+    }),
 
     handleSubmit: (values, { props, setSubmitting }) => {
-        props.dispatch(actSignup(values, props.history))        
+        props.dispatch(actSignup(values, props.history))
     },
-    
+
 })(SignUp);
 
 const mapStateToProps = state => ({
-    signupState : state.authReducer
+    errorSignUp: state.authReducer.errorSignUp
 })
-export default connect(mapStateToProps)(SignupWithFormik);
+export default connect(mapStateToProps)(SignUpWithFormik);

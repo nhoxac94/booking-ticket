@@ -2,59 +2,63 @@ import Loader from 'components/Loader/Loader';
 import moment from 'moment';
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Table, Tag, Space } from 'antd';
+const { Column } = Table;
+
 
 class ShowHistory extends Component {
     render() {
         const { user, loading } = this.props;
         if (loading) return <Loader />
-        const { thongTinDatVe } = user.data
+        const { thongTinDatVe } = user
+        const data = thongTinDatVe.map ((infor, idx) => {
+            return ({
+                key: idx + 1,
+                movie: infor.tenPhim,
+                theater: infor.danhSachGhe[0].tenHeThongRap,
+                date: moment(infor.ngayDat).format("DD-MM-YYYY"),
+                theaterDetail: infor.danhSachGhe[0].tenCumRap,
+                seatPlan: infor.danhSachGhe.map(ghe => {
+                    return ghe.tenGhe
+                })
+            })
+        
+        })
         return (
             <div className="tab-pane fade container text-center" id="historyBooking" role="tabpanel" >
                 <h2>Lịch sử đặt vé của bạn</h2>
                 <p>Chúc bạn xem film vui vẻ</p>
-                {thongTinDatVe ?
-                    thongTinDatVe.map(datVe => {
-                        return (
-                            <div className="" key={datVe.maVe}>
-                                <div className="card mb-3 mr-3" style={{ maxWidth: 500 }}>
-                                    <div className="row no-gutters">
-                                        <div className="col-md-4">
-                                        <p className="card-text" style = {{fontSize : 20}}> {datVe.tenPhim}</p>
-                                            <img src="..." alt="..." />
-                                        </div>
-                                        <div className="col-md-8">
-                                            <div className="card">
-                                                <img className="card-img-top" src="" alt="" />
-                                                <div className="card-body">
-                                                    <h4 className="card-title">{datVe.danhSachGhe[0].tenHeThongRap}</h4>
-                                                    <p className="card-text">Ngày đặt : {moment(datVe.ngayDat).format("DD-MM-YYYY")}</p>                                                   
-                                                    <p className="card-text"> Rạp số : {datVe.danhSachGhe[0].tenCumRap}</p>
-                                                    <p className="card-text"> Số ghế : {datVe.danhSachGhe.reduce((total, ghe) => {
-                                                        return total += ghe.tenGhe + " "
-                                                    }, "")}</p>
-
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        )
-                    })
-
-
-                    : <div>Bạn chưa có lịch sử đặt vé</div>}
-            </div>
-
+                <Table dataSource={data}>
+                    <Column title="#" dataIndex="key" key="age" />
+                    <Column title="Phim" dataIndex="movie" key="age" />
+                    <Column title="Rạp" dataIndex="theater" key="age" />
+                    <Column title="Ngày đặt" dataIndex="date" key="age" />
+                    <Column title="Rạp số" dataIndex="theaterDetail" key="age" />
+                    <Column
+                        title="Ghế ngồi"
+                        dataIndex="seatPlan"
+                        key="tags"
+                        render={setPlans => (
+                            <>
+                                {setPlans.map(seat => (
+                                    <Tag color="blue" key={seat}>
+                                        {seat}
+                                    </Tag>
+                                ))}
+                            </>
+                        )}
+                    />
+                    
+                </Table>,
+                
+                </div>
         )
     }
 }
 
 const mapStateToProps = state => ({
-    user: state.updateInformationReducer.user,
-    loading: state.updateInformationReducer.loading
+    user: state.informationReducer.user,
+    loading: state.informationReducer.loading
 })
 
 export default connect(mapStateToProps)(ShowHistory)

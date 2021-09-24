@@ -2,9 +2,7 @@ import {
   GET_USER_INFORMATION_FAIL,
   GET_USER_INFORMATION_REQUEST,
   GET_USER_INFORMATION_SUCCESS,
-  UPDATE_USER_INFORMATION_FAIL,
-  UPDATE_USER_INFORMATION_REQUEST,
-  UPDATE_USER_INFORMATION_SUCCESS,
+  
 } from "./types";
 
 const initialState = {
@@ -13,23 +11,17 @@ const initialState = {
   error: null,
 };
 
-const updateInformationReducer = (state = initialState, { type, payload }) => {
+const informationReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_USER_INFORMATION_REQUEST:
       return { ...state, loading: true, error: null };
     case GET_USER_INFORMATION_SUCCESS:
-      return { ...state, user: payload, loading: false };
+      return { ...state, user: payload.data, loading: false };
     case GET_USER_INFORMATION_FAIL:
-      return { ...state, error: payload, loading: false };
-    case UPDATE_USER_INFORMATION_REQUEST:
-      return { ...state, loading: true, error: null };
-    case UPDATE_USER_INFORMATION_SUCCESS:
-      return { ...state, loading: false, error: null };
-    case UPDATE_USER_INFORMATION_FAIL:
-      return { ...state, error: payload, loading: false };
+      return { ...state, error: payload, loading: false };  
 
     default:
       return state;
   }
 };
-export default updateInformationReducer;
+export default informationReducer;

@@ -52,11 +52,28 @@ class Header extends Component {
             </ul>
 
             <div className="form-inline my-2 my-lg-0">
-              {currentUser ? <div className="btn btn-success" onClick = {this.handleLogout}>Đăng xuất</div>
-                : <Link to="/login" className="btn btn-primary">Đăng nhập</Link>
+              {currentUser ? 
+                 (<div className="navbar-collapse flex-grow-0 " >
+                  <span className="navbar-text">
+                    Chào, {currentUser.taiKhoan} ! 
+                  </span>
+                  <ul className="navbar-nav " style={{ marginRight: 80 }} >
+                    <li className="nav-item dropdown">
+                      <div>
+                        <div className="nav-link dropdown-toggle" role="button" data-toggle="dropdown" >
+                        </div>
+                        <div className="dropdown-menu" style={{ left: -140 }} >
+                          <Link to = "/user-information"  className="dropdown-item" >Thông tin cá nhân</Link>
+                          <div className="dropdown-item" onClick={() => this.handleLogout()} style={{ cursor: "pointer" }}>Logout</div>
+                        </div>
+                      </div>
+
+                    </li>
+                  </ul>
+                </div>) : (<Link to = "/login" className = "text-white" style = {{cursor : "pointer"}}>Đăng nhập / Đăng kí</Link>)
               }
             </div>
-            
+
           </div>
         </nav>
       </header>
@@ -69,7 +86,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  logoutUser : () => {dispatch(actLogout())
+  logoutUser: () => {
+    dispatch(actLogout())
   }
 })
 

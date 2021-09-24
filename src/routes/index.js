@@ -9,6 +9,8 @@ import AddMovie from "containers/admin/Admin/MovieControl/AddMovie/AddMovie"
 import UpdateUserInformation from "containers/admin/Admin/UserManagement/UpdateUserAdmin/UpdateUserInformation";
 import UpdateMovie from "containers/admin/Admin/MovieControl/UpdateMovie.jsx/UpdateMovie";
 import AddMovieShowTimes from "containers/admin/Admin/MovieControl/AddMovieShowTimes/AddMovieShowTimes";
+import Login from "containers/shared/Auth/Login/Login";
+import SignUp from "containers/shared/Auth/Login/SignUp";
 
 export const clientRoutes = [
   {
@@ -104,4 +106,20 @@ export const adminRoutes = [
     exact: true,
     isPrivate: true,
   },
+  
 ];
+
+export const loginRoutes = [
+  {
+    path: "/login",
+    component: Login,
+    exact: true,
+    isPrivate: false,
+  },
+  {
+    path: "/sign-up",
+    component: SignUp,
+    exact: true,
+    isPrivate: false,
+  },
+]

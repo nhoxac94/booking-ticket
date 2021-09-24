@@ -14,39 +14,38 @@ class AdminLayout extends Component {
 
   logoutUser() {
     this.props.children.props.history.push("/")
-    localStorage.setItem(USER_BOOKING_TICKET_LOGIN,null)
+    localStorage.setItem(USER_BOOKING_TICKET_LOGIN, null)
   }
-
 
   render() {
     const userName = JSON.parse(localStorage.getItem(USER_BOOKING_TICKET_LOGIN)).taiKhoan;
     return (
       <>
-        <nav className="navbar navbar-expand-lg justify-content-between" style = {{backgroundColor : "#001529", color : "rgba(255, 255, 255, 0.65)"}}>
+        <nav className="navbar navbar-expand-lg justify-content-between" style={{ backgroundColor: "#001529", color: "rgba(255, 255, 255, 0.65)" }}>
           <div className="navbar-brand" >
             DragonFly
           </div>
           <div className="navbar-collapse flex-grow-0 " >
-              <span className="navbar-text">
-                Chào, {userName}!
-              </span>
-              <ul className="navbar-nav " style = {{marginRight : 80}} >
-                <li className="nav-item dropdown">
-                  <div>
-                    <div className="nav-link dropdown-toggle" role="button" data-toggle="dropdown" >                      
-                    </div>
-                    <div className="dropdown-menu" style = {{left : -140}} >
-                      <Link to = {`/admin/users/edit-user/${userName}`} className="dropdown-item" >Thông tin cá nhân</Link>
-                      <div className="dropdown-item" onClick = {() => this.logoutUser()} style = {{cursor : "pointer"}}>Logout</div>
-                    </div>
+            <span className="navbar-text">
+              Chào, {userName}!
+            </span>
+            <ul className="navbar-nav " style={{ marginRight: 80 }} >
+              <li className="nav-item dropdown">
+                <div>
+                  <div className="nav-link dropdown-toggle" role="button" data-toggle="dropdown" >
                   </div>
+                  <div className="dropdown-menu" style={{ left: -140 }} >
+                    <Link to={`/admin/users/edit-user/${userName}`} className="dropdown-item" >Thông tin cá nhân</Link>
+                    <div className="dropdown-item" onClick={() => this.logoutUser()} style={{ cursor: "pointer" }}>Logout</div>
+                  </div>
+                </div>
 
-                </li>
-              </ul>
-            </div>
+              </li>
+            </ul>
+          </div>
         </nav>
 
-        <Layout style={{ minHeight: "94vh" }}  className="sidebar">
+        <Layout style={{ minHeight: "94vh" }} className="sidebar">
           <Sider className="site-layout-background">
             <Menu theme="dark" defaultOpenKeys={['sub1', 'sub2']} mode="inline" >
               <SubMenu key="sub1" icon={<UserOutlined />} title="User">
@@ -83,3 +82,4 @@ class AdminLayout extends Component {
 }
 
 export default withLayout(AdminLayout);
+

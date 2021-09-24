@@ -5,21 +5,27 @@ import { Route, Redirect } from 'react-router-dom'
 const withLayout = WrappedComponent => {
     return ({ component: Component, isPrivate, ...restProps }) => {
         const maLoaiNguoiDung = JSON.parse(localStorage.getItem(USER_BOOKING_TICKET_LOGIN))?.maLoaiNguoiDung
+        const handleRender = () => {
+            return (
+                <Route
+                    {...restProps}
+                    render={routeProps => (
+                        <WrappedComponent>
+                            <Component {...routeProps} />
+                        </WrappedComponent>
+                    )}
+                />
+            )
+        }
         if (isPrivate) {
             if (maLoaiNguoiDung === 'QuanTri') {
-                return (
-                    <Route
-                        {...restProps}
-                        render={routeProps => (
-                            <WrappedComponent>
-                                <Component {...routeProps} />
-                            </WrappedComponent>
-                        )}
-                    />
-                )
+                return (handleRender())
             }
+            return <Redirect to="/" />
+        } else {
+            return (handleRender())
         }
-        return <Redirect to="/" />
+
     }
 }
 

@@ -1,4 +1,3 @@
-import { UPDATE_USER_INFORMATION_SUCCESS } from "containers/client/UserInformation/module/types";
 import {
   LOGIN_FAIL,
   LOGIN_REQUEST,
@@ -18,28 +17,30 @@ if (localStorage.getItem(USER_BOOKING_TICKET_LOGIN)) {
 const initialState = {
   currentUser: user,
   loading: false,
-  error: null,
+  errorLogin: null,
+  errorSignUp: null,
+
 };
 
 const authReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case LOGIN_REQUEST:
-      return { ...state, loading: true, error: null };
+      return { ...state, loading: true, errorLogin: null };
     case lOGIN_SUCCESS:
       localStorage.setItem(USER_BOOKING_TICKET_LOGIN, JSON.stringify(payload));
       return { ...state, loading: false, currentUser: payload };
     case LOGIN_FAIL:
-      return { ...state, loading: false, error: payload };
+      return { ...state, loading: false, errorLogin: payload };
     case LOG_OUT:
       localStorage.setItem(USER_BOOKING_TICKET_LOGIN, JSON.stringify(payload));
       return { ...state, loading: false, error: null, currentUser: payload };
     case SIGNUP_REQUEST:
-      return { ...state, loading: true };
+      return { ...state, loading: true, errorSignUp : null };
     case SIGNUP_SUCCESS:
       localStorage.setItem(USER_BOOKING_TICKET_LOGIN, JSON.stringify(payload));
       return { ...state, currentUser: payload, loading: false };
     case SIGNUP_FAIL:
-      return { ...state, error: payload, loading: false };   
+      return { ...state, errorSignUp: payload, loading: false };   
     default:
       return state;
   }
