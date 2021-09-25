@@ -38,6 +38,7 @@ function App() {
             component={CinemaDetail}
           />
           {renderLayout(loginRoutes, LoginLayout)}
+          {renderLayout(adminRoutes, AdminLayout)}
 
           <Route path="/:maCumRap" exact component={CinemaDetail} />
           {/* {renderLayout(clientRoutes, ClientLayout)} */}
@@ -58,7 +59,6 @@ function App() {
             path="/movie/movie-showtime/:movieId"
             component={AddMovieShowTimes}
           />
-          {renderLayout(adminRoutes, AdminLayout)}
           <Route path="/" exact component={Home} />
           <Route path="*" component={PageNotFound} />
         </Switch>

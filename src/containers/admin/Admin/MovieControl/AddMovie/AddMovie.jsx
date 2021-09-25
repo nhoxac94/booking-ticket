@@ -1,10 +1,10 @@
 import { withFormik } from "formik";
 import React, { Component } from "react";
+import * as Yup from 'yup'
 
 import {
   Form,
   Input,
-  Radio,
   DatePicker,
   InputNumber,
 } from "antd";
@@ -15,11 +15,11 @@ import { USER_BOOKING_TICKET_LOGIN } from "containers/shared/Auth/module/type";
 import { Link } from "react-router-dom";
 
 class AddMovie extends Component {
-  state = {    
+  state = {
     imgSrc: null,
   };
 
-   handleUploadImg(e) {
+  handleUploadImg(e) {
     let file = e.target.files[0];
     let reader = new FileReader();
     reader.readAsDataURL(file);
@@ -29,11 +29,11 @@ class AddMovie extends Component {
     return file;
   }
   render() {
-    const { handleSubmit, handleChange, setFieldValue } = this.props;
+    const { handleSubmit, handleChange, setFieldValue, handleBlur, touched, errors, values } = this.props;
     return (
       <>
         <h3>Thêm phim mới</h3>
-        <ul className="nav nav-pills mb-5" id="pills-tab" role="tablist">
+        <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
           <li className="nav-item" role="presentation">
             <Link to="/admin/movies" className="nav-link  btn btn-light" role="tab" >
               Quản lý phim
@@ -52,36 +52,73 @@ class AddMovie extends Component {
           wrapperCol={{
             span: 14,
           }}
-          layout="horizontal"          
+          layout="horizontal"
           onValuesChange={this.onFormLayoutChange}
           onSubmitCapture={handleSubmit}
-        >         
+        >
           <Form.Item label="Mã Phim">
-            <Input name="maPhim" onChange={handleChange} />
+            <Input name="maPhim"
+              onChange={handleChange}
+              onBlur={handleBlur} />
+            {errors.maPhim && touched.maPhim && <small className="text-danger text-center">{errors.maPhim}</small>}
           </Form.Item>
           <Form.Item label="Tên Phim">
-            <Input name="tenPhim" onChange={handleChange} />
+            <Input name="tenPhim"
+              onChange={handleChange}
+              onBlur={handleBlur} />
+            {errors.tenPhim && touched.tenPhim && <small className="text-danger text-center">{errors.tenPhim}</small>}
+
           </Form.Item>
           <Form.Item label="Bí danh">
-            <Input name="biDanh" onChange={handleChange} />
+            <Input name="biDanh"
+              onChange={handleChange}
+              onBlur={handleBlur} />
+            {errors.biDanh && touched.biDanh && <small className="text-danger text-center">{errors.biDanh}</small>}
+
           </Form.Item>
           <Form.Item label="Trailer">
-            <Input name="trailer" onChange={handleChange} />
+            <Input name="trailer"
+              onChange={handleChange}
+              onBlur={handleBlur} />
+            {errors.trailer && touched.trailer && <small className="text-danger text-center">{errors.trailer}</small>}
+
           </Form.Item>
           <Form.Item label="Ngày khởi chiếu">
-            <DatePicker format={"DD/MM/YYYY"} onChange={(e) => setFieldValue('ngayKhoiChieu', moment(e).format("DD/MM/YYYY"))} />
+            <DatePicker format={"DD/MM/YYYY"}
+              name="ngayKhoiChieu"
+              onChange={(e) => setFieldValue('ngayKhoiChieu', moment(e).format("DD/MM/YYYY"))}
+              onBlur={handleBlur} />
+            {errors.ngayKhoiChieu && touched.ngayKhoiChieu && <small className="text-danger text-center">{errors.ngayKhoiChieu}</small>}
+
           </Form.Item>
 
           <Form.Item label="Đánh giá" >
-            <InputNumber onChange={(e) => setFieldValue("danhGia", e)} min="0" max="10" />
+            <InputNumber
+              name="danhGia"
+              onChange={(e) => setFieldValue("danhGia", e)}
+              onBlur={handleBlur} 
+              defaultValue = {values.danhGia}
+              />
+              
+            {errors.danhGia && touched.danhGia && <small className="text-danger text-center">{errors.danhGia}</small>}
+
           </Form.Item>
           <Form.Item label="Mô tả">
-            <Input.TextArea name="moTa" onChange={handleChange} />
+            <Input.TextArea name="moTa"
+              onChange={handleChange}
+              onBlur={handleBlur} />
+            {errors.moTa && touched.moTa && <small className="text-danger text-center">{errors.moTa}</small>}
+
           </Form.Item>
           <Form.Item label="Hình ảnh">
-            <input type="file" accept="image/*" onChange={(e) => setFieldValue("hinhAnh", this.handleUploadImg(e))} />
+            <input type="file" accept="image/*"
+              name="hinhAnh"
+              onChange={(e) => setFieldValue("hinhAnh", this.handleUploadImg(e))}
+              onBlur={handleBlur} />
+            {errors.hinhAnh && touched.hinhAnh && <small className="text-danger text-center">{errors.hinhAnh}</small>}
+
             <br />
-            <div style={{ width: 150, height: 150 }} className="border ">
+            <div style={{ width: 100, height: 100 }} className="border ">
               <img src={this.state.imgSrc} alt="..." width="100%" />
             </div>
           </Form.Item>
@@ -107,16 +144,16 @@ const AddMovieWithFormik = withFormik({
     maNhom: GROUP_ID
   }),
 
-  // Custom sync validation
-  // validate: values => {
-  //   const errors = {};
-
-  //   if (!values.userName) {
-  //     errors.name = "Required";
-  //   }
-  //   console.log(errors);
-  //   return errors;
-  // },
+  validationSchema: Yup.object().shape({
+    maPhim: Yup.string().matches(/^[0-9]+$/gi, "Must be a Number").required('Please input value'),
+    tenPhim: Yup.string().required('Please input value'),
+    biDanh: Yup.string().required('Please input value'),
+    trailer: Yup.string().required('Please input value'),
+    ngayKhoiChieu: Yup.string().required('Please input value'),
+    danhGia: Yup.number("Must be a Number").required('Please input value').min(0, "Minimum 0").max(10, "maximum 10"),
+    moTa: Yup.string().required('Please input description'),
+    hinhAnh: Yup.string().required('Please select image'),
+  }),
 
   handleSubmit: (values, { setSubmitting, setFieldValue }) => {
     const accessToken = JSON.parse(localStorage.getItem(USER_BOOKING_TICKET_LOGIN)).accessToken;
@@ -128,12 +165,13 @@ const AddMovieWithFormik = withFormik({
         formData.append('File', values.hinhAnh, values.hinhAnh.name)
       }
     }
-    console.log(formData.get('maPhim'));
     movieApi.fetchAddMovieApi(formData, accessToken)
       .then(res => {
+        alert('Add Movie Successful!!!')
         console.log(res);
       })
       .catch(err => {
+        alert(err)
         console.log(err);
       })
   },

@@ -23,7 +23,7 @@ class AdminLayout extends Component {
       <>
         <nav className="navbar navbar-expand-lg justify-content-between" style={{ backgroundColor: "#001529", color: "rgba(255, 255, 255, 0.65)" }}>
           <div className="navbar-brand" >
-            DragonFly
+            
           </div>
           <div className="navbar-collapse flex-grow-0 " >
             <span className="navbar-text">

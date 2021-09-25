@@ -195,11 +195,11 @@ export default class MovieManager extends Component {
             </table>
             <div className="text-right">
               <ul className="d-block">
-                <button className="btn btn-outline-primary mr-1" disabled={listMovieRender.currentPage === "1" && true} onClick={() => this.handlePrevPagination(listMovieRender.currentPage)} >Previous</button>
+                <button className="btn btn-outline-primary mr-1" disabled={listMovieRender.currentPage === 1 } onClick={() => this.handlePrevPagination(listMovieRender.currentPage)} >Previous</button>
                 {this.handlePagination(listMovieRender.totalPages).map((page => {
                   return (<li className={`btn btn-outline-dark mr-1 ${listMovieRender.currentPage === page && "active"}`} key={page} onClick={() => { this.handleChangePagination(page) }} >{page}</li>)
                 }))}
-                <button className="btn btn-outline-primary" disabled={listMovieRender.currentPage === listMovieRender.totalPages && true} onClick={() => this.handleNextPagination(listMovieRender.currentPage)}>Next</button>
+                <button className="btn btn-outline-primary" disabled={listMovieRender.currentPage === listMovieRender.totalPages } onClick={() => this.handleNextPagination(listMovieRender.currentPage)}>Next</button>
               </ul>
             </div>
           </div >

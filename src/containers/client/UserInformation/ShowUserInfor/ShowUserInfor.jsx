@@ -48,7 +48,6 @@ class ShowUserInfor extends Component {
                 })
                 .catch(error => console.log(error))
         }
-        console.log(this.state.values);
     }
 
     handleChange(e) {

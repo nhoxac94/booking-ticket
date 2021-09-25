@@ -189,11 +189,11 @@ export default class UserManagement extends Component {
                     </div>
                     <div className="text-right">
                         <ul className="d-block">
-                            <button className="btn btn-outline-primary mr-1" disabled={listUserRender.currentPage === 1 && true} onClick={() => this.handleChangePagination(listUserRender.currentPage - 1)}>Previous</button>
+                            <button className="btn btn-outline-primary mr-1" disabled={listUserRender.currentPage === 1 } onClick={() => this.handleChangePagination(listUserRender.currentPage - 1)}>Previous</button>
                             {this.handlePagination(listUserRender.totalPages).map((page => {
                                 return (<li className={`btn btn-outline-dark mr-1 ${listUserRender.currentPage === page && "active"}`} key={page} onClick={() => this.handleChangePagination(page)}>{page}</li>)
                             }))}
-                            <button className="btn btn-outline-primary" disabled={listUserRender.currentPage === listUserRender.totalPages && true} onClick={() => this.handleChangePagination(listUserRender.currentPage + 1)}>Next</button>
+                            <button className="btn btn-outline-primary" disabled={listUserRender.currentPage === listUserRender.totalPages} onClick={() => this.handleChangePagination(listUserRender.currentPage + 1)}>Next</button>
                         </ul>
                     </div>
                 </div>

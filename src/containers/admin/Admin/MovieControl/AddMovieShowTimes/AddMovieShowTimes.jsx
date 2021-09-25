@@ -104,12 +104,12 @@ class AddMovieShowTimes extends Component {
                                 </Form.Item>
                                 <Form.Item label="Ngày chiếu giờ chiếu" >
                                     <DatePicker format="DD/MM/YYYY hh:mm:ss" showTime name="ngayChieuGioChieu" onOk={e => handleDatePicker(e)}  onChange={e => handleDatePicker(e)} onBlur={handleBlur}  />
-                                    {errors.ngayChieuGioChieu && touched.ngayChieuGioChieu && <small className="text-danger">{errors.ngayChieuGioChieu}</small>}
+                                    {errors.ngayChieuGioChieu && touched.ngayChieuGioChieu && <small className="text-danger ml-3">{errors.ngayChieuGioChieu}</small>}
 
                                 </Form.Item>
                                 <Form.Item label="Giá vé">
                                     <InputNumber name="giaVe" min={75000} max={150000} onChange={e => setFieldValue("giaVe", e)}  onBlur={handleBlur}  />
-                                    {errors.giaVe && touched.giaVe && <small className="text-danger">{errors.giaVe}</small>}
+                                    {errors.giaVe && touched.giaVe && <small className="text-danger ml-3">{errors.giaVe}</small>}
 
                                 </Form.Item>
                                 <div className="text-right" style={{ maxWidth: 840 }} >
