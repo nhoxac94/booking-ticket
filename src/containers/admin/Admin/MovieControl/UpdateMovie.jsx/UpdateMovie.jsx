@@ -51,9 +51,6 @@ export default class UpdateMovie extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        this.state.values.ngayKhoiChieu = moment(this.state.values.ngayKhoiChieu).format("DD/MM/YYYY")
-        console.log(this.state.errors);
-        console.log(this.state.values);
         let isValid = true;
 
         for (let key in this.state.errors) {
@@ -77,6 +74,7 @@ export default class UpdateMovie extends Component {
                         formData.append('File', this.state.values.hinhAnh, this.state.values.hinhAnh.name)
                     }
                 }
+
             }
 
             movieApi.fetchEditMovieApi(formData, accessToken)
@@ -90,6 +88,7 @@ export default class UpdateMovie extends Component {
 
         }
     }
+
     handleChange(e) {
         const { value, name } = e.target
         let errorMessage = ""

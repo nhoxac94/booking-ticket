@@ -174,7 +174,7 @@ export default class MovieManager extends Component {
                       <td>{movie.maPhim}</td>
                       <td>{movie.tenPhim}</td>
                       <td>
-                        <img src={movie.hinhAnh} alt="" style={{ width: 80, height: 80 }} />
+                        <img src={movie.hinhAnh} alt="" style={{ width: 70, height: 70 }} />
                       </td>
                       <td style={{ width: "35%" }}>{movie.moTa.length < 200 ? movie.moTa : movie.moTa.slice(0, 200) + "..."}</td>
                       <td>{movie.maNhom}</td>
