@@ -11,6 +11,7 @@ import UpdateMovie from "containers/admin/Admin/MovieControl/UpdateMovie.jsx/Upd
 import AddMovieShowTimes from "containers/admin/Admin/MovieControl/AddMovieShowTimes/AddMovieShowTimes";
 import Login from "containers/shared/Auth/Login/Login";
 import SignUp from "containers/shared/Auth/Login/SignUp";
+import UserInformation from "containers/client/UserInformation/UserInformation";
 
 export const clientRoutes = [
   {
@@ -39,7 +40,7 @@ export const clientRoutes = [
   },
   {
     path: "/thongtincanhan",
-    component: SeatDetail,
+    component: UserInformation,
     exact: true,
     isPrivate: true,
   },
@@ -106,7 +107,7 @@ export const adminRoutes = [
     exact: true,
     isPrivate: true,
   },
-  
+
 ];
 
 export const loginRoutes = [

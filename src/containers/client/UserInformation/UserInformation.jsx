@@ -14,7 +14,6 @@ export default class UserInformation extends Component {
         return (
 
             <div className="wrappedUser" style={{ minHeight: "100vh" }}>
-                <Header />
                 <div className=" container">
                     <div className="navbar__user">
                         <nav>
@@ -29,7 +28,6 @@ export default class UserInformation extends Component {
                         </div>
                     </div>
                 </div>
-
             </div>
         )
     }

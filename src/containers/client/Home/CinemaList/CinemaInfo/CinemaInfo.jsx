@@ -96,14 +96,18 @@ export default class CinemaInfo extends Component {
                                           {lstLichChieuTheoPhim
                                             .slice(0, 4)
                                             .map((lichChieu, idx) => {
+                                              const { maLichChieu } = lichChieu;
                                               const { ngayChieuGioChieu } =
                                                 lichChieu;
                                               return (
-                                                <button className="btn btn-dark mx-1 my-1">
+                                                <Link
+                                                  to={`/chitietphongve/${maLichChieu}`}
+                                                  className="btn btn-dark mx-1 my-1"
+                                                >
                                                   {new Date(
                                                     ngayChieuGioChieu
                                                   ).toLocaleTimeString()}
-                                                </button>
+                                                </Link>
                                               );
                                             })}
                                         </small>
