@@ -63,7 +63,7 @@ class Header extends Component {
                         <div className="nav-link dropdown-toggle" role="button" data-toggle="dropdown" >
                         </div>
                         <div className="dropdown-menu" style={{ left: -140 }} >
-                          <Link to = "/user-information"  className="dropdown-item" >Thông tin cá nhân</Link>
+                          <Link to = "/thongtincanhan"  className="dropdown-item" >Thông tin cá nhân</Link>
                           <div className="dropdown-item" onClick={() => this.handleLogout()} style={{ cursor: "pointer" }}>Logout</div>
                         </div>
                       </div>

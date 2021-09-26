@@ -42,11 +42,9 @@ export default class Home extends Component {
     if (loading) return <Loader />;
     return (
       <div>
-        <Header />
         <Banner />
         <MovieList movieList={movieList} />
         <CinemaList cinemaList={cinemaList} />
-        <Footer />
       </div>
     );
   }
