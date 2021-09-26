@@ -109,30 +109,30 @@ class ShowUserInfor extends Component {
             <div className="tab-pane fade show active container mt-3" id="userInfor" role="tabpanel" aria-labelledby="nav-contact-tab">
                 <form onSubmit={e => this.handleSubmit(e)}>
                     <div className="row">
-                        <div className="form-group col-6">
+                        <div className="form-group col-12 col-md-6">
                             <label >Email</label>
                             <input type="email" className="form-control" name="email" onChange={e => this.handleChange(e)} defaultValue={values.email} />
                             {errors.email && <small className="text-center text-danger">{errors.email}</small>}
                         </div>
-                        <div className="form-group col-6">
+                        <div className="form-group ol-12 col-md-6">
                             <label >Tài Khoản</label>
                             <input type="text" className="form-control" name="taiKhoan" disabled onChange={e => this.handleChange(e)}
                                 defaultValue={values.taiKhoan} />
                             {errors.taiKhoan && <small className="text-center text-danger">{errors.taiKhoan}</small>}
                         </div>
-                        <div className="form-group col-6">
+                        <div className="form-group ol-12 col-md-6">
                             <label >Họ Tên</label>
                             <input type="text" className="form-control" name="hoTen" onChange={e => this.handleChange(e)}
                                 defaultValue={values.hoTen} />
                             {errors.hoTen && <small className="text-center text-danger">{errors.hoTen}</small>}
                         </div>
-                        <div className="form-group col-6">
+                        <div className="form-group ol-12 col-md-6">
                             <label >Mật Khẩu</label>
                             <input type="password" className="form-control" name="matKhau" onChange={e => this.handleChange(e)} defaultValue={values.matKhau}
                             />
                             {errors.matKhau && <small className="text-center text-danger">{errors.matKhau}</small>}
                         </div>
-                        <div className="form-group col-6">
+                        <div className="form-group ol-12 col-md-6">
                             <label >Số điện thoại</label>
                             <input type="number" className="form-control" name="soDt" onChange={e => this.handleChange(e)} defaultValue={values.soDt}
                             />
@@ -141,7 +141,7 @@ class ShowUserInfor extends Component {
                     </div>
                     <div className="mt-3 text-right">
 
-                        <button type="submit" className="btn btn-primary">Cập nhật</button>
+                        <button type="submit" className="btn btn-primary update__user">Cập nhật</button>
                     </div>
                 </form>
             </div>
