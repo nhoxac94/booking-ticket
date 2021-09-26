@@ -53,7 +53,6 @@ function App() {
             exact
             component={CinemaDetail}
           />
-          <Route path="/seat-detail/:movieId" component={SeatDetail} />
 
           <Route
             path="/movie/movie-showtime/:movieId"
