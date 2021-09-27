@@ -28,7 +28,7 @@ export default class CinemaInfo extends Component {
                       const { maCumRap, tenCumRap, diaChi } = lstCinema;
                       return (
                         <a
-                          className="nav-link mb-4"
+                          className="nav-link mb-4 overflow-auto"
                           id={`v-pills-${maCumRap}-tab`}
                           data-toggle="pill"
                           href={`#v-pills-${maCumRap}`}
@@ -86,16 +86,9 @@ export default class CinemaInfo extends Component {
                                     <div className="card-body">
                                       <h5 className="card-title">{tenPhim}</h5>
                                       <p className="card-text">
-                                        This is a wider card with supporting
-                                        text below as a natural lead-in to
-                                        additional content. This content is a
-                                        little bit longer.
-                                      </p>
-                                      <p className="card-text">
                                         <small className="text-muted">
-                                          {lstLichChieuTheoPhim
-                                            .slice(0, 4)
-                                            .map((lichChieu, idx) => {
+                                          {lstLichChieuTheoPhim.map(
+                                            (lichChieu, idx) => {
                                               const { maLichChieu } = lichChieu;
                                               const { ngayChieuGioChieu } =
                                                 lichChieu;
@@ -109,7 +102,8 @@ export default class CinemaInfo extends Component {
                                                   ).toLocaleTimeString()}
                                                 </Link>
                                               );
-                                            })}
+                                            }
+                                          )}
                                         </small>
                                       </p>
                                     </div>

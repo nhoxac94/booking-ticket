@@ -21,23 +21,23 @@ const movieApi = {
     fetchAllCinema() {
         return callApi(`QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=${GROUP_ID}`);
     },
-    fetchMovieAdminPageApi (page) {
+    fetchMovieAdminPageApi(page) {
         return callApi(`QuanLyPhim/LayDanhSachPhimPhanTrang?maNhom=${GROUP_ID}&soTrang=${page}&soPhanTuTrenTrang=${MOVIE_IN_PAGE}`)
     },
-    fetchDeleteMovieApi (movieId, accessToken) {
+    fetchDeleteMovieApi(movieId, accessToken) {
         return callApi(`QuanLyPhim/XoaPhim?MaPhim=${movieId}`, 'DELETE', movieId, accessToken)
     },
-    fetchSearchMovieInPageApi (key,page) {
+    fetchSearchMovieInPageApi(key, page) {
         return callApi(`QuanLyPhim/LayDanhSachPhimPhanTrang?maNhom=${GROUP_ID}&tenPhim=${key}&soTrang=${page}&soPhanTuTrenTrang=${MOVIE_IN_PAGE}`)
     },
     fetchAddMovieApi(movieData, accessToken) {
-        return callApi('QuanLyPhim/ThemPhimUploadHinh','POST',movieData, accessToken)
+        return callApi('QuanLyPhim/ThemPhimUploadHinh', 'POST', movieData, accessToken)
     },
     fetchInformationMovieApi(movieId) {
         return callApi(`QuanLyPhim/LayThongTinPhim?MaPhim=${movieId}`)
     },
     fetchEditMovieApi(movieData, accessToken) {
-        return callApi('QuanLyPhim/CapNhatPhimUpload','POST',movieData, accessToken )
+        return callApi('QuanLyPhim/CapNhatPhimUpload', 'POST', movieData, accessToken)
     },
     fetchGetTheaterSystemApi() {
         return callApi('QuanLyRap/LayThongTinHeThongRap')
@@ -63,6 +63,13 @@ const movieApi = {
      */
     fetchDetailSeat(seatId) {
         return callApi(`QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${seatId}`)
+    },
+
+    /**
+     * API banner
+     */
+    fetchBanner() {
+        return callApi(`/QuanLyPhim/LayDanhSachBanner`);
     }
 }
 

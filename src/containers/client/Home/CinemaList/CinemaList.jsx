@@ -4,7 +4,7 @@ export default class CinemaList extends Component {
   render() {
     const { cinemaList } = this.props;
     return (
-      <div className="container-fluid">
+      <div className="container">
         <div className="row my-5">
           <div className="col-1">
             <div
@@ -26,10 +26,10 @@ export default class CinemaList extends Component {
                     aria-selected="true"
                     key={maHeThongRap}
                   >
-                    <div className="container-fluid">
+                    <div className="container">
                       <img
                         src={logo}
-                        className="rounded-circle img-fluid"
+                        className="rounded-circle"
                         alt=""
                         style={{ width: "60px" }}
                       />
@@ -40,7 +40,7 @@ export default class CinemaList extends Component {
             </div>
           </div>
           <div className="col-11">
-            <div className="tab-content" id="v-pills-tabContent">
+            <div className="tab-content ml-5" id="v-pills-tabContent">
               <CinemaInfo cinemaList={cinemaList} />
             </div>
           </div>
