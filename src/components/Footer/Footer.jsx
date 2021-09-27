@@ -10,7 +10,7 @@ export default class Footer extends Component {
   render() {
     return (
       <footer className="container-fluid bg-dark footer">
-        <div className="w-75 mx-auto">
+        <div className="w-75">
           <div className="row text-white py-4">
             <div className="col-4">
               <p className="h4">123Phim</p>

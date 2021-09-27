@@ -12,16 +12,15 @@ class Header extends Component {
     const { currentUser } = this.props;
     return (
       <header className="header">
-        <nav className="navbar navbar-expand-lg navbar-dark w-100 fixed-top bg-dark">
-          <a className="navbar-brand" href="#">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
+          <Link className="navbar-brand" to="/">
             <img src="../logo192.png" className="w-25" alt="" />
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
             data-toggle="collapse"
             data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >

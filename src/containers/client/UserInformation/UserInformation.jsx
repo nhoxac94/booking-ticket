@@ -3,7 +3,6 @@ import ShowHistory from './ShowHistory/ShowHistory'
 import ShowUserInfor from './ShowUserInfor/ShowUserInfor'
 import './UserInformation.scss'
 import { USER_BOOKING_TICKET_LOGIN } from 'containers/shared/Auth/module/type'
-import Header from 'components/Header/Header'
 
 export default class UserInformation extends Component {
 
@@ -14,10 +13,10 @@ export default class UserInformation extends Component {
         return (
 
             <div className="wrappedUser" style={{ minHeight: "100vh" }}>
-                <div className=" container">
+                <div className="container-lg p-0" >
                     <div className="navbar__user">
                         <nav>
-                            <div className="nav nav-tabs container" id="nav-tab" role="tablist">
+                            <div className="nav nav-tabs container" id="nav-tab" role="tablist" >
                                 <a className="nav-link active" id="nav-home-tab" data-toggle="tab" href="#userInfor" role="tab" aria-selected="true">THÔNG TIN THÀNH VIÊN</a>
                                 <a className="nav-link" id="nav-profile-tab" data-toggle="tab" href="#historyBooking" role="tab" aria-selected="false">LỊCH SỬ ĐẶT VÉ</a>
                             </div>
