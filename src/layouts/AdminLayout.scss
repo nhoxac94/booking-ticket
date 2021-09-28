@@ -1,0 +1,108 @@
+@import "/src/scss/main.scss";
+
+.navbar {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  span {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+.navbar-brand {
+  img {
+    width: 40px;
+    margin-left: 1em;
+  }
+}
+.navbar-collapse {
+  ul {
+    margin-right: 80px;
+  }
+}
+
+.ant-layout {
+  min-height: 94vh;
+}
+.movie__manage {
+  img {
+    width: 70px;
+    height: 70px;
+  }
+}
+@include responsive("ipad") {
+  .formAddUser {
+    width: 100% !important;
+  }
+  .navbar-collapse {
+    ul {
+      margin-right: 0;
+    }
+  }
+  .table {
+    font-size: 11px;
+    button {
+      padding: 0;
+      border: none;
+      background-color: transparent;
+    }
+  }
+  .edit__user {
+    color: green !important;
+    padding-right: 5px !important;
+  }
+  .delete__user {
+    color: red !important;
+  }
+  .navigate__user {
+    li {
+      padding: 3px 9px;
+    }
+    button {
+      padding: 3px 9px;
+    }
+  }
+  .ant-layout {
+    min-height: 100vh;
+  }
+  .movie__manage {
+    img {
+      width: 50px;
+      height: 50px;
+    }
+    text-align: center;
+    button {
+      padding: 0;
+      border: none;
+      background-color: transparent;
+    }
+    .delete__movie {
+      color: red;
+    }
+    .showTime__movie {
+      color: green;
+    }
+    .edit__movie {
+      color: blue;
+    }
+  }
+  .ant-col-14 {
+      max-width: 100%;
+  }
+}
+
+@include responsive("mobile") {
+  .nav {
+    li {
+      .nav-link {
+        font-size: 14px;
+      }
+    }
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+  .ant-layout {
+    min-height: auto;
+  }
+}

@@ -7,13 +7,14 @@ import { USER_BOOKING_TICKET_LOGIN } from 'containers/shared/Auth/module/type'
 export default class UserInformation extends Component {
 
     render() {
+        console.log(JSON.parse(localStorage.getItem(USER_BOOKING_TICKET_LOGIN)))
         if (!JSON.parse(localStorage.getItem(USER_BOOKING_TICKET_LOGIN))) {
             this.props.history.push("/")
         }
         return (
 
-            <div className="wrappedUser" style={{ minHeight: "100vh" }}>
-                <div className="container-lg p-0" >
+            <div className="wrappedUser " style={{ minHeight: "100vh" }}>
+                <div className="container-lg" >
                     <div className="navbar__user">
                         <nav>
                             <div className="nav nav-tabs container" id="nav-tab" role="tablist" >

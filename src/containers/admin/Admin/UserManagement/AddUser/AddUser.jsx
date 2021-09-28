@@ -4,13 +4,14 @@ import { connect } from 'react-redux'
 import userApi from 'apis/userApi';
 import { USER_BOOKING_TICKET_LOGIN } from 'containers/shared/Auth/module/type';
 import { Link } from 'react-router-dom';
+
 import * as Yup from 'yup';
 
 class AddUser extends Component {
     render() {
         const { handleSubmit, handleChange, errors, touched, handleBlur } = this.props;
         return (
-            <div className="mx-5">
+            <div className="mx-lg-5">
                 <h3>Thêm người dùng</h3>
                 <ul className="nav mb-3" role="tablist">
                     <li className="nav-item" role="presentation">
@@ -24,40 +25,40 @@ class AddUser extends Component {
                         </Link>
                     </li>
                 </ul>
-                <div style={{ width: "80%" }}>
+                <div className = "formAddUser" style={{ width: "80%" }}>
 
                     <form onSubmit={handleSubmit}>
                         <div className="row">
-                            <div className="form-group col-6">
+                            <div className="form-group col-lg-6">
                                 {/* <label >Tài Khoản</label> */}
                                 <input type="text" className="form-control" name="taiKhoan" onChange={handleChange} onBlur={handleBlur} required placeholder="Tài Khoản" />
                                 {errors.taiKhoan && touched.taiKhoan && <small className="text-danger">{errors.taiKhoan}</small>}
                             </div>
-                            <div className="form-group col-6">
+                            <div className="form-group col-lg-6">
                                 {/* <label >Mật khẩu</label> */}
                                 <input type="text" className="form-control" name="matKhau" onChange={handleChange} onBlur={handleBlur} required placeholder="Mật khẩu" />
                                 {errors.matKhau && touched.matKhau && (<small className="text-danger">{errors.matKhau}</small>)}
 
                             </div>
-                            <div className="form-group col-6">
+                            <div className="form-group col-lg-6">
                                 {/* <label >Họ tên</label> */}
                                 <input type="text" className="form-control" name="hoTen" onChange={handleChange} onBlur={handleBlur} required placeholder="Họ tên" />
                                 {errors.hoTen && touched.hoTen && (<small className="text-danger">{errors.hoTen}</small>)}
 
                             </div>
-                            <div className="form-group col-6">
+                            <div className="form-group col-lg-6">
                                 {/* <label >Email</label> */}
                                 <input type="email" className="form-control" name="email" onChange={handleChange} onBlur={handleBlur} required placeholder="Email" />
                                 {errors.email && touched.email && (<small className="text-danger">{errors.email}</small>)}
 
                             </div>
-                            <div className="form-group col-6">
+                            <div className="form-group col-lg-6">
                                 {/* <label >Số điện thoại</label> */}
                                 <input type="text" className="form-control" name="soDt" onChange={handleChange} onBlur={handleBlur} required  equired placeholder="Số điện thoại"/>
                                 {errors.soDt && touched.soDt && (<small className="text-danger">{errors.soDt}</small>)}
 
                             </div>
-                            <div className="form-group col-6">
+                            <div className="form-group col-lg-6">
                                 {/* <label >Loại người dùng</label> */}
                                 <select className="form-control" name="maLoaiNguoiDung" onChange={handleChange} onBlur={handleBlur} required >
                                 {errors.maLoaiNguoiDung && touched.maLoaiNguoiDung && (<small className="text-danger">{errors.maLoaiNguoiDung}</small>)}
@@ -66,14 +67,14 @@ class AddUser extends Component {
                                     <option value="QuanTri">Quản Trị</option>
                                 </select>
                             </div>
-                            <div className="form-group col-6">
+                            <div className="form-group col-lg-6">
                                 {/* <label >Mã nhóm</label> */}
                                 <input type="text" className="form-control" name="maNhom" onChange={handleChange} onBlur={handleBlur} required placeholder="Mã nhóm" />
                                 {errors.maNhom && touched.maNhom && (<small className="text-danger">{errors.maNhom}</small>)}
 
                             </div>
                         </div>
-                        <div className=" mt-5">
+                        <div className=" mt-2 mt-lg-5">
                             <div className="text-right">
                                 <button className="btn btn-primary" type="submit"> Thêm</button>
                             </div>

@@ -42,7 +42,7 @@ export const clientRoutes = [
     path: "/thongtincanhan",
     component: UserInformation,
     exact: true,
-    isPrivate: true,
+    isPrivate: false,
   },
 ];
 

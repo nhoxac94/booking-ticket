@@ -142,7 +142,7 @@ export default class MovieManager extends Component {
               </Link>
             </li>
           </ul>
-          <div>
+          <div className = "movie__manage">
             <form className="input-group mb-2" onSubmit={(e) => this.handleSearchMovieInPage(e)}>
               <input type="text" className="form-control" placeholder="Nhập vào tên phim hoặc mã số phim" />
               <div className="input-group-append">
@@ -174,18 +174,18 @@ export default class MovieManager extends Component {
                       <td>{movie.maPhim}</td>
                       <td>{movie.tenPhim}</td>
                       <td>
-                        <img src={movie.hinhAnh} alt="" style={{ width: 70, height: 70 }} />
+                        <img src={movie.hinhAnh} alt=""  />
                       </td>
-                      <td style={{ width: "35%" }}>{movie.moTa.length < 200 ? movie.moTa : movie.moTa.slice(0, 200) + "..."}</td>
+                      <td style={{ width: "35%" }}>{movie.moTa.length < 100 ? movie.moTa : movie.moTa.slice(0, 100) + "..."}</td>
                       <td>{movie.maNhom}</td>
                       <td>{moment(movie.ngayKhoiChieu).format('DD-MM-YYYY')}</td>
                       <td>
                         <div style={{ display: "inline" }} className="mr-2">
-                          <Link to={{pathname :`/admin/movies/movie-showtime/${movie.maPhim}`, movieInformation : movie}} className="btn btn-primary"><CalendarOutlined /> </Link>
+                          <Link to={{pathname :`/admin/movies/movie-showtime/${movie.maPhim}`, movieInformation : movie}}> <button  className=" showTime__movie btn btn-primary"><CalendarOutlined /></button> </Link>
                           &thinsp;
-                          <Link to={`/admin/movies/edit-movie/${movie.maPhim}`} className="btn btn-success" ><EditOutlined /> </Link>
+                          <Link to={`/admin/movies/edit-movie/${movie.maPhim}`} > <button className="edit__movie btn btn-success"><EditOutlined /></button> </Link>
                           &thinsp;
-                          <div className="btn btn-danger" onClick={() => this.handleDeleteMovie(movie.maPhim)}><CloseOutlined /></div>
+                          <button className="delete__movie btn btn-danger" onClick={() => this.handleDeleteMovie(movie.maPhim)}><CloseOutlined /></button>
                         </div>
                       </td>
                     </tr>
@@ -193,7 +193,7 @@ export default class MovieManager extends Component {
                 })}
               </tbody>
             </table>
-            <div className="text-right">
+            <div className="navigate__user text-right">
               <ul className="d-block">
                 <button className="btn btn-outline-primary mr-1" disabled={listMovieRender.currentPage === 1 } onClick={() => this.handlePrevPagination(listMovieRender.currentPage)} >Previous</button>
                 {this.handlePagination(listMovieRender.totalPages).map((page => {

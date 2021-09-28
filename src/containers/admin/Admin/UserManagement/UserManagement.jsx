@@ -114,9 +114,9 @@ export default class UserManagement extends Component {
         const listUserRender = this.handleShowUserPage()
         if (this.state.loading) return <Loader />
         return (
-            <div className="mx-5"  >
+            <div className="mx-lg-5"  >
                 <h3>Quản lí người dùng</h3>
-                <ul className="nav mb-3" role="tablist">
+                <ul className="nav mb-1" role="tablist">
                     <li className="nav-item" role="presentation">
                         <Link to="/admin/users" className="nav-link active btn btn-light" data-toggle="pill" role="tab" >
                             Quản lý người dùng
@@ -158,7 +158,7 @@ export default class UserManagement extends Component {
                                     <th>Họ tên</th>
                                     <th>Email</th>
                                     <th>Số điện thoại</th>
-                                    <th>Thao tác</th>
+                                    <th>Actions</th>
 
                                 </tr>
                             </thead>
@@ -174,9 +174,8 @@ export default class UserManagement extends Component {
                                             <td>{user.email}</td>
                                             <td>{user.soDt}</td>
                                             <td className="py-2">
-                                                <Link to={ `/admin/users/edit-user/${user.taiKhoan}`} className="btn btn-success"><EditOutlined /></Link>
-                                                <span> </span>
-                                                <button className="btn btn-danger" onClick={() => this.deleteUser(user.taiKhoan, accessToken)}><CloseOutlined /></button>
+                                                <Link to={`/admin/users/edit-user/${user.taiKhoan}`} ><button className="edit__user  btn btn-success"><EditOutlined /></button></Link>
+                                                <button className="delete__user btn btn-danger" onClick={() => this.deleteUser(user.taiKhoan, accessToken)}><CloseOutlined /></button>
                                             </td>
 
                                         </tr>
@@ -187,9 +186,9 @@ export default class UserManagement extends Component {
                             </tbody>
                         </table>
                     </div>
-                    <div className="text-right">
+                    <div className="text-right navigate__user">
                         <ul className="d-block">
-                            <button className="btn btn-outline-primary mr-1" disabled={listUserRender.currentPage === 1 } onClick={() => this.handleChangePagination(listUserRender.currentPage - 1)}>Previous</button>
+                            <button className="btn btn-outline-primary mr-1" disabled={listUserRender.currentPage === 1} onClick={() => this.handleChangePagination(listUserRender.currentPage - 1)}>Previous</button>
                             {this.handlePagination(listUserRender.totalPages).map((page => {
                                 return (<li className={`btn btn-outline-dark mr-1 ${listUserRender.currentPage === page && "active"}`} key={page} onClick={() => this.handleChangePagination(page)}>{page}</li>)
                             }))}

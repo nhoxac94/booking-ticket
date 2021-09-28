@@ -71,13 +71,13 @@ class AddMovieShowTimes extends Component {
                     <h3 className="my-3">Tạo lịch chiếu</h3>
 
                     <div className="row">
-                        <div className="col-3">
+                        <div className="col-lg-3 text-center">
                             <div className="mb-5">
                                 <h4 className="text-primary mb-3">{location.movieInformation.tenPhim}</h4>
                                 <img src={location.movieInformation.hinhAnh} alt="" width="300px" />
                             </div>
                         </div>
-                        <div className="col-9 mt-5">
+                        <div className="col-lg-9 mt-5">
                             <Form className="container"
                                 labelCol={{
                                     span: 4,
