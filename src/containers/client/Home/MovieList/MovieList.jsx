@@ -5,7 +5,7 @@ export default class MovieList extends Component {
   render() {
     const { movieList } = this.props;
     return (
-      <div className="container-fluid">
+      <div className="container">
         <div className="my-5">
           <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li className="nav-item pr-2" role="presentation">
@@ -34,19 +34,6 @@ export default class MovieList extends Component {
                 Phim Đang Chiếu
               </a>
             </li>
-            <li className="nav-item" role="presentation">
-              <a
-                className="nav-link btn btn-secondary"
-                id="pills-contact-tab"
-                data-toggle="pill"
-                href="#pills-contact"
-                role="tab"
-                aria-controls="pills-contact"
-                aria-selected="false"
-              >
-                Phim Hot Nhất
-              </a>
-            </li>
           </ul>
           <div className="tab-content" id="pills-tabContent">
             <div
@@ -64,14 +51,6 @@ export default class MovieList extends Component {
               aria-labelledby="pills-profile-tab"
             >
               <ShowingMovie movieList={movieList} />
-            </div>
-            <div
-              className="tab-pane fade"
-              id="pills-contact"
-              role="tabpanel"
-              aria-labelledby="pills-contact-tab"
-            >
-              API Phim Hot Nhất
             </div>
           </div>
         </div>

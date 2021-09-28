@@ -1,8 +1,24 @@
 .movie__item {
-    max-width: 1800px;
+  max-width: 1800px;
   .movie__img {
     width: 500px;
     height: 450px;
     object-fit: cover;
   }
+}
+.carousel-control-prev {
+  left: -170px !important;
+}
+.carousel-control-next {
+  right: -170px !important;
+}
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+  filter: invert(100%);
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  width: 100px !important;
+  height: 100px !important;
 }

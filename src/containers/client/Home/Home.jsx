@@ -8,6 +8,7 @@ export default class Home extends Component {
   state = {
     movieList: [],
     cinemaList: [],
+    movieBanner: [],
     loading: true,
   };
 

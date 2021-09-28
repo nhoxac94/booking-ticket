@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Header.scss";
-import { connect } from 'react-redux'
+import { connect } from "react-redux";
 import { actLogout } from "containers/shared/Auth/module/action";
 
 class Header extends Component {
   handleLogout = () => {
-    this.props.logoutUser()
-  }
+    this.props.logoutUser();
+  };
   render() {
     const { currentUser } = this.props;
     return (
@@ -29,8 +29,8 @@ class Header extends Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mx-auto">
               <li className="nav-item active">
-                <Link to="/">
-                  Trang Chủ <span className="sr-only">(current)</span>
+                <Link to="/" className="nav-link">
+                  Trang Chủ
                 </Link>
               </li>
               <li className="nav-item">
@@ -51,28 +51,45 @@ class Header extends Component {
             </ul>
 
             <div className="form-inline my-2 my-lg-0">
-              {currentUser ? 
-                 (<div className="navbar-collapse flex-grow-0 " >
+              {currentUser ? (
+                <div className="navbar-collapse flex-grow-0 ">
                   <span className="navbar-text">
-                    Chào, {currentUser.taiKhoan} ! 
+                    Chào, {currentUser.taiKhoan} !
                   </span>
-                  <ul className="navbar-nav " style={{ marginRight: 80 }} >
+                  <ul className="navbar-nav " style={{ marginRight: 80 }}>
                     <li className="nav-item dropdown">
                       <div>
-                        <div className="nav-link dropdown-toggle" role="button" data-toggle="dropdown" >
-                        </div>
-                        <div className="dropdown-menu" style={{ left: -140 }} >
-                          <Link to = "/thongtincanhan"  className="dropdown-item" >Thông tin cá nhân</Link>
-                          <div className="dropdown-item" onClick={() => this.handleLogout()} style={{ cursor: "pointer" }}>Logout</div>
+                        <div
+                          className="nav-link dropdown-toggle"
+                          role="button"
+                          data-toggle="dropdown"
+                        ></div>
+                        <div className="dropdown-menu" style={{ left: -140 }}>
+                          <Link to="/thongtincanhan" className="dropdown-item">
+                            Thông tin cá nhân
+                          </Link>
+                          <div
+                            className="dropdown-item"
+                            onClick={() => this.handleLogout()}
+                            style={{ cursor: "pointer" }}
+                          >
+                            Logout
+                          </div>
                         </div>
                       </div>
-
                     </li>
                   </ul>
-                </div>) : (<Link to = "/login" className = "text-white" style = {{cursor : "pointer"}}>Đăng nhập / Đăng kí</Link>)
-              }
+                </div>
+              ) : (
+                <Link
+                  to="/login"
+                  className="text-white"
+                  style={{ cursor: "pointer" }}
+                >
+                  Đăng nhập / Đăng kí
+                </Link>
+              )}
             </div>
-
           </div>
         </nav>
       </header>
@@ -80,14 +97,14 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  currentUser: state.authReducer.currentUser
-})
+const mapStateToProps = (state) => ({
+  currentUser: state.authReducer.currentUser,
+});
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   logoutUser: () => {
-    dispatch(actLogout())
-  }
-})
+    dispatch(actLogout());
+  },
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
