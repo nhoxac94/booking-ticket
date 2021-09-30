@@ -14,7 +14,7 @@ class Header extends Component {
       <header className="container">
         <nav className="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
           <Link className="navbar-brand" to="/">
-            <img src="../logo.svg" alt="logo" />
+            <img className="w-100" src="../logo.svg" alt="logo" />
           </Link>
           <button
             className="navbar-toggler"
