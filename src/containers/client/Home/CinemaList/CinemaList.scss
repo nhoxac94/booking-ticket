@@ -1,0 +1,40 @@
+.cinemalist {
+  background-image: linear-gradient(#ece9e6, #ffffff);
+  .cinemalist__row {
+    max-width: 1200px;
+    .cinemalist__button {
+      position: relative;
+      display: block;
+      &::after {
+        content: "";
+        width: 4px;
+        height: 0;
+        background: linear-gradient(to right, #fbbd61, #ec7532);
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transition: all 0.25s;
+      }
+      &:hover::after {
+        height: 100%;
+        box-shadow: 0 0 20px 0 #fbbd61;
+      }
+    }
+    .cinemalist__buttonactive {
+      position: relative;
+      display: block;
+      &::after {
+        content: "";
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(to right, #fbbd61, #ec7532);
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transition: all 0.25s;
+      }
+    }
+  }
+}

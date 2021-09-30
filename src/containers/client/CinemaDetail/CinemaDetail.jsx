@@ -35,14 +35,12 @@ export default class CinemaDetail extends Component {
     if (loading) return <Loader />;
     return (
       <div>
-        <Header />
-        <CinemaDetailBanner />
+        <CinemaDetailBanner cinemaInfo={cinemaInfo} />
         <CinemaDetailList
           cinemaInfo={cinemaInfo}
           maCumRap={maCumRap}
           maHeThongRap={maHeThongRap}
         />
-        <Footer />
       </div>
     );
   }

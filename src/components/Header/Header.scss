@@ -1,4 +1,26 @@
-.navbar {
-  z-index: 2;
-  position: fixed;
+header {
+  position: absolute;
+  top: 20px;
+  z-index: 10;
+
+  left: 50%;
+  transform: translate(-50%);
+}
+#navbarMovie .navbar-nav {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+#navbarMovie .nav-item::after {
+  /* Khai báo đường */
+  content: "";
+  width: 0;
+  height: 3px;
+  /* Màu trải thì phải dùng background, còn background-color chỉ được 1 màu thôi */
+  /* #fbbd61, #ec7532 */
+  background: linear-gradient(to right, #fbbd61, #ec7532);
+  display: block;
+  transition: all 0.25s;
+}
+#navbarMovie .nav-item:hover::after {
+  width: 100%;
+  box-shadow: 0 0 20px 0 #fbbd61;
 }

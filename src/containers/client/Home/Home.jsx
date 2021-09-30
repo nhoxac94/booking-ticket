@@ -8,8 +8,7 @@ export default class Home extends Component {
   state = {
     movieList: [],
     cinemaList: [],
-    movieBanner: [],
-    loading: true,
+    loading: 0,
   };
 
   componentDidMount() {
@@ -18,7 +17,7 @@ export default class Home extends Component {
       .then((res) => {
         this.setState({
           movieList: res.data,
-          loading: false,
+          loading: 1,
         });
       })
       .catch((err) => {
@@ -29,7 +28,7 @@ export default class Home extends Component {
       .then((res) => {
         this.setState({
           cinemaList: res.data,
-          loading: false,
+          loading: 2,
         });
       })
       .catch((err) => {
@@ -38,7 +37,7 @@ export default class Home extends Component {
   }
   render() {
     const { movieList, cinemaList, loading } = this.state;
-    if (loading) return <Loader />;
+    if (loading !== 1 && loading !== 2) return <Loader />;
     return (
       <div>
         <Banner />

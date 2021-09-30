@@ -39,6 +39,10 @@ export default class SeatDetail extends Component {
     const gheVip = "gheVip";
     const gheCuaBan = "gheCuaBan";
     let isBooking = false;
+    if (daDat) {
+      alert("Ghế đã có người đặt, vui lòng chọn ghế khác!");
+      return;
+    }
     if (this.state.bookingSeat.length > 0) {
       isBooking = this.checkSeat(maGhe, this.state.bookingSeat);
     }
@@ -130,7 +134,7 @@ export default class SeatDetail extends Component {
     const { diaChi, gioChieu, hinhAnh, ngayChieu, tenCumRap, tenPhim, tenRap } =
       thongTinPhim;
     return (
-      <div>
+      <div className="seatdetail text-white">
         <div className="container-fluid">
           <div className="row">
             <div className="col-9 mt-4">
@@ -155,7 +159,7 @@ export default class SeatDetail extends Component {
                   let gheDaDat = "";
                   if (ghe.loaiGhe === "Vip") gheVip = "gheVip";
                   if (ghe.daDat) gheDaDat = "gheDaDat";
-
+                  console.log(ghe);
                   return (
                     <>
                       <button
@@ -214,9 +218,7 @@ export default class SeatDetail extends Component {
 
             <div className="col-3 mt-4">
               <div style={{ width: "80%" }}>
-                <h3 className="text-center text-success">0</h3>
-                <hr />
-                <h3 className="text-center">{tenPhim}</h3>
+                <h3 className="text-center text-white">{tenPhim}</h3>
                 <p>Địa điểm: {tenCumRap}</p>
                 <p>Địa chỉ: {diaChi}</p>
                 <p>

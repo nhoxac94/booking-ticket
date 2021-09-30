@@ -11,45 +11,44 @@ class Header extends Component {
   render() {
     const { currentUser } = this.props;
     return (
-      <header className="header">
+      <header className="container">
         <nav className="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
           <Link className="navbar-brand" to="/">
-            <img src="../logo192.png" className="w-25" alt="" />
+            <img src="../logo.svg" alt="logo" />
           </Link>
           <button
             className="navbar-toggler"
             type="button"
             data-toggle="collapse"
-            data-target="#navbarSupportedContent"
+            data-target="#navbarMovie"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon" />
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mx-auto">
+          <div className="collapse navbar-collapse" id="navbarMovie">
+            <ul className="navbar-nav ml-auto">
               <li className="nav-item active">
                 <Link to="/" className="nav-link">
                   Trang Chủ
                 </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="">
                   Liên Hệ
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="">
                   Tin Tức
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="">
                   Ứng dụng
                 </a>
               </li>
             </ul>
-
             <div className="form-inline my-2 my-lg-0">
               {currentUser ? (
                 <div className="navbar-collapse flex-grow-0 ">

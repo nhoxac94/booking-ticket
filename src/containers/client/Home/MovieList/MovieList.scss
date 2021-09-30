@@ -1,0 +1,29 @@
+.movielist {
+  background-image: linear-gradient(to bottom right, #232526de, #414345e3),
+    url(../../../../assets/img/movielist.jpg);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  .movielist__button {
+    background: none;
+    border: 2px solid;
+    font: inherit;
+    line-height: 1;
+    margin: 0.5em;
+    padding: 1em 2em;
+    color: adjust-hue(#ff7f82, 45deg);
+    transition: 0.25s;
+    &:hover {
+      box-shadow: 0 0.5em 0.5em -0.4em #ffa260;
+      border-color: adjust-hue(#ff7f82, 45deg);
+      color: #fbbd61;
+      transform: translateY(-0.25em);
+    }
+  }
+  .movielist__buttonactive {
+    box-shadow: 0 0.5em 0.5em -0.4em #ffa260;
+    border-color: adjust-hue(#ff7f82, 45deg);
+    color: #fff;
+    transform: translateY(-0.25em);
+  }
+}

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import movieApi from "apis/movieApi";
 import Loader from "components/Loader/Loader";
 import { Link } from "react-router-dom";
+import "./CinemaDetailList.scss";
 export default class CinemaDetailList extends Component {
   state = {
     otherCinema: null,
@@ -29,9 +30,9 @@ export default class CinemaDetailList extends Component {
     const { cinemaActive, otherCinema, loading } = this.state;
     if (loading) return <Loader />;
     return (
-      <>
+      <div className="container cinemadetaillist">
         <div className="row my-5">
-          <div className="col-3">
+          <div className="col-4">
             <div
               className="nav flex-column nav-pills"
               id="v-pills-tab"
@@ -39,7 +40,7 @@ export default class CinemaDetailList extends Component {
               aria-orientation="vertical"
             >
               <a
-                className="nav-link active"
+                className="nav-link p-0"
                 id={`v-pills-${cinemaActive[0].maCumRap}-tab`}
                 data-toggle="pill"
                 href={`#v-pills-${cinemaActive[0].maCumRap}`}
@@ -47,13 +48,28 @@ export default class CinemaDetailList extends Component {
                 aria-controls={`v-pills-${cinemaActive[0].maCumRap}`}
                 aria-selected="true"
               >
-                {cinemaActive[0].tenCumRap}
-                <br />
-                <br />
-                <p>{cinemaActive[0].diaChi}</p>
+                <div className="card mb-3" style={{ maxWidth: 540 }}>
+                  <div className="row no-gutters">
+                    <div className="col-md-4">
+                      <img
+                        src="https://reviewnao.com/wp-content/uploads/2020/12/galaxy-cinema-galaxy-cinema-ho-chi-minh-city.jpg"
+                        alt="cinema"
+                        className="img-fluid h-100"
+                      />
+                    </div>
+                    <div className="col-md-8">
+                      <div className="card-body">
+                        <h5 className="card-title">
+                          {cinemaActive[0].tenCumRap}
+                        </h5>
+                        <p className="card-text">{cinemaActive[0].diaChi}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </a>
               {otherCinema[0].lstCumRap.map((otherCine, idx) => {
-                const { tenCumRap, maCumRap } = otherCine;
+                const { tenCumRap, maCumRap, diaChi } = otherCine;
                 if (cinemaActive[0].maCumRap !== maCumRap)
                   return (
                     <Link
@@ -61,15 +77,32 @@ export default class CinemaDetailList extends Component {
                         pathname: `${maCumRap}`,
                         state: { maHeThongRap },
                       }}
+                      className="cinemadetaillist__pills"
                       onClick={() => setTimeout(reloadPage, 5)}
                     >
-                      {tenCumRap}
+                      <div className="card mb-3" style={{ maxWidth: 540 }}>
+                        <div className="row no-gutters">
+                          <div className="col-md-4">
+                            <img
+                              src="https://reviewnao.com/wp-content/uploads/2020/12/galaxy-cinema-galaxy-cinema-ho-chi-minh-city.jpg"
+                              alt="cinema"
+                              className="img-fluid h-100"
+                            />
+                          </div>
+                          <div className="col-md-8">
+                            <div className="card-body">
+                              <h5 className="card-title">{tenCumRap}</h5>
+                              <p className="card-text">{diaChi}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </Link>
                   );
               })}
             </div>
           </div>
-          <div className="col-9">
+          <div className="col-8">
             <div className="tab-content" id="v-pills-tabContent">
               <div
                 className="tab-pane fade show active"
@@ -82,7 +115,7 @@ export default class CinemaDetailList extends Component {
                   return (
                     <div className="card mb-3 w-100">
                       <div className="row no-gutters">
-                        <div className="col-md-1">
+                        <div className="col-md-2">
                           <img
                             src={hinhAnh}
                             alt="..."
@@ -90,7 +123,7 @@ export default class CinemaDetailList extends Component {
                             style={{ objectFit: "cover" }}
                           />
                         </div>
-                        <div className="col-md-11">
+                        <div className="col-md-10">
                           <div className="card-body">
                             <h5 className="card-title">{tenPhim}</h5>
                             <p className="card-text">
@@ -121,7 +154,7 @@ export default class CinemaDetailList extends Component {
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }

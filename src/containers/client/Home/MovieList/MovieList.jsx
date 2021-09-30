@@ -1,35 +1,49 @@
 import React, { Component } from "react";
 import ShowingMovie from "./ShowingMovie/ShowingMovie";
-
+import "./MovieList.scss";
 export default class MovieList extends Component {
+  state = {
+    change: false,
+  };
   render() {
     const { movieList } = this.props;
+    console.log(movieList);
     return (
-      <div className="container">
-        <div className="my-5">
-          <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <div className="movielist py-5">
+        <div className="container">
+          <ul className="nav nav-pills mb-2" id="pills-tab" role="tablist">
             <li className="nav-item pr-2" role="presentation">
               <a
-                className="nav-link active btn btn-secondary"
-                id="pills-home-tab"
+                className={`nav-link bg-transparent movielist__button ${
+                  this.state.change || "movielist__buttonactive"
+                }`}
+                id="pills-upcomingmovie-tab"
                 data-toggle="pill"
-                href="#pills-home"
+                href="#pills-upcomingmovie"
                 role="tab"
-                aria-controls="pills-home"
+                aria-controls="pills-upcomingmovie"
                 aria-selected="true"
+                onClick={() => {
+                  this.setState({ change: false });
+                }}
               >
                 Phim Sắp Chiếu
               </a>
             </li>
             <li className="nav-item pr-2" role="presentation">
               <a
-                className="nav-link btn btn-secondary"
-                id="pills-profile-tab"
+                className={`nav-link bg-transparent movielist__button ${
+                  this.state.change && "movielist__buttonactive"
+                }`}
+                id="pills-showingmovie-tab"
                 data-toggle="pill"
-                href="#pills-profile"
+                href="#pills-showingmovie"
                 role="tab"
-                aria-controls="pills-profile"
+                aria-controls="pills-showingmovie"
                 aria-selected="false"
+                onClick={() => {
+                  this.setState({ change: true });
+                }}
               >
                 Phim Đang Chiếu
               </a>
@@ -38,19 +52,19 @@ export default class MovieList extends Component {
           <div className="tab-content" id="pills-tabContent">
             <div
               className="tab-pane fade show active"
-              id="pills-home"
+              id="pills-upcomingmovie"
               role="tabpanel"
-              aria-labelledby="pills-home-tab"
+              aria-labelledby="pills-upcomingmovie-tab"
             >
-              API Phim Sắp Chiếu
+              <ShowingMovie movieList={movieList} upComingMovie={true} />
             </div>
             <div
               className="tab-pane fade"
-              id="pills-profile"
+              id="pills-showingmovie"
               role="tabpanel"
-              aria-labelledby="pills-profile-tab"
+              aria-labelledby="pills-showingmovie-tab"
             >
-              <ShowingMovie movieList={movieList} />
+              <ShowingMovie movieList={movieList} upComingMovie={false} />
             </div>
           </div>
         </div>

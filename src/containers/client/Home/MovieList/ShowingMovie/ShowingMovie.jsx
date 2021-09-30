@@ -4,7 +4,7 @@ import { Carousel, Rate } from "antd";
 import "./ShowingMovie.scss";
 export default class ShowingMovie extends Component {
   render() {
-    const { movieList } = this.props;
+    const { movieList, upComingMovie } = this.props;
     const arrayCarousel = (array, chunk_size) =>
       Array(Math.ceil(array.length / chunk_size))
         .fill()
@@ -13,7 +13,9 @@ export default class ShowingMovie extends Component {
     const carouselItem = arrayCarousel(movieList, 8);
     return (
       <div
-        id="carouselExampleInterval"
+        id={`${
+          (upComingMovie && "carouselUpComingMovie") || "carouselShowingMovie"
+        }`}
         className="carousel slide"
         data-ride="carousel"
       >
@@ -29,7 +31,6 @@ export default class ShowingMovie extends Component {
               >
                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 mx-auto movie__item">
                   {numberCarousel.map((movieItem, idx) => {
-                    console.log(movieItem);
                     const { tenPhim, hinhAnh, danhGia, biDanh, maPhim } =
                       movieItem;
                     const rateValue = Math.round(parseInt(danhGia) / 2);
@@ -38,29 +39,31 @@ export default class ShowingMovie extends Component {
                         to={`/chitietphim/${maPhim}`}
                         props={maPhim}
                         key={maPhim}
+                        className="movie__list"
                       >
                         <div className="col mb-4">
-                          <div className="card h-100">
-                            <img
-                              src={hinhAnh}
-                              className="card-img-top movie__img img-fluid"
-                              style={{ objectFit: "cover" }}
-                              alt={biDanh}
-                            />
-                            <div className="card-body">
+                          <div className="card h-100 bg-transparent movie__card">
+                            <div className="movie__containerimg">
+                              <img
+                                src={hinhAnh}
+                                className="card-img-top movie__img img-fluid"
+                                alt={biDanh}
+                              />
+                            </div>
+                            <div className="card-body movie__text py-2 bg-transparent">
                               <h5
-                                className="card-title text-truncate"
+                                className="card-title text-truncate text-center"
                                 style={{
                                   width: "100%",
                                 }}
                               >
                                 {tenPhim}
                               </h5>
-                            </div>
-                            <div className="card-footer movie__footer border-0 bg-white">
-                              <small className="text-muted">
-                                <Rate disabled defaultValue={rateValue} />
-                              </small>
+                              <Rate
+                                disabled
+                                defaultValue={rateValue}
+                                className="movie__star"
+                              />
                             </div>
                           </div>
                         </div>
@@ -73,8 +76,11 @@ export default class ShowingMovie extends Component {
           })}
         </div>
         <a
-          className="carousel-control-prev"
-          href="#carouselExampleInterval"
+          className="carousel-control-prev carousel-control-movie-prev"
+          href={`${
+            (upComingMovie && "#carouselUpComingMovie") ||
+            "#carouselShowingMovie"
+          }`}
           role="button"
           data-slide="prev"
         >
@@ -82,8 +88,11 @@ export default class ShowingMovie extends Component {
           <span className="sr-only">Previous</span>
         </a>
         <a
-          className="carousel-control-next"
-          href="#carouselExampleInterval"
+          className="carousel-control-next carousel-control-movie-next"
+          href={`${
+            (upComingMovie && "#carouselUpComingMovie") ||
+            "#carouselShowingMovie"
+          }`}
           role="button"
           data-slide="next"
         >

@@ -1,4 +1,9 @@
 .footer {
+  background-image: linear-gradient(to bottom, #23252670, #414345),
+    url(../../assets/img/moviebackground.jpg);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
   ul {
     li {
       list-style: none;
