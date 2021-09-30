@@ -59,7 +59,7 @@ const arrBanner = [
     moTa: "Thor: Tận thế Ragnarok là một bộ phim siêu anh hùng ra mắt vào năm 2017 của Mỹ do Marvel Studios sản xuất và Walt Disney Studios Motion Pictures phân phối. Bộ phim là phần tiếp theo của Thor và Thor: The Dark World và là bộ phim thứ mười bảy trong Vũ trụ Điện ảnh Marvel.",
     ngayKhoiChieu: "2021-10-13T00:00:00",
     tenPhim: "Thor: Tận thế Ragnarok",
-    trailer: "https://www.youtube.com/embed/ue80QwXMRHg",
+    trailer: "https://www.youtube.com/embed/pU8-7BX9uxs",
   },
 ];
 export default class Banner extends Component {
