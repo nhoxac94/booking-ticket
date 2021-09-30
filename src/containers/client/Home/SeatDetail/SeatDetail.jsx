@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { Component } from "react";
 import "./SeatDetail.scss";
 import Loader from "components/Loader/Loader";

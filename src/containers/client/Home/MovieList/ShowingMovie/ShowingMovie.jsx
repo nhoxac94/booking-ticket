@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Carousel, Rate } from "antd";
+import { Rate } from "antd";
 import "./ShowingMovie.scss";
 export default class ShowingMovie extends Component {
   render() {
@@ -41,8 +41,8 @@ export default class ShowingMovie extends Component {
                         key={maPhim}
                         className="movie__list"
                       >
-                        <div className="col mb-4">
-                          <div className="card h-100 bg-transparent movie__card">
+                        <div className="col mb-4 px-0">
+                          <div className="card h-100 bg-transparent movie__card mx-2">
                             <div className="movie__containerimg">
                               <img
                                 src={hinhAnh}

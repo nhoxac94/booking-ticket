@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
 import ReactPlayer from "react-player/lazy";
+import { Link } from "react-router-dom";
 import "./Banner.scss";
 import JohnWick from "../../../../assets/img/john-wick-3.jfif";
 import SpiderMan from "../../../../assets/img/spiderman-2.jpg";
@@ -69,7 +70,6 @@ export default class Banner extends Component {
     currentVideo: null,
   };
   render() {
-    console.log(this.state.isPlaying);
     return (
       <div
         id="carouselBanner"
@@ -79,12 +79,13 @@ export default class Banner extends Component {
       >
         <ol className="carousel-indicators">
           {arrBanner.map((carouselList, idx) => {
-            const { maPhim } = carouselList;
+            const { biDanh } = carouselList;
             return (
               <li
                 data-target={`#carouselBanner`}
                 data-slide-to={idx}
-                className={`${idx === 0 && "active"}`}
+                className={`${idx === 0 && "active"} carouselBanner__list`}
+                key={biDanh}
               />
             );
           })}
@@ -96,17 +97,20 @@ export default class Banner extends Component {
               <div
                 className={`carousel-item ${idx === 0 && "active"}`}
                 style={{ position: "relative" }}
+                key={biDanh}
               >
-                <img
-                  src={hinhAnh}
-                  className="d-block w-100"
-                  alt={biDanh}
-                  style={{
-                    ...contentStyle,
-                    objectFit: "cover",
-                    objectPosition: "top center",
-                  }}
-                />
+                <Link to={`/chitietphim/${maPhim}`} props={maPhim} key={maPhim}>
+                  <img
+                    src={hinhAnh}
+                    className="d-block w-100"
+                    alt={biDanh}
+                    style={{
+                      ...contentStyle,
+                      objectFit: "cover",
+                      objectPosition: "top center",
+                    }}
+                  />
+                </Link>
                 <FontAwesomeIcon
                   data-toggle="modal"
                   data-target={`#modal${biDanh}`}
@@ -160,6 +164,7 @@ export default class Banner extends Component {
                               this.state.currentVideo === biDanh &&
                               this.state.isPlaying
                             }
+                            controls={true}
                           />
                         </div>
                       </div>
