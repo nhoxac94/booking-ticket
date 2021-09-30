@@ -21,15 +21,17 @@ class AdminLayout extends Component {
     const userName = JSON.parse(localStorage.getItem(USER_BOOKING_TICKET_LOGIN)).taiKhoan;
     return (
       <>
-        <nav className="navbar navbar-expand-lg justify-content-between" style={{ backgroundColor: "#001529", color: "rgba(255, 255, 255, 0.65)" }}>
-          <div className="navbar-brand" >
-            
+        <nav className="navbar navbar-expand justify-content-between" style={{ backgroundColor: "#001529", color: "rgba(255, 255, 255, 0.65)" }}>
+          <div className="navbar-brand text-center" >
+            <Link className="navbar-brand" to="/">
+              <img src="../logo192.png" alt="" />
+            </Link>
           </div>
           <div className="navbar-collapse flex-grow-0 " >
             <span className="navbar-text">
               Chào, {userName}!
             </span>
-            <ul className="navbar-nav " style={{ marginRight: 80 }} >
+            <ul className="navbar-nav " >
               <li className="nav-item dropdown">
                 <div>
                   <div className="nav-link dropdown-toggle" role="button" data-toggle="dropdown" >
@@ -45,8 +47,9 @@ class AdminLayout extends Component {
           </div>
         </nav>
 
-        <Layout style={{ minHeight: "94vh" }} className="sidebar">
-          <Sider className="site-layout-background">
+        <Layout className="sidebar" breakpoint="lg">
+          <Sider className="site-layout-background" breakpoint="lg"
+            collapsedWidth="0" >
             <Menu theme="dark" defaultOpenKeys={['sub1', 'sub2']} mode="inline" >
               <SubMenu key="sub1" icon={<UserOutlined />} title="User">
                 <Menu.Item key="1" >

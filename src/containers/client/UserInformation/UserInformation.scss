@@ -1,31 +1,64 @@
-@import '/src/scss/main.scss';
-
-
+@import "/src/scss/main.scss";
 
 .wrappedUser {
-    background-image: url(/assets/img/imgBG.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+  background-image: url(/assets/img/imgBG.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .navbar__user {
-    background-color: whitesmoke;
-    position: absolute;
-    top: 10%;
-    min-height: 500px;
+  background-color: whitesmoke;
+  position: absolute;
+  top: 10%;
+  min-height: 500px;
 }
 
-
-@include responsive('mobile') {
-    .wrappedUser {
+@include responsive("mobile") {
+  .wrappedUser {
+    overflow-y: hidden;
+    .navbar__user {
+      left: 0;
+    }
+    .update__user {
+      margin-bottom: 10px;
+    }
+    #userInfor {
+      label {
+        padding-left: 10px;
+      }
+    }
+    #historyBooking {
+      h2 {
+        font-size: 25px;
+      }
+      .ant-table-wrapper {
         padding: 0;
-        overflow-y: hidden;
-        .navbar__user {
-            
-        } 
-        .update__user {
-            margin-bottom: 10px;
-        }
-    } 
+        overflow: hidden;
+      }
+      .ant-table {
+        font-size: 12px;
+      }
+    }
+  }
 }
+
+@include responsive("ipad") {
+  #userInfor {
+    label {
+      padding-left: 10px;
+    }
+    .form-group {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+
+  #historyBooking {     
+    .ant-spin-container {
+      font-size: 14px;
+    }
+  }
+}
+
+
