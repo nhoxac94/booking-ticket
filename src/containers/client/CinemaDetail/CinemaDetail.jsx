@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import CinemaDetailBanner from "./CinemaDetailBanner/CinemaDetailBanner";
 import CinemaDetailList from "./CinemaDetailList/CinemaDetailList";
-import Header from "components/Header/Header";
-import Footer from "components/Footer/Footer";
-import callApi from "utils/callApi";
 import movieApi from "apis/movieApi";
 import Loader from "components/Loader/Loader";
 export default class CinemaDetail extends Component {

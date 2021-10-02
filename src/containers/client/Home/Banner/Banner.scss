@@ -1,4 +1,17 @@
 .carouselBanner {
+  .carousel-indicators {
+    .carouselBanner__list {
+      width: 10px !important;
+      height: 10px !important;
+      border-radius: 10px !important;
+      background-clip: unset !important;
+      background-color: rgba(255, 255, 255, 0);
+      border: 2px solid #fff;
+    }
+    .active {
+      background-color: #fff !important;
+    }
+  }
   .carouselbanner-control-next {
     right: -80px !important;
   }

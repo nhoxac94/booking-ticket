@@ -4,7 +4,9 @@
     overflow: hidden;
     .movie__list {
       text-decoration: none;
+      cursor: context-menu;
       .movie__card {
+        cursor: pointer;
         box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2),
           0 4px 15px 0 rgba(0, 0, 0, 0.19);
         position: relative;
@@ -32,7 +34,6 @@
         .movie__text {
           border-bottom-left-radius: 10px;
           border-bottom-right-radius: 10px;
-          // transition: all ease-in-out 300ms;
           background-image: linear-gradient(to left, #1f1c2c, #928dab);
           h5 {
             color: white;

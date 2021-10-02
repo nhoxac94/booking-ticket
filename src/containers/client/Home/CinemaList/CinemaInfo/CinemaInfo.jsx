@@ -1,3 +1,4 @@
+import moment from "moment";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./CinemaInfo.scss";
@@ -54,12 +55,12 @@ export default class CinemaInfo extends Component {
                                   <img
                                     src="https://reviewnao.com/wp-content/uploads/2020/12/galaxy-cinema-galaxy-cinema-ho-chi-minh-city.jpg"
                                     alt="anh-rap-chieu-phim"
-                                    className="img-fluid h-100"
+                                    className="img-fluid h-100 p-1 w-100"
                                     style={{ objectFit: "cover" }}
                                   />
                                 </div>
                                 <div className="col-md-10">
-                                  <div className="card-body cinemainfo__addresscontent">
+                                  <div className="card-body cinemainfo__addresscontent p-2">
                                     <p className="h5 card-title">{tenCumRap}</p>
                                     <p className="card-text">{diaChi}</p>
                                     <p className="card-text">
@@ -105,13 +106,13 @@ export default class CinemaInfo extends Component {
                               const { tenPhim, hinhAnh, lstLichChieuTheoPhim } =
                                 lstMovie;
                               return (
-                                <div className="card mb-3 w-100 cinemainfo__moviecard">
+                                <div className="card mb-3 h-100 w-100 cinemainfo__moviecard">
                                   <div className="row no-gutters">
                                     <div className="col-md-3 cinemainfo__moviecontainimg">
                                       <img
                                         src={hinhAnh}
                                         alt="..."
-                                        className="img-fluid cinemainfo__movieimg"
+                                        className="cinemainfo__movieimg"
                                       />
                                     </div>
                                     <div className="col-md-9 cinemainfo_moviecontaincontent">
@@ -132,9 +133,9 @@ export default class CinemaInfo extends Component {
                                                     to={`/chitietphongve/${maLichChieu}`}
                                                     className="btn btn-dark mx-1 my-1"
                                                   >
-                                                    {new Date(
+                                                    {moment(
                                                       ngayChieuGioChieu
-                                                    ).toLocaleTimeString()}
+                                                    ).format("HH:mm A")}
                                                   </Link>
                                                 );
                                               }

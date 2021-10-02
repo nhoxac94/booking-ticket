@@ -7,7 +7,6 @@ export default class MovieList extends Component {
   };
   render() {
     const { movieList } = this.props;
-    console.log(movieList);
     return (
       <div className="movielist py-5">
         <div className="container">
