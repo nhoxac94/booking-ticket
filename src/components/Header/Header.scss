@@ -1,3 +1,5 @@
+@import "/src/scss/main.scss";
+
 header {
   position: fixed;
   top: 0px;
@@ -24,4 +26,18 @@ header {
 #navbarMovie .nav-item:hover::after {
   width: 100%;
   box-shadow: 0 0 20px 0 #fbbd61;
+}
+
+@include responsive("mobile") {
+  header {
+    .container {
+      padding: 0 !important;
+      .header__logo {
+        img {
+          width: 100px !important;
+          height: auto !important;
+        }
+      }
+    }
+  }
 }

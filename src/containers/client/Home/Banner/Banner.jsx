@@ -8,15 +8,7 @@ import JohnWick from "../../../../assets/img/john-wick-3.jfif";
 import SpiderMan from "../../../../assets/img/spiderman-2.jpg";
 import EndGame from "../../../../assets/img/endgame.jpg";
 import Thor3 from "../../../../assets/img/thor-3.jpg";
-const contentStyle = {
-  height: "600px",
-  color: "#fff",
-  lineHeight: "160px",
-  textAlign: "center",
-  backgroundPosition: "center",
-  backgroundSize: "100%",
-  backgroundRepeat: "no-repeat",
-};
+
 const arrBanner = [
   {
     biDanh: "spider-man-far-from-home",
@@ -70,6 +62,7 @@ export default class Banner extends Component {
     currentVideo: null,
   };
   render() {
+    console.log(this.state);
     return (
       <div
         id="carouselBanner"
@@ -102,13 +95,8 @@ export default class Banner extends Component {
                 <Link to={`/chitietphim/${maPhim}`} props={maPhim} key={maPhim}>
                   <img
                     src={hinhAnh}
-                    className="d-block w-100"
+                    className="d-block w-100 img-fluid carouselBanner__img"
                     alt={biDanh}
-                    style={{
-                      ...contentStyle,
-                      objectFit: "cover",
-                      objectPosition: "top center",
-                    }}
                   />
                 </Link>
                 <FontAwesomeIcon
@@ -124,11 +112,16 @@ export default class Banner extends Component {
                     transform: "translate(-50%, -50%)",
                   }}
                   onClick={() =>
-                    this.setState({
-                      isActive: false,
-                      isPlaying: true,
-                      currentVideo: biDanh,
-                    })
+                    this.setState(
+                      {
+                        isActive: false,
+                        isPlaying: true,
+                        currentVideo: biDanh,
+                      },
+                      () => {
+                        return;
+                      }
+                    )
                   }
                 />
                 <div
@@ -138,7 +131,9 @@ export default class Banner extends Component {
                   aria-labelledby={`modalLabel${biDanh}`}
                   aria-hidden="true"
                   onClick={() =>
-                    this.setState({ isActive: true, isPlaying: false })
+                    this.setState({ isActive: true, isPlaying: false }, () => {
+                      return;
+                    })
                   }
                 >
                   <div className="modal-dialog modal-lg">

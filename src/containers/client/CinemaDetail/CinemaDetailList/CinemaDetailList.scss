@@ -1,3 +1,4 @@
+@import "/src/scss/main.scss";
 .CinemaBanner {
   position: relative;
   height: 600px;
@@ -17,6 +18,13 @@
   }
   .CinemaBanner__info {
     position: relative;
+    .CinemaBanner__img {
+      width: 200px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
     .CinemaBanner__content {
       .CinemaBanner__icons {
         ul {
@@ -110,6 +118,67 @@
       .cinemadetaillist__movieshowtime {
         height: 300px;
         overflow-y: auto;
+      }
+    }
+  }
+}
+
+@include responsive("mobile") {
+  .CinemaBanner {
+    &::before {
+    }
+    .CinemaBanner__info {
+      .CinemaBanner__img {
+        width: 100px;
+        margin-top: auto;
+      }
+      .CinemaBanner__content {
+        width: 100% !important;
+        padding: 10px 20px;
+        margin-bottom: auto;
+        text-align: center;
+        .h3 {
+          font-size: 27px !important;
+        }
+        .h5 {
+          font-size: 20px !important;
+        }
+        .CinemaBanner__icons {
+          ul {
+            display: block;
+            float: none;
+            li {
+              transition: none;
+            }
+          }
+        }
+      }
+    }
+  }
+  .cinemadetaillist__bg {
+    .cinemadetaillist {
+      .cinemadetaillist__active {
+        &::after {
+        }
+      }
+      .cinemadetaillist__pills {
+        &::after {
+          transition: none;
+        }
+        .cinemadetaillist__link {
+        }
+      }
+      .cinemadetaillist__active,
+      .cinemadetaillist__pills {
+        width: 100%;
+        .card-body {
+          h5,
+          p {
+          }
+        }
+      }
+      .tab-content{
+        margin-top: 20px;
       }
     }
   }

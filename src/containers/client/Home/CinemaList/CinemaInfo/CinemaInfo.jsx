@@ -22,7 +22,7 @@ export default class CinemaInfo extends Component {
             >
               <div className="container">
                 <div className="row">
-                  <div className="col-4 cinemainfo__pills">
+                  <div className="col-lg-4 col-12 cinemainfo__pills">
                     <div
                       className="nav flex-column nav-pills cinemainfo__addresscinema"
                       id={`v-${maHeThongRap}-tab`}
@@ -51,15 +51,15 @@ export default class CinemaInfo extends Component {
                           >
                             <div className="card p-0 m-0 border-0">
                               <div className="row no-gutters">
-                                <div className="col-md-2">
+                                <div className="col-md-2 col-3">
                                   <img
                                     src="https://reviewnao.com/wp-content/uploads/2020/12/galaxy-cinema-galaxy-cinema-ho-chi-minh-city.jpg"
                                     alt="anh-rap-chieu-phim"
-                                    className="img-fluid h-100 p-1 w-100"
+                                    className="img-fluid h-100 p-1 w-100 cinemainfo__img"
                                     style={{ objectFit: "cover" }}
                                   />
                                 </div>
-                                <div className="col-md-10">
+                                <div className="col-md-10 col-9">
                                   <div className="card-body cinemainfo__addresscontent p-2">
                                     <p className="h5 card-title">{tenCumRap}</p>
                                     <p className="card-text">{diaChi}</p>
@@ -85,7 +85,7 @@ export default class CinemaInfo extends Component {
                       })}
                     </div>
                   </div>
-                  <div className="col-8">
+                  <div className="col-lg-8 col-12">
                     <div
                       className="tab-content cinemainfo__movie"
                       id="v-pills-cinemaInfo"
@@ -110,9 +110,10 @@ export default class CinemaInfo extends Component {
                                 maPhim,
                               } = lstMovie;
                               return (
+                                
                                 <div className="card mb-3 h-100 w-100 cinemainfo__moviecard">
                                   <div className="row no-gutters">
-                                    <div className="col-md-3 cinemainfo__moviecontainimg">
+                                    <div className="col-md-3 col-6 cinemainfo__moviecontainimg">
                                       <Link
                                         to={`/chitietphim/${maPhim}`}
                                         props={maPhim}
@@ -126,7 +127,7 @@ export default class CinemaInfo extends Component {
                                         />
                                       </Link>
                                     </div>
-                                    <div className="col-md-9 cinemainfo_moviecontaincontent">
+                                    <div className="col-md-9 col-6 cinemainfo_moviecontaincontent">
                                       <div className="card-body">
                                         <h5 className="card-title">
                                           {tenPhim}

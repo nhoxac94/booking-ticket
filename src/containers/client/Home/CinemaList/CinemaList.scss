@@ -1,3 +1,4 @@
+@import "/src/scss/main.scss";
 .cinemalist {
   background-image: linear-gradient(#ece9e6, #ffffff);
   .cinemalist__row {
@@ -20,6 +21,9 @@
         height: 100%;
         box-shadow: 0 0 20px 0 #fbbd61;
       }
+      .cinemalist__logo {
+        width: 60px;
+      }
     }
     .cinemalist__buttonactive {
       position: relative;
@@ -33,6 +37,49 @@
         position: absolute;
         top: 0;
         right: 0;
+      }
+    }
+  }
+}
+
+@include responsive("mobile") {
+  .cinemalist {
+    .cinemalist__row {
+      padding: 10px 0!important;
+      margin: 0 !important;
+      .cinemalist__button {
+        padding: 0 10px;
+        &::after {
+          content: "";
+          width: 4px;
+          height: 0%;
+          background: linear-gradient(to right, #fbbd61, #ec7532);
+          display: inline-block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          transition: none;
+        }
+        .container {
+          padding: 0;
+          img {
+            width: 40px !important;
+          }
+        }
+      }
+      .cinemalist__buttonactive {
+        position: relative;
+        display: block;
+        &::after {
+          content: "";
+          width: 4px;
+          height: 100%;
+          background: linear-gradient(to right, #fbbd61, #ec7532);
+          display: inline-block;
+          position: absolute;
+          top: 0;
+          right: 0;
+        }
       }
     }
   }

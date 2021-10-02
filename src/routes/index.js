@@ -1,17 +1,18 @@
-import CinemaDetail from "containers/client/CinemaDetail/CinemaDetail";
-import MovieDetail from "containers/client/MovieDetail/MovieDetail";
-import Home from "containers/client/Home/Home";
-import SeatDetail from "containers/client/Home/SeatDetail/SeatDetail";
-import UserManagement from "containers/admin/Admin/UserManagement/UserManagement";
-import MovieManager from "containers/admin/Admin/MovieControl/MovieManager/MovieManager";
-import AddUser from "containers/admin/Admin/UserManagement/AddUser/AddUser";
-import AddMovie from "containers/admin/Admin/MovieControl/AddMovie/AddMovie"
-import UpdateUserInformation from "containers/admin/Admin/UserManagement/UpdateUserAdmin/UpdateUserInformation";
-import UpdateMovie from "containers/admin/Admin/MovieControl/UpdateMovie.jsx/UpdateMovie";
-import AddMovieShowTimes from "containers/admin/Admin/MovieControl/AddMovieShowTimes/AddMovieShowTimes";
-import Login from "containers/shared/Auth/Login/Login";
-import SignUp from "containers/shared/Auth/Login/SignUp";
-import UserInformation from "containers/client/UserInformation/UserInformation";
+import { lazy } from "react"
+const CinemaDetail = lazy(() => import("containers/client/CinemaDetail/CinemaDetail"))
+const MovieDetail = lazy(() => import("containers/client/MovieDetail/MovieDetail"))
+const Home = lazy(() => import("containers/client/Home/Home"))
+const SeatDetail = lazy(() => import("containers/client/Home/SeatDetail/SeatDetail"))
+const UserManagement = lazy(() => import("containers/admin/Admin/UserManagement/UserManagement"))
+const MovieManager = lazy(() => import("containers/admin/Admin/MovieControl/MovieManager/MovieManager"))
+const AddUser = lazy(() => import("containers/admin/Admin/UserManagement/AddUser/AddUser"))
+const AddMovie = lazy(() => import("containers/admin/Admin/MovieControl/AddMovie/AddMovie"))
+const UpdateUserInformation = lazy(() => import("containers/admin/Admin/UserManagement/UpdateUserAdmin/UpdateUserInformation"))
+const UpdateMovie = lazy(() => import("containers/admin/Admin/MovieControl/UpdateMovie.jsx/UpdateMovie"))
+const AddMovieShowTimes = lazy(() => import("containers/admin/Admin/MovieControl/AddMovieShowTimes/AddMovieShowTimes"))
+const Login = lazy(() => import("containers/shared/Auth/Login/Login"))
+const SignUp = lazy(() => import("containers/shared/Auth/Login/SignUp"))
+const UserInformation = lazy(() => import("containers/client/UserInformation/UserInformation"))
 
 export const clientRoutes = [
   {

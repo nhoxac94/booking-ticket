@@ -1,3 +1,5 @@
+@import "/src/scss/main.scss";
+
 .carouselBanner {
   .carousel-indicators {
     .carouselBanner__list {
@@ -12,10 +14,37 @@
       background-color: #fff !important;
     }
   }
+  .carousel-inner {
+    .carouselBanner__img {
+      height: 600px;
+      color: #fff;
+      line-height: 160px;
+      text-align: center;
+      background-position: center;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      object-fit: cover;
+      object-position: top center;
+    }
+  }
   .carouselbanner-control-next {
     right: -80px !important;
   }
   .carouselbanner-control-prev {
     left: -80px !important;
+  }
+}
+
+@include responsive("mobile") {
+  .carouselBanner{
+    width: 100%;
+    height: 100%;
+    .carousel-inner{
+      .carouselBanner__img{
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+    }
   }
 }

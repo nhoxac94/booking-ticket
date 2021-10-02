@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "containers/client/Home/Home";
 import PageNotFound from "containers/shared/Auth/PageNotFound/PageNotFound";
@@ -5,6 +6,7 @@ import { adminRoutes, clientRoutes, loginRoutes } from "routes";
 import AdminLayout from "layouts/AdminLayout";
 import LoginLayout from "layouts/LoginLayout";
 import ClientLayout from "layouts/ClientLayout";
+import Loader from "components/Loader/Loader";
 
 function App() {
   const renderLayout = (routes, Layout) => {
@@ -25,13 +27,15 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Switch>
-          {renderLayout(loginRoutes, LoginLayout)}
-          {renderLayout(adminRoutes, AdminLayout)}
-          {renderLayout(clientRoutes, ClientLayout)}
-          <Route path="/" exact component={Home} />
-          <Route path="*" component={PageNotFound} />
-        </Switch>
+        <Suspense fallback={Loader}>
+          <Switch>
+            {renderLayout(loginRoutes, LoginLayout)}
+            {renderLayout(adminRoutes, AdminLayout)}
+            {renderLayout(clientRoutes, ClientLayout)}
+            {/* <Route path="/" exact component={Home} /> */}
+            <Route path="*" component={PageNotFound} />
+          </Switch>
+        </Suspense>
       </Router>
     </div>
   );

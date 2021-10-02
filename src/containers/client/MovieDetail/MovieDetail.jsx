@@ -59,7 +59,7 @@ export default class MovieDetail extends Component {
           <div className="container">
             <div className="py-5">
               <div className="row">
-                <div className="col-3">
+                <div className="col-lg-3 col-12 align-self-center">
                   <div className="text-center">
                     <div className="movieDetail__containing w-100 h-100">
                       <img
@@ -147,8 +147,8 @@ export default class MovieDetail extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="col-6 align-self-center">
-                  <div className="text-justify text-white">
+                <div className="col-lg-6 align-self-center col-12">
+                  <div className="text-justify text-white movieDetail__content">
                     <p className="mt-2 h2">{movie.tenPhim}</p>
                     <p className="mt-2 h5">
                       Ngày khởi chiếu:{" "}
@@ -158,7 +158,7 @@ export default class MovieDetail extends Component {
                     <p>{movie.moTa}</p>
                   </div>
                 </div>
-                <div className="col-3">
+                <div className="col-lg-3 col-12 align-self-center">
                   <div
                     className={`c100 big green 
                     p${movie.danhGia * 10}
@@ -170,17 +170,7 @@ export default class MovieDetail extends Component {
                       <div className="fill"></div>
                     </div>
                   </div>
-                  <div
-                    className="rate"
-                    style={
-                      {
-                        // position: "absolute",
-                        // top: "50%",
-                        // left: "50%",
-                        // transform: "translate(-50%, -50%)",
-                      }
-                    }
-                  >
+                  <div className="rate py-5">
                     <Rate allowHalf value={movie.danhGia / 2} />
                   </div>
                 </div>
@@ -241,8 +231,8 @@ export default class MovieDetail extends Component {
                   >
                     <div className="theaterDetail py-5">
                       <div className="row py-5">
-                        <div className="col-3">
-                          <div className="nav flex-column nav-tabs border-0">
+                        <div className="col-lg-3 col-2">
+                          <div className="nav flex-column justify-content-center align-self-center align-items-center nav-tabs border-0">
                             {movie.heThongRapChieu.map((heThongRap, index) => {
                               const { logo } = heThongRap;
                               return (
@@ -264,16 +254,15 @@ export default class MovieDetail extends Component {
                                 >
                                   <img
                                     src={logo}
-                                    className="mx-auto theaterDetail__logocontain"
+                                    className="theaterDetail__logocontain"
                                     alt=""
-                                    width="80px"
                                   />
                                 </div>
                               );
                             })}
                           </div>
                         </div>
-                        <div className="col-9">
+                        <div className="col-lg-9 col-10">
                           <div className="tab-content">
                             {movie.heThongRapChieu.map((heThongRap, index) => {
                               return (
@@ -287,14 +276,14 @@ export default class MovieDetail extends Component {
                                   {heThongRap.cumRapChieu.map((cumRap) => {
                                     return (
                                       <div
-                                        className="theaterDetail__contain"
+                                        className="theaterDetail__contain mb-4 "
                                         key={cumRap.maCumRap}
                                       >
                                         <div className="d-flex flex-row mb-3">
                                           <img
+                                            className="theaterDetail__img"
                                             src={heThongRap.logo}
-                                            alt=""
-                                            width="80px"
+                                            alt={cumRap.maCumRap}
                                           />
                                           <div>
                                             <h5 className="mt-2 ml-4">
@@ -305,10 +294,7 @@ export default class MovieDetail extends Component {
                                             </p>
                                           </div>
                                         </div>
-                                        <div
-                                          className="row my-3"
-                                          style={{ marginLeft: 100 }}
-                                        >
+                                        <div className="row my-3 theaterDetail__grid">
                                           <div className="theaterDetail__time align-self-center">
                                             <FontAwesomeIcon
                                               icon={faClock}

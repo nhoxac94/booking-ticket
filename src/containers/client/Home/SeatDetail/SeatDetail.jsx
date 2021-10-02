@@ -127,12 +127,23 @@ export default class SeatDetail extends Component {
       tongTienVe: totalMoney,
     });
   }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    if (this.state.bookingSeat.length === 0) {
+      alert("Bạn chưa đặt ghế nào");
+    } else {
+      alert("Bạn đã đặt ghế thành công\n Quay trở lại trang chủ");
+      setTimeout(() => {
+        this.props.history.push("/");
+      }, 3000);
+    }
+  };
 
   render() {
     const { loading, seatPlan, bookingSeat, tongTienVe } = this.state;
     const { thongTinPhim } = seatPlan;
     if (!JSON.parse(localStorage.getItem(USER_BOOKING_TICKET_LOGIN))) {
-      this.props.history.push("/")
+      this.props.history.push("/");
     }
     if (loading === true) return <Loader />;
     const { diaChi, gioChieu, hinhAnh, ngayChieu, tenCumRap, tenPhim, tenRap } =
@@ -142,18 +153,14 @@ export default class SeatDetail extends Component {
         <div className="container-fluid">
           <div className="row">
             <div className="col-lg-9 " style={{ marginTop: "6rem" }}>
-              <div
-                className="shapeTheater"
-              >
+              <div className="shapeTheater">
                 <div style={{ border: "solid 5px #000" }} />
                 <div id="trapezoid" className="text-center">
                   Màn hình
                 </div>
               </div>
 
-              <div
-                className="seatPlan text-center"
-              >
+              <div className="seatPlan text-center">
                 {this.state.seatPlan.danhSachGhe.map((ghe, index) => {
                   const { maGhe, giaVe, loaiGhe, daDat } = ghe;
                   let gheVip = "";
@@ -252,7 +259,11 @@ export default class SeatDetail extends Component {
                 <p>string@gmail.com</p>
                 <p>Phone</p>
                 <p>097777999</p>
-                <button className="btn btn-success" style={{ width: "100%" }}>
+                <button
+                  className="btn btn-success"
+                  style={{ width: "100%" }}
+                  onClick={(e) => this.handleSubmit(e)}
+                >
                   ĐẶT VÉ
                 </button>
               </div>

@@ -12,6 +12,7 @@ import {
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 const reloadPage = () => {
+  window.scrollTo(0, 0);
   window.location.reload();
 };
 export default class CinemaDetailList extends Component {
@@ -42,13 +43,9 @@ export default class CinemaDetailList extends Component {
     return (
       <div>
         <div className="w-100 CinemaBanner">
-          <div className="CinemaBanner__info d-flex align-items-center h-100 w-100 align-self-center justify-content-center">
+          <div className="CinemaBanner__info d-flex align-items-center h-100 w-100 align-self-center justify-content-center flex-column flex-sm-row">
             <div className="CinemaBanner__img mx-2">
-              <img
-                src={this.state.logo}
-                alt={cinemaActive[0].maCumRap}
-                width="200px"
-              />
+              <img src={this.state.logo} alt={cinemaActive[0].maCumRap} />
             </div>
             <div className="CinemaBanner__content text-white text-wrap mx-2 w-25">
               <p className="h3">{cinemaActive[0].tenCumRap}</p>
@@ -75,25 +72,25 @@ export default class CinemaDetailList extends Component {
         <div className="cinemadetaillist__bg py-5">
           <div className="cinemadetaillist container py-3 shadow bg-white rounded">
             <div className="row">
-              <div className="col-4">
+              <div className="col-lg-4 col-12">
                 <div
                   className="nav flex-column"
                   id="v-pills-tab"
                   role="tablist"
                   aria-orientation="vertical"
                 >
-                  <a
-                    className="nav-link p-0"
-                    id={`v-pills-${cinemaActive[0].maCumRap}-tab`}
-                    data-toggle="pill"
-                    href={`#v-pills-${cinemaActive[0].maCumRap}`}
-                    role="tab"
-                    aria-controls={`v-pills-${cinemaActive[0].maCumRap}`}
-                    aria-selected="true"
+                  <div
+                    className="card cinemadetaillist__active"
+                    style={{ maxWidth: 540 }}
                   >
-                    <div
-                      className="card cinemadetaillist__active"
-                      style={{ maxWidth: 540 }}
+                    <a
+                      className="nav-link p-0"
+                      id={`v-pills-${cinemaActive[0].maCumRap}-tab`}
+                      data-toggle="pill"
+                      href={`#v-pills-${cinemaActive[0].maCumRap}`}
+                      role="tab"
+                      aria-controls={`v-pills-${cinemaActive[0].maCumRap}`}
+                      aria-selected="true"
                     >
                       <div className="row no-gutters">
                         <div className="col-md-4">
@@ -114,8 +111,8 @@ export default class CinemaDetailList extends Component {
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </a>
+                    </a>
+                  </div>
                   {otherCinema[0].lstCumRap.map((otherCine, idx) => {
                     const { tenCumRap, maCumRap, diaChi } = otherCine;
                     if (cinemaActive[0].maCumRap !== maCumRap)
@@ -153,7 +150,7 @@ export default class CinemaDetailList extends Component {
                   })}
                 </div>
               </div>
-              <div className="col-8">
+              <div className="col-lg-8 col-12">
                 <div className="tab-content" id="v-pills-tabContent">
                   <div
                     className="tab-pane fade show active cinemadetaillist__movie"
@@ -166,7 +163,7 @@ export default class CinemaDetailList extends Component {
                       return (
                         <div className="card mb-3 w-100 cinemadetaillist__moviecard">
                           <div className="row no-gutters">
-                            <div className="col-md-3">
+                            <div className="col-md-3 col-4">
                               <Link to={`/chitietphim/${maPhim}`}>
                                 <img
                                   src={hinhAnh}
@@ -175,7 +172,7 @@ export default class CinemaDetailList extends Component {
                                 />
                               </Link>
                             </div>
-                            <div className="col-md-9">
+                            <div className="col-md-9 col-8">
                               <div className="card-body cinemadetaillist__movieshowtime">
                                 <h5 className="card-title">{tenPhim}</h5>
                                 <p className="card-text">

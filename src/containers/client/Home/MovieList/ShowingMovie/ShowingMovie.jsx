@@ -1,16 +1,37 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Rate } from "antd";
+import Loader from "../../../../../components/Loader/Loader"
 import "./ShowingMovie.scss";
 export default class ShowingMovie extends Component {
+  state = {
+    amountItems: 0,
+    loading: true,
+  };
+  componentDidMount() {
+    if (window.innerWidth < 500) {
+      this.setState({
+        amountItems: 1,
+        loading: false,
+      });
+    } else if (window.innerWidth > 500) {
+      this.setState({
+        amountItems: 8,
+        loading: false,
+      });
+    }
+  }
   render() {
+    const {amountItems, loading} = this.state;
+    if(loading) return <Loader/>
+    console.log(this.state.amountItems);
     const { movieList, upComingMovie } = this.props;
     const arrayCarousel = (array, chunk_size) =>
       Array(Math.ceil(array.length / chunk_size))
         .fill()
         .map((_, index) => index * chunk_size)
         .map((begin) => array.slice(begin, begin + chunk_size));
-    const carouselItem = arrayCarousel(movieList, 8);
+    const carouselItem = arrayCarousel(movieList, amountItems);
     return (
       <div
         id={`${
@@ -23,11 +44,10 @@ export default class ShowingMovie extends Component {
           {carouselItem.map((numberCarousel, idx) => {
             return (
               <div
-                className={`carousel-item ${idx === 1 && "active"}`}
-                data-interval={10000}
-                style={{
-                  height: "1300px",
-                }}
+                className={`carousel-item ${
+                  idx === 1 && "active"
+                } carousel__contain`}
+                data-interval={4000}
               >
                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 mx-auto movie__item">
                   {numberCarousel.map((movieItem, idx) => {

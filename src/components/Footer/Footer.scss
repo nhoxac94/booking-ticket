@@ -1,3 +1,5 @@
+@import "/src/scss/main.scss";
+
 .footer {
   background-image: linear-gradient(to bottom, #23252670, #414345),
     url(../../assets/img/moviebackground.jpg);
@@ -12,6 +14,23 @@
   .footer__collab {
     img {
       margin: 5px 5px;
+    }
+  }
+}
+
+@include responsive("mobile") {
+  .footer {
+    .h4 {
+      font-size: 20px;
+    }
+    .footer__faq,
+    .footer__license {
+      ul {
+        padding: 0 3px;
+        li {
+          font-size: 9px;
+        }
+      }
     }
   }
 }

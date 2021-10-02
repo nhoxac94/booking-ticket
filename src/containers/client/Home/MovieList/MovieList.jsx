@@ -55,7 +55,9 @@ export default class MovieList extends Component {
               role="tabpanel"
               aria-labelledby="pills-upcomingmovie-tab"
             >
-              <ShowingMovie movieList={movieList} upComingMovie={true} />
+              <div className="container">
+                <ShowingMovie movieList={movieList} upComingMovie={true} />
+              </div>
             </div>
             <div
               className="tab-pane fade"
@@ -63,7 +65,9 @@ export default class MovieList extends Component {
               role="tabpanel"
               aria-labelledby="pills-showingmovie-tab"
             >
-              <ShowingMovie movieList={movieList} upComingMovie={false} />
+              <div className="container">
+                <ShowingMovie movieList={movieList} upComingMovie={false} />
+              </div>
             </div>
           </div>
         </div>

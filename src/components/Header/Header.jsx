@@ -14,7 +14,7 @@ class Header extends Component {
       <header className="w-100">
         <div className="container py-1">
           <nav className="navbar navbar-expand-lg navbar-dark">
-            <Link className="navbar-brand" to="/">
+            <Link className="navbar-brand header__logo" to="/">
               <img className="w-100" src="../logo.svg" alt="logo" />
             </Link>
             <button

@@ -75,7 +75,6 @@ export default class UpdateMovie extends Component {
                     }
                 }
             }
-            console.log(typeof formData.get('danhGia'));
             movieApi.fetchEditMovieApi(formData, accessToken)
                 .then(res => {
                     alert('Update Movie SuccessFull')

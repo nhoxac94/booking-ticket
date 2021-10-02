@@ -1,3 +1,4 @@
+@import "/src/scss/main.scss";
 .cinemainfo {
   .cinemainfo__pills {
     height: 500px;
@@ -66,6 +67,78 @@
         .cinemainfo_moviecontaincontent {
           height: 300px;
           overflow-y: auto;
+        }
+      }
+    }
+  }
+}
+
+@include responsive("mobile") {
+  .cinemainfo {
+    .cinemainfo__pills {
+      padding: 0 20px !important;
+      height: 100%;
+      overflow-y: auto;
+      font-size: 10px;
+      .cinemainfo__addresscinema {
+        .cinemainfo__addresscontain {
+          .card {
+            width: 100%;
+          }
+          position: relative;
+          color: black;
+          display: block;
+          &::after {
+            content: "";
+            width: 4px;
+            height: 0;
+            background: linear-gradient(to right, #fbbd61, #ec7532);
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            transition: none;
+          }
+        }
+        .cinemainfo__addresscontaintactive {
+          position: relative;
+          color: black;
+          display: block;
+          &::after {
+            content: "";
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to right, #fbbd61, #ec7532);
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            right: 0;
+          }
+        }
+        .cinemainfo__img {
+          width: 100% !important;
+          object-fit: cover !important;
+        }
+        .cinemainfo__addresscontent {
+          p {
+            margin: 0;
+            white-space: nowrap;
+            width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+    }
+    .cinemainfo__movie {
+      .cinemainfo__moviecontain {
+        .cinemainfo__moviecard {
+          .cinemainfo__moviecontainimg {
+            .cinemainfo__movieimg {
+            }
+          }
+          .cinemainfo_moviecontaincontent {
+          }
         }
       }
     }
