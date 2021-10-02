@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import CinemaDetailBanner from "./CinemaDetailBanner/CinemaDetailBanner";
 import CinemaDetailList from "./CinemaDetailList/CinemaDetailList";
 import movieApi from "apis/movieApi";
 import Loader from "components/Loader/Loader";
@@ -32,7 +31,6 @@ export default class CinemaDetail extends Component {
     if (loading) return <Loader />;
     return (
       <div>
-        <CinemaDetailBanner cinemaInfo={cinemaInfo} />
         <CinemaDetailList
           cinemaInfo={cinemaInfo}
           maCumRap={maCumRap}

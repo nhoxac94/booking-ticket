@@ -100,36 +100,6 @@ export default class Footer extends Component {
                     alt=""
                     className="rounded-circle"
                   />
-                  <img
-                    src="https://picsum.photos/id/14/50/50"
-                    alt=""
-                    className="rounded-circle"
-                  />
-                  <img
-                    src="https://picsum.photos/id/15/50/50"
-                    alt=""
-                    className="rounded-circle"
-                  />
-                  <img
-                    src="https://picsum.photos/id/16/50/50"
-                    alt=""
-                    className="rounded-circle"
-                  />
-                  <img
-                    src="https://picsum.photos/id/17/50/50"
-                    alt=""
-                    className="rounded-circle"
-                  />
-                  <img
-                    src="https://picsum.photos/id/18/50/50"
-                    alt=""
-                    className="rounded-circle"
-                  />
-                  <img
-                    src="https://picsum.photos/id/19/50/50"
-                    alt=""
-                    className="rounded-circle"
-                  />
                 </div>
               </div>
               <div className="col-2">

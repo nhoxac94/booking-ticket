@@ -1054,7 +1054,7 @@
 }
 
 .movieDetail {
-  .movieDetail__containimg {
+  .movieDetail__containing {
     position: relative;
     .movieDetail__img {
     }
@@ -1106,6 +1106,9 @@
       }
       .theaterDetail {
         .theaterDetail__logocontain {
+          cursor: pointer;
+          -webkit-user-drag: none;
+          user-select: none;
           position: relative;
           color: black;
           display: block;

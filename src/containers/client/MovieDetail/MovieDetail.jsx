@@ -41,11 +41,10 @@ export default class MovieDetail extends Component {
 
   render() {
     const { movie, loading } = this.state;
-    console.log(movie);
     if (loading) return <Loader />;
     return (
       <div
-        className="pb-5"
+        className="py-5"
         style={{
           backgroundImage: `linear-gradient(to right, #232526de, #414345e3), url(${movie.hinhAnh})`,
           backgroundPosition: "center",
@@ -62,7 +61,7 @@ export default class MovieDetail extends Component {
               <div className="row">
                 <div className="col-3">
                   <div className="text-center">
-                    <div className="movieDetail__containimg w-100 h-100">
+                    <div className="movieDetail__containing w-100 h-100">
                       <img
                         src={movie.hinhAnh}
                         alt={movie.biDanh}
@@ -245,6 +244,7 @@ export default class MovieDetail extends Component {
                         <div className="col-3">
                           <div className="nav flex-column nav-tabs border-0">
                             {movie.heThongRapChieu.map((heThongRap, index) => {
+                              const { logo } = heThongRap;
                               return (
                                 <div
                                   className={`nav-link mb-3 p-0 text-center theaterDetail__logocontain bg-transparent border-0 ${
@@ -263,7 +263,7 @@ export default class MovieDetail extends Component {
                                   }
                                 >
                                   <img
-                                    src={heThongRap.logo}
+                                    src={logo}
                                     className="mx-auto theaterDetail__logocontain"
                                     alt=""
                                     width="80px"
@@ -309,6 +309,17 @@ export default class MovieDetail extends Component {
                                           className="row my-3"
                                           style={{ marginLeft: 100 }}
                                         >
+                                          <div className="theaterDetail__time align-self-center">
+                                            <FontAwesomeIcon
+                                              icon={faClock}
+                                              style={{
+                                                color: "white",
+                                                fontSize: "30px",
+                                              }}
+                                              className="mr-4  "
+                                            />
+                                          </div>
+
                                           {cumRap.lichChieuPhim.map(
                                             (lichChieu) => {
                                               const { maLichChieu } = lichChieu;

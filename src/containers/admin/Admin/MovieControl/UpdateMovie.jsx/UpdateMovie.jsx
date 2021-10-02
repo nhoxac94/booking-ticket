@@ -20,7 +20,7 @@ export default class UpdateMovie extends Component {
             trailer: "",
             ngayKhoiChieu: "",
             hinhAnh: "",
-            danhGia: "",
+            danhGia: 0,
             moTa: "",
             maNhom: GROUP_ID,
         },
@@ -74,12 +74,12 @@ export default class UpdateMovie extends Component {
                         formData.append('File', this.state.values.hinhAnh, this.state.values.hinhAnh.name)
                     }
                 }
-
             }
-
+            console.log(typeof formData.get('danhGia'));
             movieApi.fetchEditMovieApi(formData, accessToken)
                 .then(res => {
                     alert('Update Movie SuccessFull')
+                    window.location.reload();
                 })
                 .catch(error => {
                     alert(error)

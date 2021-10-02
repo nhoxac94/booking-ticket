@@ -1,5 +1,116 @@
-.cinemadetaillist {
-  .cinemadetaillist__pills {
-    text-decoration: none;
+.CinemaBanner {
+  position: relative;
+  height: 600px;
+  &::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-image: linear-gradient(to bottom right, #232526de, #414345e3),
+      url(https://reviewnao.com/wp-content/uploads/2020/12/galaxy-cinema-galaxy-cinema-ho-chi-minh-city.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  .CinemaBanner__info {
+    position: relative;
+    .CinemaBanner__content {
+      .CinemaBanner__icons {
+        ul {
+          list-style: none;
+          float: left;
+          li {
+            color: #ec7532;
+            display: inline-block;
+            line-height: 40px;
+            width: 43px;
+            height: 43px;
+            margin: 0 4px;
+            border: solid 2px #d8d8d8;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all ease 350ms;
+            &:hover {
+              color: #fbbd61;
+              border-color: #fbbd61;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.cinemadetaillist__bg {
+  background-image: linear-gradient(#ece9e6, #ffffff);
+  .cinemadetaillist {
+    .cinemadetaillist__active {
+      position: relative;
+      color: black;
+      display: block;
+      &::after {
+        content: "";
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(to right, #fbbd61, #ec7532);
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+    .cinemadetaillist__pills {
+      position: relative;
+      display: block;
+      &::after {
+        content: "";
+        width: 4px;
+        height: 0;
+        background: linear-gradient(to right, #fbbd61, #ec7532);
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transition: all 0.25s;
+      }
+      &:hover::after {
+        height: 100%;
+        box-shadow: 0 0 20px 0 #fbbd61;
+      }
+      .cinemadetaillist__link {
+        color: black;
+        text-decoration: none;
+      }
+    }
+    .cinemadetaillist__active,
+    .cinemadetaillist__pills {
+      width: 100%;
+      .card-body {
+        h5,
+        p {
+          margin: 0;
+          white-space: nowrap;
+          width: 190px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+    .cinemadetaillist__moviecard {
+      height: 300px;
+      overflow-y: hidden;
+      .cinemadetaillist__movieimg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover !important;
+        overflow-y: hidden;
+      }
+      .cinemadetaillist__movieshowtime {
+        height: 300px;
+        overflow-y: auto;
+      }
+    }
   }
 }

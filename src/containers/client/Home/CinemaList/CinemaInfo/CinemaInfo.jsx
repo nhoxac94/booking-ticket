@@ -103,17 +103,28 @@ export default class CinemaInfo extends Component {
                             key={maCumRap}
                           >
                             {danhSachPhim.map((lstMovie, idx) => {
-                              const { tenPhim, hinhAnh, lstLichChieuTheoPhim } =
-                                lstMovie;
+                              const {
+                                tenPhim,
+                                hinhAnh,
+                                lstLichChieuTheoPhim,
+                                maPhim,
+                              } = lstMovie;
                               return (
                                 <div className="card mb-3 h-100 w-100 cinemainfo__moviecard">
                                   <div className="row no-gutters">
                                     <div className="col-md-3 cinemainfo__moviecontainimg">
-                                      <img
-                                        src={hinhAnh}
-                                        alt="..."
-                                        className="cinemainfo__movieimg"
-                                      />
+                                      <Link
+                                        to={`/chitietphim/${maPhim}`}
+                                        props={maPhim}
+                                        key={maPhim}
+                                        onClick={() => window.scrollTo(0, 0)}
+                                      >
+                                        <img
+                                          src={hinhAnh}
+                                          alt={maPhim}
+                                          className="cinemainfo__movieimg"
+                                        />
+                                      </Link>
                                     </div>
                                     <div className="col-md-9 cinemainfo_moviecontaincontent">
                                       <div className="card-body">
