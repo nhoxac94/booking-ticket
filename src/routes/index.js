@@ -36,7 +36,7 @@ export const clientRoutes = [
     path: "/chitietphongve/:maLichChieu",
     component: SeatDetail,
     exact: true,
-    isPrivate: true,
+    isPrivate: false,
   },
   {
     path: "/thongtincanhan",

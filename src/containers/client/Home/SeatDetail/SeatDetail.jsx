@@ -1,9 +1,10 @@
-import axios from "axios";
 import React, { Component } from "react";
 import "./SeatDetail.scss";
+
 import Loader from "components/Loader/Loader";
 import { UserOutlined } from "@ant-design/icons";
 import movieApi from "apis/movieApi";
+import { USER_BOOKING_TICKET_LOGIN } from "containers/shared/Auth/module/type";
 
 export default class SeatDetail extends Component {
   state = {
@@ -130,6 +131,9 @@ export default class SeatDetail extends Component {
   render() {
     const { loading, seatPlan, bookingSeat, tongTienVe } = this.state;
     const { thongTinPhim } = seatPlan;
+    if (!JSON.parse(localStorage.getItem(USER_BOOKING_TICKET_LOGIN))) {
+      this.props.history.push("/")
+    }
     if (loading === true) return <Loader />;
     const { diaChi, gioChieu, hinhAnh, ngayChieu, tenCumRap, tenPhim, tenRap } =
       thongTinPhim;
@@ -137,10 +141,9 @@ export default class SeatDetail extends Component {
       <div className="seatdetail text-white">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-9 mt-4">
+            <div className="col-lg-9 " style={{ marginTop: "6rem" }}>
               <div
                 className="shapeTheater"
-                style={{ width: "80%", margin: "auto" }}
               >
                 <div style={{ border: "solid 5px #000" }} />
                 <div id="trapezoid" className="text-center">
@@ -150,7 +153,6 @@ export default class SeatDetail extends Component {
 
               <div
                 className="seatPlan text-center"
-                style={{ width: "80%", margin: "auto" }}
               >
                 {this.state.seatPlan.danhSachGhe.map((ghe, index) => {
                   const { maGhe, giaVe, loaiGhe, daDat } = ghe;
@@ -159,7 +161,6 @@ export default class SeatDetail extends Component {
                   let gheDaDat = "";
                   if (ghe.loaiGhe === "Vip") gheVip = "gheVip";
                   if (ghe.daDat) gheDaDat = "gheDaDat";
-                  console.log(ghe);
                   return (
                     <>
                       <button
@@ -180,7 +181,6 @@ export default class SeatDetail extends Component {
                 className="footerTheater text-center"
                 style={{ width: "60%", margin: "auto" }}
               >
-                <hr />
                 <table className="table">
                   <thead>
                     <tr>
@@ -216,8 +216,8 @@ export default class SeatDetail extends Component {
               </div>
             </div>
 
-            <div className="col-3 mt-4">
-              <div style={{ width: "80%" }}>
+            <div className=" bookingTicket col-lg-3">
+              <div className="bookingTicket__wrap">
                 <h3 className="text-center text-white">{tenPhim}</h3>
                 <p>Địa điểm: {tenCumRap}</p>
                 <p>Địa chỉ: {diaChi}</p>
@@ -226,7 +226,7 @@ export default class SeatDetail extends Component {
                 </p>
                 <p>{tenRap}</p>
                 <hr />
-                <table className="table table-borderless text-center">
+                <table className="table table-borderless text-center text-white">
                   <thead>
                     <tr>
                       <th>Vé</th>
@@ -250,7 +250,6 @@ export default class SeatDetail extends Component {
                 <hr />
                 <p>Email</p>
                 <p>string@gmail.com</p>
-                <hr />
                 <p>Phone</p>
                 <p>097777999</p>
                 <button className="btn btn-success" style={{ width: "100%" }}>

@@ -1,3 +1,5 @@
+@import "/src/scss/main.scss";
+
 .seatdetail {
   background-image: linear-gradient(to bottom right, #232526de, #414345e3),
     url(../../../../assets/img/movielist.jpg);
@@ -13,17 +15,6 @@
     line-height: 40px;
     color: rgba(128, 128, 128, 0.7);
     padding-top: 1px;
-  }
-
-  .ghe {
-    width: 35px;
-    height: 35px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    margin: 15px;
-    background-color: rgb(126, 116, 116);
-    color: #fff;
   }
 
   .gheVip {
@@ -42,5 +33,80 @@
   .gheCuaBan {
     background-color: rgb(135, 185, 231);
     border: solid 1px rgb(236, 215, 215);
+  }
+}
+
+.ghe {
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin: 15px;
+  background-color: rgb(126, 116, 116);
+  color: #fff;
+}
+.shapeTheater,
+.seatPlan,
+.bookingTicket__wrap {
+  max-width: 80%;
+  margin: auto;
+  margin-bottom: 1rem;
+}
+
+.bookingTicket {
+  margin-top: 6rem;
+}
+
+@include responsive("ipad") {
+  .ghe {
+    margin: 5px;
+  }
+  .shapeTheater,
+  .seatPlan,
+  .bookingTicket__wrap {
+    max-width: 100%;
+  }
+  .footerTheater {
+    display: none;
+  }
+  .bookingTicket {
+    margin-top: 1rem;
+  }
+}
+
+@include responsive("mobile") {
+  .ghe {
+    font-size: 11px;
+    width: 23px;
+    height: 23px;
+    margin: 1px;
+  }
+  .shapeTheater,
+  .seatPlan,
+  .bookingTicket__wrap {
+    max-width: 100%;
+  }
+  .footerTheater {
+    display: none;
+  }
+  .bookingTicket {
+    margin-top: 1rem;
+  }
+
+  .bookingTicket__wrap {
+    h3 {
+      font-size: 22px;
+    }
+    font-size: 12px;
+    table td {
+      padding: 0;
+    }
+    p {
+      padding-bottom: 0;
+    }
+    hr {
+      margin: 0;
+    }
   }
 }

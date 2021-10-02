@@ -7,7 +7,6 @@ import { USER_BOOKING_TICKET_LOGIN } from 'containers/shared/Auth/module/type'
 export default class UserInformation extends Component {
 
     render() {
-        console.log(JSON.parse(localStorage.getItem(USER_BOOKING_TICKET_LOGIN)))
         if (!JSON.parse(localStorage.getItem(USER_BOOKING_TICKET_LOGIN))) {
             this.props.history.push("/")
         }
