@@ -1197,6 +1197,9 @@
   .movieDetail {
     .movieDetail__containing {
       position: relative;
+      margin: auto;
+      width: 350px !important;
+      height: auto;
       .movieDetail__img {
         width: 100% !important;
         height: 100% !important;
