@@ -43,7 +43,7 @@ export default class CinemaDetailList extends Component {
     return (
       <div>
         <div className="w-100 CinemaBanner">
-          <div className="CinemaBanner__info d-flex align-items-center h-100 w-100 align-self-center justify-content-center flex-column flex-sm-row">
+          <div className="CinemaBanner__info d-flex align-items-center h-100 w-100 align-self-center justify-content-center flex-column flex-sm-row flex-md-column">
             <div className="CinemaBanner__img mx-2">
               <img src={this.state.logo} alt={cinemaActive[0].maCumRap} />
             </div>
@@ -72,7 +72,7 @@ export default class CinemaDetailList extends Component {
         <div className="cinemadetaillist__bg py-5">
           <div className="cinemadetaillist container py-3 shadow bg-white rounded">
             <div className="row">
-              <div className="col-lg-4 col-12">
+              <div className="col-lg-4 col-12 col-md-5">
                 <div
                   className="nav flex-column"
                   id="v-pills-tab"
@@ -93,14 +93,14 @@ export default class CinemaDetailList extends Component {
                       aria-selected="true"
                     >
                       <div className="row no-gutters">
-                        <div className="col-md-4">
+                        <div className="col-lg-4 col-md-12">
                           <img
                             src="https://reviewnao.com/wp-content/uploads/2020/12/galaxy-cinema-galaxy-cinema-ho-chi-minh-city.jpg"
                             alt="cinema"
                             className="img-fluid h-100"
                           />
                         </div>
-                        <div className="col-md-8">
+                        <div className="col-lg-8 col-md-12">
                           <div className="card-body">
                             <h5 className="card-title">
                               {cinemaActive[0].tenCumRap}
@@ -130,14 +130,14 @@ export default class CinemaDetailList extends Component {
                             className="cinemadetaillist__link"
                           >
                             <div className="row no-gutters">
-                              <div className="col-md-4">
+                              <div className="col-lg-4 col-md-12">
                                 <img
                                   src="https://reviewnao.com/wp-content/uploads/2020/12/galaxy-cinema-galaxy-cinema-ho-chi-minh-city.jpg"
                                   alt="cinema"
                                   className="img-fluid h-100"
                                 />
                               </div>
-                              <div className="col-md-8">
+                              <div className="col-lg-8 col-md-12">
                                 <div className="card-body">
                                   <h5 className="card-title">{tenCumRap}</h5>
                                   <p className="card-text">{diaChi}</p>
@@ -150,7 +150,7 @@ export default class CinemaDetailList extends Component {
                   })}
                 </div>
               </div>
-              <div className="col-lg-8 col-12">
+              <div className="col-lg-8 col-12 col-md-7">
                 <div className="tab-content" id="v-pills-tabContent">
                   <div
                     className="tab-pane fade show active cinemadetaillist__movie"

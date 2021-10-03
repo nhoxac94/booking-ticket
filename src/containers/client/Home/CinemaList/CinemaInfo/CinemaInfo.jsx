@@ -102,64 +102,70 @@ export default class CinemaInfo extends Component {
                             aria-labelledby={`v-pills-${maCumRap}-tab`}
                             key={maCumRap}
                           >
-                            {danhSachPhim.map((lstMovie, idx) => {
-                              const {
-                                tenPhim,
-                                hinhAnh,
-                                lstLichChieuTheoPhim,
-                                maPhim,
-                              } = lstMovie;
-                              return (
-                                
-                                <div className="card mb-3 h-100 w-100 cinemainfo__moviecard">
-                                  <div className="row no-gutters">
-                                    <div className="col-md-3 col-6 cinemainfo__moviecontainimg">
-                                      <Link
-                                        to={`/chitietphim/${maPhim}`}
-                                        props={maPhim}
-                                        key={maPhim}
-                                        onClick={() => window.scrollTo(0, 0)}
-                                      >
-                                        <img
-                                          src={hinhAnh}
-                                          alt={maPhim}
-                                          className="cinemainfo__movieimg"
-                                        />
-                                      </Link>
-                                    </div>
-                                    <div className="col-md-9 col-6 cinemainfo_moviecontaincontent">
-                                      <div className="card-body">
-                                        <h5 className="card-title">
-                                          {tenPhim}
-                                        </h5>
-                                        <p className="card-text">
-                                          <small className="text-muted">
-                                            {lstLichChieuTheoPhim.map(
-                                              (lichChieu, idx) => {
-                                                const { maLichChieu } =
-                                                  lichChieu;
-                                                const { ngayChieuGioChieu } =
-                                                  lichChieu;
-                                                return (
-                                                  <Link
-                                                    to={`/chitietphongve/${maLichChieu}`}
-                                                    className="btn btn-dark mx-1 my-1"
-                                                  >
-                                                    {moment(
-                                                      ngayChieuGioChieu
-                                                    ).format("HH:mm A")}
-                                                  </Link>
-                                                );
-                                              }
-                                            )}
-                                          </small>
-                                        </p>
+                            <div className="row row-cols-md-2 row-cols-1 row-cols-lg-1">
+                              {danhSachPhim.map((lstMovie, idx) => {
+                                const {
+                                  tenPhim,
+                                  hinhAnh,
+                                  lstLichChieuTheoPhim,
+                                  maPhim,
+                                } = lstMovie;
+                                return (
+                                  <div className="col mb-3">
+                                    <div className="card mb-3 h-100 w-100 cinemainfo__moviecard">
+                                      <div className="row no-gutters h-100">
+                                        <div className="col-lg-3 col-6 cinemainfo__moviecontainimg">
+                                          <Link
+                                            to={`/chitietphim/${maPhim}`}
+                                            props={maPhim}
+                                            key={maPhim}
+                                            onClick={() =>
+                                              window.scrollTo(0, 0)
+                                            }
+                                          >
+                                            <img
+                                              src={hinhAnh}
+                                              alt={maPhim}
+                                              className="cinemainfo__movieimg"
+                                            />
+                                          </Link>
+                                        </div>
+                                        <div className="col-lg-9 col-6 cinemainfo_moviecontaincontent">
+                                          <div className="card-body">
+                                            <h5 className="card-title">
+                                              {tenPhim}
+                                            </h5>
+                                            <p className="card-text">
+                                              <small className="text-muted">
+                                                {lstLichChieuTheoPhim.map(
+                                                  (lichChieu, idx) => {
+                                                    const { maLichChieu } =
+                                                      lichChieu;
+                                                    const {
+                                                      ngayChieuGioChieu,
+                                                    } = lichChieu;
+                                                    return (
+                                                      <Link
+                                                        to={`/chitietphongve/${maLichChieu}`}
+                                                        className="btn btn-dark mx-1 my-1"
+                                                      >
+                                                        {moment(
+                                                          ngayChieuGioChieu
+                                                        ).format("HH:mm A")}
+                                                      </Link>
+                                                    );
+                                                  }
+                                                )}
+                                              </small>
+                                            </p>
+                                          </div>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
-                                </div>
-                              );
-                            })}
+                                );
+                              })}
+                            </div>
                           </div>
                         );
                       })}

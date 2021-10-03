@@ -71,20 +71,17 @@
   height: 30px !important;
 }
 
-@include responsive("mobile") {
+@include responsive('ipad'){
   .carousel {
-    .carousel__contain {
-      height: 550px;
-    }
     .carousel-control-prev {
-      left: -30px !important;
+      left: -50px !important;
     }
     .carousel-control-next {
-      right: -30px !important;
+      right: -50px !important;
     }
     .carousel-control-movie-prev,
     .carousel-control-movie-next {
-      bottom: 50px !important;
+      bottom: 10px !important;
     }
     .carousel-control-next-icon,
     .carousel-control-prev-icon {
@@ -93,3 +90,26 @@
     }
   }
 }
+
+  @include responsive("mobile") {
+    .carousel {
+      .carousel__contain {
+        height: 550px;
+      }
+      .carousel-control-prev {
+        left: -30px !important;
+      }
+      .carousel-control-next {
+        right: -30px !important;
+      }
+      .carousel-control-movie-prev,
+      .carousel-control-movie-next {
+        bottom: 50px !important;
+      }
+      .carousel-control-next-icon,
+      .carousel-control-prev-icon {
+        width: 20px !important;
+        height: 20px !important;
+      }
+    }
+  }

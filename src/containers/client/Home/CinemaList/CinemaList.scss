@@ -1,4 +1,5 @@
 @import "/src/scss/main.scss";
+
 .cinemalist {
   background-image: linear-gradient(#ece9e6, #ffffff);
   .cinemalist__row {
@@ -42,10 +43,26 @@
   }
 }
 
+@include responsive("ipad") {
+  .cinemalist {
+    .cinemalist__row {
+      padding: 0 !important;
+      margin: 0 !important;
+      .cinemalist__button {
+        padding: 10px 0 !important;
+        margin: 10px 0!important;
+      }
+      .cinemalist__buttonactive {
+        padding: 10px 0 !important;
+      }
+    }
+  }
+}
+
 @include responsive("mobile") {
   .cinemalist {
     .cinemalist__row {
-      padding: 10px 0!important;
+      padding: 10px 0 !important;
       margin: 0 !important;
       .cinemalist__button {
         padding: 0 10px;

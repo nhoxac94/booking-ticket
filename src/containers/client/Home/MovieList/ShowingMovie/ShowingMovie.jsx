@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Rate } from "antd";
-import Loader from "../../../../../components/Loader/Loader"
+import Loader from "../../../../../components/Loader/Loader";
 import "./ShowingMovie.scss";
 export default class ShowingMovie extends Component {
   state = {
@@ -14,7 +14,12 @@ export default class ShowingMovie extends Component {
         amountItems: 1,
         loading: false,
       });
-    } else if (window.innerWidth > 500) {
+    } else if (window.innerWidth < 800) {
+      this.setState({
+        amountItems: 4,
+        loading: false,
+      });
+    } else if (window.innerWidth > 801) {
       this.setState({
         amountItems: 8,
         loading: false,
@@ -22,8 +27,8 @@ export default class ShowingMovie extends Component {
     }
   }
   render() {
-    const {amountItems, loading} = this.state;
-    if(loading) return <Loader/>
+    const { amountItems, loading } = this.state;
+    if (loading) return <Loader />;
     console.log(this.state.amountItems);
     const { movieList, upComingMovie } = this.props;
     const arrayCarousel = (array, chunk_size) =>
@@ -49,7 +54,7 @@ export default class ShowingMovie extends Component {
                 } carousel__contain`}
                 data-interval={4000}
               >
-                <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 mx-auto movie__item">
+                <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 mx-auto movie__item">
                   {numberCarousel.map((movieItem, idx) => {
                     const { tenPhim, hinhAnh, danhGia, biDanh, maPhim } =
                       movieItem;

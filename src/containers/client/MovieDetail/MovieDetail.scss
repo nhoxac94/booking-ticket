@@ -1166,6 +1166,33 @@
   }
 }
 
+@include responsive("ipad") {
+  .movieDetail {
+    .movieDetail__containing {
+      position: relative;
+      margin: auto;
+      width: 450px !important;
+      height: auto;
+      .movieDetail__img {
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+  }
+  .theaterDetail {
+    .theaterDetail__contain {
+      padding-left: 10px;
+      .theaterDetail__img {
+        width: 80px;
+        height: 100%;
+      }
+      .theaterDetail__grid {
+        margin: 0 !important;
+      }
+    }
+  }
+}
+
 @include responsive("mobile") {
   .movieDetail {
     .movieDetail__containing {

@@ -73,11 +73,59 @@
   }
 }
 
+@include responsive("ipad") {
+  .cinemainfo {
+    .cinemainfo__pills {
+      height: 580px;
+      margin: 10px;
+      .cinemainfo__addresscinema {
+        .cinemainfo__addresscontain {
+          .card {
+          }
+
+          &::after {
+          }
+        }
+        .cinemainfo__addresscontaintactive {
+          &::after {
+          }
+        }
+        .cinemainfo__img {
+        }
+        .cinemainfo__addresscontent {
+          p {
+            width: 100%;
+          }
+        }
+      }
+    }
+    .cinemainfo__movie {
+      .cinemainfo__moviecontain {
+        .col {
+          margin: 0px 30px 0px -30px!important;
+          height: 100%;
+        }
+        .cinemainfo__moviecard {
+          .cinemainfo_moviecontaincontent {
+            .card-body{
+              padding: 0 10px!important;
+            }
+            font-size: 1px;
+            .btn-dark{
+              padding: 2px 2px!important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 @include responsive("mobile") {
   .cinemainfo {
     .cinemainfo__pills {
       padding: 0 20px !important;
-      height: 100%;
+      height: 500px;
       overflow-y: auto;
       font-size: 10px;
       .cinemainfo__addresscinema {

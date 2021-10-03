@@ -96,12 +96,13 @@
     .cinemadetaillist__pills {
       width: 100%;
       .card-body {
+        width: 100%;
+        padding: 10px 5px;
         h5,
         p {
           margin: 0;
-          white-space: nowrap;
-          width: 190px;
-          overflow: hidden;
+          white-space: normal;
+          width: 100%;
           text-overflow: ellipsis;
         }
       }
@@ -123,13 +124,11 @@
   }
 }
 
-@include responsive("mobile") {
+@include responsive("ipad") {
   .CinemaBanner {
-    &::before {
-    }
     .CinemaBanner__info {
       .CinemaBanner__img {
-        width: 100px;
+        width: 180px;
         margin-top: auto;
       }
       .CinemaBanner__content {
@@ -157,27 +156,101 @@
   }
   .cinemadetaillist__bg {
     .cinemadetaillist {
-      .cinemadetaillist__active {
-        &::after {
-        }
-      }
       .cinemadetaillist__pills {
         &::after {
           transition: none;
-        }
-        .cinemadetaillist__link {
         }
       }
       .cinemadetaillist__active,
       .cinemadetaillist__pills {
         width: 100%;
         .card-body {
+          width: 100%;
+          height: auto;
+          padding: 0 5px;
           h5,
           p {
+            padding: 5px 10px;
+            white-space: normal;
+            width: 100%;
+            text-overflow: unset;
+          }
+          .card-title {
+            font-size: 20px;
+          }
+          .card-text {
+            font-size: 15px;
           }
         }
       }
-      .tab-content{
+      .cinemadetaillist__active {
+      }
+      .tab-content {
+        margin-top: 0px;
+      }
+    }
+  }
+}
+
+@include responsive("mobile") {
+  .CinemaBanner {
+    .CinemaBanner__info {
+      .CinemaBanner__img {
+        width: 100px;
+        margin-top: auto;
+      }
+      .CinemaBanner__content {
+        width: 100% !important;
+        padding: 10px 20px;
+        margin-bottom: auto;
+        text-align: center;
+        .CinemaBanner__icons {
+          ul {
+            display: block;
+            float: none;
+            li {
+              transition: none;
+            }
+          }
+        }
+      }
+    }
+  }
+  .cinemadetaillist__bg {
+    .cinemadetaillist {
+      .cinemadetaillist__active,
+      .cinemadetaillist__pills {
+        &::after {
+          transition: none;
+        }
+        .card-body {
+          width: 100%;
+          height: auto;
+          padding: 10px;
+          h5,
+          p {
+            width: 100%;
+            margin: 0;
+            white-space: normal;
+            text-overflow: clip;
+          }
+          .card-title {
+            font-size: 15px;
+          }
+          .card-text {
+            font-size: 10px;
+          }
+          .card-title,
+          .card-text {
+            padding: 0px;
+          }
+        }
+      }
+      .cinemadetaillist__active,
+      .cinemadetaillist__pills {
+        width: 100%;
+      }
+      .tab-content {
         margin-top: 20px;
       }
     }
