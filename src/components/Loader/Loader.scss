@@ -1,1 +1,9 @@
-
+.loader {
+    height: 100vh;
+    .spinner{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
