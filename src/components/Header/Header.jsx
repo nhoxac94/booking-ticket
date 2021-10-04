@@ -65,19 +65,45 @@ class Header extends Component {
                             data-toggle="dropdown"
                           ></div>
                           <div className="dropdown-menu" style={{ left: -140 }}>
-                            <Link
-                              to="/thongtincanhan"
-                              className="dropdown-item"
-                            >
-                              Thông tin cá nhân
-                            </Link>
-                            <div
-                              className="dropdown-item"
-                              onClick={() => this.handleLogout()}
-                              style={{ cursor: "pointer" }}
-                            >
-                              Logout
-                            </div>
+                            {currentUser.maLoaiNguoiDung === "QuanTri" ? (
+                              <div>
+                                <Link
+                                  to="/admin"
+                                  className="dropdown-item"
+                                >
+                                  Quản trị
+                                </Link>
+                                <Link
+                                  to="/thongtincanhan"
+                                  className="dropdown-item"
+                                >
+                                  Thông tin cá nhân
+                                </Link>
+                                <div
+                                  className="dropdown-item"
+                                  onClick={() => this.handleLogout()}
+                                  style={{ cursor: "pointer" }}
+                                >
+                                  Logout
+                                </div>
+                              </div>
+                            ) : (
+                              <div>
+                                <Link
+                                  to="/thongtincanhan"
+                                  className="dropdown-item"
+                                >
+                                  Thông tin cá nhân
+                                </Link>
+                                <div
+                                  className="dropdown-item"
+                                  onClick={() => this.handleLogout()}
+                                  style={{ cursor: "pointer" }}
+                                >
+                                  Logout
+                                </div>
+                              </div>
+                            )}
                           </div>
                         </div>
                       </li>

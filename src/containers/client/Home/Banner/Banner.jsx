@@ -102,7 +102,7 @@ export default class Banner extends Component {
                 <FontAwesomeIcon
                   data-toggle="modal"
                   data-target={`#modal${biDanh}`}
-                  className="text-white btn"
+                  className="btn btn-outline-warning border-0 carouselBanner_button"
                   icon={faPlayCircle}
                   style={{
                     fontSize: "100px",

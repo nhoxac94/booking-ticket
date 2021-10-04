@@ -35,7 +35,15 @@
       object-fit: cover;
       object-position: top center;
     }
+    .carouselBanner_button {
+      color: #ff7f82 !important;
+      &:hover {
+        background-color: transparent !important;
+        color: adjust-hue(#ff7f82, 45deg) !important;
+      }
+    }
   }
+
   .carouselbanner-control-next {
     right: -80px !important;
   }

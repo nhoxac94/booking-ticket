@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "containers/client/Home/Home";
 import PageNotFound from "containers/shared/Auth/PageNotFound/PageNotFound";
 import { adminRoutes, clientRoutes, loginRoutes } from "routes";
 import AdminLayout from "layouts/AdminLayout";
@@ -32,7 +31,6 @@ function App() {
             {renderLayout(loginRoutes, LoginLayout)}
             {renderLayout(adminRoutes, AdminLayout)}
             {renderLayout(clientRoutes, ClientLayout)}
-            {/* <Route path="/" exact component={Home} /> */}
             <Route path="*" component={PageNotFound} />
           </Switch>
         </Suspense>

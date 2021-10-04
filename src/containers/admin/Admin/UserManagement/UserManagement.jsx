@@ -149,42 +149,39 @@ export default class UserManagement extends Component {
                             </div>
                         </form>
 
-                        <table className="table table-bordered table-striped ">
-                            <thead className="thead-dark">
-                                <tr>
-                                    <th>STT</th>
-                                    <th>Tài Khoản</th>
-                                    <th>Mật khẩu </th>
-                                    <th>Họ tên</th>
-                                    <th>Email</th>
-                                    <th>Số điện thoại</th>
-                                    <th>Actions</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {listUserRender.items.map((user, idx) => {
-
-                                    return (
-                                        <tr key={user.taiKhoan}>
-                                            <td>{idx + 1 + (listUserRender.currentPage - 1) * USER_IN_PAGE}</td>
-                                            <td>{user.taiKhoan}</td>
-                                            <td>{user.matKhau}</td>
-                                            <td>{user.hoTen}</td>
-                                            <td>{user.email}</td>
-                                            <td>{user.soDt}</td>
-                                            <td className="py-2">
-                                                <Link to={`/admin/users/edit-user/${user.taiKhoan}`} ><button className="edit__user  btn btn-success"><EditOutlined /></button></Link>
-                                                <button className="delete__user btn btn-danger" onClick={() => this.deleteUser(user.taiKhoan, accessToken)}><CloseOutlined /></button>
-                                            </td>
-
-                                        </tr>
-                                    )
-
-                                })}
-
-                            </tbody>
-                        </table>
+                        <div className="table-responsive">
+                            <table className="table table-bordered table-striped ">
+                                <thead className="thead-dark">
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Tài Khoản</th>
+                                        <th>Mật khẩu </th>
+                                        <th>Họ tên</th>
+                                        <th>Email</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {listUserRender.items.map((user, idx) => {
+                                        return (
+                                            <tr key={user.taiKhoan}>
+                                                <td>{idx + 1 + (listUserRender.currentPage - 1) * USER_IN_PAGE}</td>
+                                                <td>{user.taiKhoan}</td>
+                                                <td>{user.matKhau}</td>
+                                                <td>{user.hoTen}</td>
+                                                <td>{user.email}</td>
+                                                <td>{user.soDt}</td>
+                                                <td className="py-2">
+                                                    <Link to={`/admin/users/edit-user/${user.taiKhoan}`} ><button className="edit__user  btn btn-success"><EditOutlined /></button></Link>
+                                                    <button className="delete__user btn btn-danger" onClick={() => this.deleteUser(user.taiKhoan, accessToken)}><CloseOutlined /></button>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div className="text-right navigate__user">
                         <ul className="d-block">
