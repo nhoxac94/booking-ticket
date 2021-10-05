@@ -1060,10 +1060,15 @@
     .movieDetail__img {
     }
     .movieDetail__playbutton {
+      color: #ec7532;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      transition: all ease 300ms;
+      &:hover{
+        color: #fbbd61;
+      }
     }
   }
   .movieDetail__icons {
