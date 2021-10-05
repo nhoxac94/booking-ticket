@@ -5,6 +5,7 @@ import Loader from "components/Loader/Loader";
 import { UserOutlined } from "@ant-design/icons";
 import movieApi from "apis/movieApi";
 import { USER_BOOKING_TICKET_LOGIN } from "containers/shared/Auth/module/type";
+import moment from "moment";
 
 export default class SeatDetail extends Component {
   state = {
@@ -14,6 +15,8 @@ export default class SeatDetail extends Component {
     gheVip: 0,
     gheThuong: 0,
     loading: true,
+    timeOut: 95,
+    clearTimer: null,
   };
 
   componentDidMount() {
@@ -29,8 +32,31 @@ export default class SeatDetail extends Component {
       .catch((err) => {
         alert(err);
       });
+
+    let startCountdown = (second) => {
+      let counter = second;
+
+      let timer = setInterval(() => {
+        counter--;
+        this.setState({
+          timeOut: counter,
+          clear: timer,
+        });
+        if (this.state.timeOut === 0) {
+          clearInterval(timer);
+          if (counter === 0) {
+            alert("Đã hết giờ đặt vé, bạn sẽ quay trở về trang trước");
+            this.props.history.goBack();
+          }
+        }
+      }, 1000);
+    };
+    startCountdown(this.state.timeOut);
   }
 
+  componentWillUnmount() {
+    clearInterval(this.state.clearTimer);
+  }
   /**
    * Hàm chọn ghế
    */
@@ -133,9 +159,8 @@ export default class SeatDetail extends Component {
       alert("Bạn chưa đặt ghế nào");
     } else {
       alert("Bạn đã đặt ghế thành công\n Quay trở lại trang chủ");
-      setTimeout(() => {
-        this.props.history.push("/");
-      }, 3000);
+      clearInterval(this.state.clearTimer);
+      this.props.history.push("/");
     }
   };
 
@@ -145,14 +170,17 @@ export default class SeatDetail extends Component {
     if (!JSON.parse(localStorage.getItem(USER_BOOKING_TICKET_LOGIN))) {
       this.props.history.push("/");
     }
+    const { email, soDT } = JSON.parse(
+      localStorage.getItem(USER_BOOKING_TICKET_LOGIN)
+    );
     if (loading === true) return <Loader />;
-    const { diaChi, gioChieu, hinhAnh, ngayChieu, tenCumRap, tenPhim, tenRap } =
+    const { diaChi, gioChieu, ngayChieu, tenCumRap, tenPhim, tenRap } =
       thongTinPhim;
     return (
       <div className="seatdetail text-white">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-lg-9 shapeTheater__wrap" >
+            <div className="col-lg-9 shapeTheater__wrap">
               <div className="shapeTheater">
                 <div style={{ border: "solid 5px #000" }} />
                 <div id="trapezoid" className="text-center">
@@ -233,6 +261,14 @@ export default class SeatDetail extends Component {
                 </p>
                 <p>{tenRap}</p>
                 <hr />
+                <div className="badge mx-auto w-100 badge-pill badge-danger">
+                  <p className="h6 p-0 m-0">
+                    Thời gian giữ ghế:{" "}
+                    <span>
+                      {moment.utc(this.state.timeOut * 1000).format("mm:ss")}
+                    </span>
+                  </p>
+                </div>
                 <table className="table table-borderless text-center text-white">
                   <thead>
                     <tr>
@@ -255,10 +291,10 @@ export default class SeatDetail extends Component {
                   </tbody>
                 </table>
                 <hr />
-                <p>Email</p>
-                <p>string@gmail.com</p>
-                <p>Phone</p>
-                <p>097777999</p>
+                <p>Tài khoản</p>
+                <p>{email}</p>
+                <p>Số điện thoại</p>
+                <p>{soDT}</p>
                 <button
                   className="btn btn-success"
                   style={{ width: "100%" }}
