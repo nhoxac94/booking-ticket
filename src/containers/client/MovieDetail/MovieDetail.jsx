@@ -70,7 +70,7 @@ export default class MovieDetail extends Component {
                       <FontAwesomeIcon
                         data-toggle="modal"
                         data-target={`#modal${movie.biDanh}`}
-                        className="text-white btn movieDetail__playbutton"
+                        className="btn movieDetail__playbutton"
                         icon={faPlayCircle}
                         style={{
                           fontSize: "100px",
