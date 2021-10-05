@@ -152,7 +152,7 @@ export default class SeatDetail extends Component {
       <div className="seatdetail text-white">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-lg-9 " style={{ marginTop: "6rem" }}>
+            <div className="col-lg-9 shapeTheater__wrap" >
               <div className="shapeTheater">
                 <div style={{ border: "solid 5px #000" }} />
                 <div id="trapezoid" className="text-center">
