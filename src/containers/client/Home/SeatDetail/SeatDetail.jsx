@@ -168,6 +168,7 @@ export default class SeatDetail extends Component {
     const { loading, seatPlan, bookingSeat, tongTienVe } = this.state;
     const { thongTinPhim } = seatPlan;
     if (!JSON.parse(localStorage.getItem(USER_BOOKING_TICKET_LOGIN))) {
+      alert('Bạn phải đăng nhập mới sử dụng được chức năng đặt vé')
       this.props.history.push("/");
     }
     if (loading === true) return <Loader />;
