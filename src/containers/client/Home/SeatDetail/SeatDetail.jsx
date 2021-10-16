@@ -170,10 +170,10 @@ export default class SeatDetail extends Component {
     if (!JSON.parse(localStorage.getItem(USER_BOOKING_TICKET_LOGIN))) {
       this.props.history.push("/");
     }
+    if (loading === true) return <Loader />;
     const { email, soDT } = JSON.parse(
       localStorage.getItem(USER_BOOKING_TICKET_LOGIN)
     );
-    if (loading === true) return <Loader />;
     const { diaChi, gioChieu, ngayChieu, tenCumRap, tenPhim, tenRap } =
       thongTinPhim;
     return (
