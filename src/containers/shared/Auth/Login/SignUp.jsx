@@ -84,7 +84,7 @@ const SignUpWithFormik = withFormik({
         taiKhoan: Yup.string().required('Please input Username!!!'),
         matKhau: Yup.string().required('Please input password!!!'),
         email: Yup.string().required('Please input email!!!').email('Email is valid!!!'),
-        soDt: Yup.number("Your Numver must contain only number!!!").required('Please input phone number!!!'),
+        soDt: Yup.string().required('Please input phone number!!!').matches("^[0-9]*$", "Your Phone Number must contain only numbers"),
     }),
 
     handleSubmit: (values, { props, setSubmitting }) => {
